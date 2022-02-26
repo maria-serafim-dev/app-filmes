@@ -2,8 +2,16 @@
     <string name="app_name">App De Filmes</string>
     <string name="nome_empresa">Maria Filmes</string>
     <string name="text_novidades">Novidades</string>
+    <string name="text_sucesso">Grandes Sucessos</string>
+    <string name="text_exclusivos">Filmes Exlusivos</string>
 
 
     <string name="text_home">Ínicio</string>
     <string name="text_star">Minha Lista</string>
+
+
+    <string name="dc_encanto">Capa do filme encanto</string>
+    <string name="dc_uncharted">Capa do filme uncharted</string>
+    <string name="dc_magico_oz">Capa do filme Mágico de Oz</string>
+    <string name="dc_to_rica">Capa do filme Tô rica</string>
 </resources>
