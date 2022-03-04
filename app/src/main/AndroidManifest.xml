@@ -11,6 +11,9 @@
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
