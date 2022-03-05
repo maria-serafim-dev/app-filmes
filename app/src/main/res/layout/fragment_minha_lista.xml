@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.MinhaListaFragment">
+
+    <TextView
+        android:id="@+id/minhaLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_minha_lista"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/minhaLista"
+        app:layout_constraintVertical_bias="1.0"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/gray"
+            app:layout_constraintBottom_toTopOf="@id/scrollView"
+            app:layout_constraintEnd_toEndOf="@id/scrollView"
+            app:layout_constraintStart_toStartOf="@id/scrollView"
+            app:layout_constraintTop_toBottomOf="@id/scrollView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageView
+                android:id="@+id/imgEncantoDireita"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_encanto"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toStartOf="@id/imgEncantoMeio"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/view"
+                app:layout_constraintTop_toTopOf="@id/view"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/encanto" />
+
+            <ImageView
+                android:id="@+id/imgEncantoMeio"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_encanto"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toStartOf="@+id/imgEncantoEsquerda"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/imgEncantoDireita"
+                app:layout_constraintTop_toTopOf="@id/view"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/encanto" />
+
+            <ImageView
+                android:id="@+id/imgEncantoEsquerda"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_encanto"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toEndOf="@id/view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/imgEncantoMeio"
+                app:layout_constraintTop_toTopOf="@id/view"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/encanto" />
+
+
+            <ImageView
+                android:id="@+id/imgMagicoOzDireita"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_magico_oz"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toStartOf="@id/imgMagicoOzMeio"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/view"
+                app:layout_constraintTop_toBottomOf="@id/imgEncantoMeio"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/magico_oz" />
+
+            <ImageView
+                android:id="@+id/imgMagicoOzMeio"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_magico_oz"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toStartOf="@id/imgMagicoOzEsquerda"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/imgMagicoOzDireita"
+                app:layout_constraintTop_toBottomOf="@id/imgEncantoMeio"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/magico_oz" />
+
+            <ImageView
+                android:id="@+id/imgMagicoOzEsquerda"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_magico_oz"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="@id/view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/imgMagicoOzMeio"
+                app:layout_constraintTop_toBottomOf="@id/imgEncantoMeio"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/magico_oz" />
+
+
+            <ImageView
+                android:id="@+id/imgUnchartedDireita"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_magico_oz"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toStartOf="@+id/imgUnchartedMeio"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/view"
+                app:layout_constraintTop_toBottomOf="@id/imgMagicoOzMeio"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/uncharted" />
+
+            <ImageView
+                android:id="@+id/imgUnchartedMeio"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/dc_magico_oz"
+                app:layout_constraintBottom_toBottomOf="@id/view"
+                app:layout_constraintEnd_toStartOf="@id/imgUnchartedEsquerda"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/imgUnchartedDireita"
+                app:layout_constraintTop_toBottomOf="@id/imgMagicoOzMeio"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/uncharted" />
+
+            <ImageView
+                android:id="@+id/imgUnchartedEsquerda"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/dc_magico_oz"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="@id/view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/imgUnchartedMeio"
+                app:layout_constraintTop_toBottomOf="@id/imgMagicoOzMeio"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/uncharted" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

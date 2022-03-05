@@ -9,9 +9,6 @@
     <string name="text_minha_lista">Minha Lista</string>
 
 
-
-
-
     <string name="text_home">Ínicio</string>
     <string name="text_star">Minha Lista</string>
 
@@ -20,4 +17,6 @@
     <string name="dc_uncharted">Capa do filme uncharted</string>
     <string name="dc_magico_oz">Capa do filme Mágico de Oz</string>
     <string name="dc_to_rica">Capa do filme Tô rica</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
