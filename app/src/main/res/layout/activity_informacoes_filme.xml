@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".activity.InformacoesFilmeActivity">
+
+
+        <ImageView
+            android:id="@+id/a_informacoes_cartaz_fundo"
+            android:layout_width="0dp"
+            android:layout_height="400dp"
+            android:alpha="0.2"
+            android:contentDescription="@string/dc_uncharted"
+            android:scaleType="center"
+            android:src="@drawable/uncharted"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/a_informacoes_cartaz"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/dc_uncharted"
+            android:src="@drawable/uncharted"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/text_nome_obra"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="@string/txt_filme_uncharted"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/a_informacoes_cartaz" />
+
+        <TextView
+            android:id="@+id/text_estilos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/txt_filme"
+            android:textColor="@color/cinza_claro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_nome_obra" />
+
+        <TextView
+            android:id="@+id/text_sinopse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/txt_sinopse_filme_uncharted"
+            android:textAlignment="viewStart"
+            android:textColor="@color/cinza_claro"
+            app:layout_constraintBottom_toBottomOf="@+id/a_informacoes_cartaz_fundo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_estilos" />
+
+        <Button
+            android:id="@+id/button_assistir"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/button_assistir"
+            android:textColor="@color/cinza_escuro"
+            android:textSize="14sp"
+            app:icon="@drawable/ic_play"
+            app:iconTint="@color/cinza_escuro"
+            app:layout_constraintEnd_toStartOf="@id/button_minha_lista"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/a_informacoes_cartaz_fundo" />
+
+        <Button
+            android:id="@+id/button_minha_lista"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="180dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:text="@string/button_minha_lista"
+            android:textColor="@color/cinza_claro"
+            android:textSize="14sp"
+            app:icon="@drawable/ic_star"
+            app:iconTint="@color/cinza_claro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_assistir"
+            app:layout_constraintTop_toBottomOf="@id/a_informacoes_cartaz_fundo"
+            app:strokeColor="@color/cinza_claro" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_minha_lista"
+            app:layout_constraintVertical_bias="0.0"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_tab_first"
+
+                />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_tab_second" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView2"
+            android:name="com.example.appdefilmes.fragments.FichaTecnicaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabs"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

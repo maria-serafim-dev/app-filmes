@@ -17,6 +17,33 @@
     <string name="dc_uncharted">Capa do filme uncharted</string>
     <string name="dc_magico_oz">Capa do filme Mágico de Oz</string>
     <string name="dc_to_rica">Capa do filme Tô rica</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="txt_filme_uncharted">Uncharted: Fora do Mapa</string>
+    <string name="txt_sinopse_filme_uncharted">Nathan Drake e seu parceiro canastrão Victor "Sully" Sullivan embarcam em uma perigosa busca para encontrar o maior tesouro jamais encontrado. Enquanto isso, eles também rastreiam pistas que podem levar ao irmão perdido de Nathan.</string>
+    <string name="txt_novela">Novela</string>
+    <string name="txt_filme">Filme</string>
+    <string name="button_assistir">Assista</string>
+    <string name="button_minha_lista">Minha Lista</string>
+    <string name="text_tab_first">Assista Também</string>
+    <string name="text_tab_second">Detalhes</string>
+
+
+    <string name="text_titulo_original">Titulo Original:</string>
+    <string name="text_genero">Gênero:</string>
+    <string name="text_epsodios">Episódios:</string>
+    <string name="text_num_epsodios">10</string>
+    <string name="ficha_tecnica">Ficha Técnica</string>
+    <string name="titulo_ano_produção">Ano de Produção:</string>
+    <string name="valor_ano_produção">2021</string>
+    <string name="titulo_pais">País:</string>
+    <string name="valor_pais">Estados Unidos</string>
+    <string name="titulo_direcao">Direção:</string>
+    <string name="valor_direcao">Ruben Fleischer</string>
+    <string name="titulo_elenco">Elenco:</string>
+    <string name="valor_elenco">Tom Holland. Personagem : Nathan Drake ; Mark Wahlberg. Personagem : Victor &quot;Sully&quot; Sullivan ; Sophia Ali. Personagem : Chloe Frazer ; Antonio Banderas.</string>
+    <string name="titulo_disponivel">Disponível até:</string>
+    <string name="valor_disponivel">05/03/2050</string>
+
+
 </resources>

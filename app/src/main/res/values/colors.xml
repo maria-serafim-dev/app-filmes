@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#252424</color>
+    <color name="cinza_claro">#C7C1BF</color>
+    <color name="cinza_escuro">#454545</color>
+    <color name="cinza_fundo">#1F1F1F</color>
+    <color name="cinza_letras">#888888</color>
 </resources>

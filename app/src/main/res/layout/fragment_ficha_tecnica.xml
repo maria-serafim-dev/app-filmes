@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FichaTecnicaFragment"
+    android:background="@color/cinza_fundo">
+
+
+    <TextView
+        android:id="@+id/txt_ficha_tecnica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/ficha_tecnica"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/txt_titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/txt_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/text_titulo_original"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/txt_genero"
+        app:layout_constraintEnd_toStartOf="@id/text_nome_filme"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/txt_ficha_tecnica"
+        app:layout_constraintTop_toBottomOf="@id/txt_ficha_tecnica"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/text_nome_filme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_filme_uncharted"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/txt_titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/txt_titulo"
+        app:layout_constraintTop_toTopOf="@id/txt_titulo"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/txt_genero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/text_genero"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/txt_titulo"
+        app:layout_constraintTop_toBottomOf="@id/txt_titulo"
+        app:layout_constraintEnd_toStartOf="@id/text_tipo_genero"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_tipo_genero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_filme"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/txt_genero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/txt_genero"
+        app:layout_constraintTop_toTopOf="@id/txt_genero"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_epsodios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/text_epsodios"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/text_numero_epsodio"
+        app:layout_constraintStart_toStartOf="@id/txt_genero"
+        app:layout_constraintTop_toBottomOf="@id/txt_genero"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_numero_epsodio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_num_epsodios"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/txt_epsodios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/txt_epsodios"
+        app:layout_constraintTop_toTopOf="@id/txt_epsodios"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_titulo_ano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/titulo_ano_produção"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/txt_valor_ano"
+        app:layout_constraintStart_toStartOf="@id/txt_epsodios"
+        app:layout_constraintTop_toBottomOf="@id/txt_epsodios"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_valor_ano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_ano_produção"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/text_titulo_ano"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/text_titulo_ano"
+        app:layout_constraintTop_toTopOf="@id/text_titulo_ano"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_titulo_pais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/titulo_pais"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/txt_valor_pais"
+        app:layout_constraintStart_toStartOf="@id/text_titulo_ano"
+        app:layout_constraintTop_toBottomOf="@id/text_titulo_ano"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_valor_pais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_pais"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/text_titulo_pais"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/text_titulo_pais"
+        app:layout_constraintTop_toTopOf="@id/text_titulo_pais"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_titulo_direcao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/titulo_direcao"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/txt_valor_direcao"
+        app:layout_constraintStart_toStartOf="@id/text_titulo_pais"
+        app:layout_constraintTop_toBottomOf="@id/text_titulo_pais"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_valor_direcao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_direcao"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/text_titulo_direcao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/text_titulo_direcao"
+        app:layout_constraintTop_toTopOf="@id/text_titulo_direcao"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_titulo_elenco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/titulo_elenco"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/txt_valor_elenco"
+        app:layout_constraintStart_toStartOf="@id/text_titulo_direcao"
+        app:layout_constraintTop_toBottomOf="@id/text_titulo_direcao"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_valor_elenco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_elenco"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/text_titulo_elenco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/text_titulo_elenco"
+        app:layout_constraintTop_toTopOf="@id/text_titulo_elenco"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_titulo_disponivel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/titulo_disponivel"
+        android:textColor="@color/cinza_letras"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@id/txt_valor_disponivel"
+        app:layout_constraintStart_toStartOf="@id/text_titulo_elenco"
+        app:layout_constraintTop_toBottomOf="@id/txt_valor_elenco"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txt_valor_disponivel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/valor_disponivel"
+        android:textColor="@color/cinza_letras"
+        app:layout_constraintBottom_toBottomOf="@id/text_titulo_disponivel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/text_titulo_disponivel"
+        app:layout_constraintTop_toTopOf="@id/text_titulo_disponivel"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
