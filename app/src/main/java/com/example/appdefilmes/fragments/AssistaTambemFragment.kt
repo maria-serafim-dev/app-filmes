@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import com.example.appdefilmes.R
 
 
-class InicioFragment : Fragment() {
+class AssistaTambemFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_inicio, container, false)
-    }
 
+        return inflater.inflate(R.layout.fragment_assista_tambem, container, false)
+    }
 
 }

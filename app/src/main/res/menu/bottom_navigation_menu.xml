@@ -10,4 +10,11 @@
         android:icon="@drawable/ic_star"
         android:title="@string/text_star"
         />
+
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:icon="@drawable/ic_movies"
+        android:title="@string/txt_filme"
+        />
 </menu>

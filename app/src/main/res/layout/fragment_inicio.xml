@@ -73,54 +73,54 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/imageView1"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/dc_uncharted"
+                        app:srcCompat="@drawable/uncharted" />
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
+                        android:contentDescription="@string/dc_encanto"
+                        app:srcCompat="@drawable/encanto" />
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
+                        android:contentDescription="@string/dc_uncharted"
+                        app:srcCompat="@drawable/uncharted" />
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
+                        android:contentDescription="@string/dc_encanto"
+                        app:srcCompat="@drawable/encanto" />
 
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
+                        android:layout_weight="1"
+                        android:contentDescription="@string/dc_uncharted"
+                        app:srcCompat="@drawable/uncharted" />
 
                     <ImageView
                         android:id="@+id/imageView6"
                         android:layout_width="150dp"
                         android:layout_height="200dp"
                         android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
+                        android:contentDescription="@string/dc_encanto"
+                        app:srcCompat="@drawable/encanto" />
+
+
                 </LinearLayout>
             </HorizontalScrollView>
 

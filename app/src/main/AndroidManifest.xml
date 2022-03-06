@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.InformacoesFilmeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.InformacoesFilmeActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

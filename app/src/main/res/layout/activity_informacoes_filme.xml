@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/black"
         tools:context=".activity.InformacoesFilmeActivity">
 
@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/a_informacoes_cartaz_fundo"
             android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_height="420dp"
             android:alpha="0.2"
             android:contentDescription="@string/dc_uncharted"
             android:scaleType="center"
@@ -28,23 +28,37 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
+            android:id="@+id/a_informacoes_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/voltar"
+            android:src="@drawable/ic_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
             android:id="@+id/a_informacoes_cartaz"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/dc_uncharted"
             android:src="@drawable/uncharted"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/a_informacoes_back" />
 
 
         <TextView
             android:id="@+id/text_nome_obra"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="16dp"
             android:gravity="center"
             android:text="@string/txt_filme_uncharted"
             android:textColor="@color/white"
@@ -113,11 +127,12 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fragmentContainerView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_minha_lista"
             app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
             app:tabIndicatorColor="@color/white"
             app:tabTextColor="@color/white">
 
@@ -136,7 +151,6 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView2"
-            android:name="com.example.appdefilmes.fragments.FichaTecnicaFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
