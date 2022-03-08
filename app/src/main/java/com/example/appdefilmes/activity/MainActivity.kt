@@ -19,7 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val fragment = InicioFragment()
-        iniciarFragment(fragment)
+
+        if(savedInstanceState == null){
+            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment).commit()
+        }
 
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navigation.setOnNavigationItemSelectedListener(selecionarMenu)

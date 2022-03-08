@@ -21,7 +21,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_informacoes_filme)
 
         val fragment = AssistaTambemFragment()
-        iniciarFragment(fragment)
+        if(savedInstanceState == null){
+            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView2, fragment).commit()
+        }
 
         selecionarTabs()
         val imagem = findViewById<ImageView>(R.id.a_informacoes_back)
@@ -60,11 +62,11 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                // Handle tab reselect
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // Handle tab unselect
+
             }
         })
     }
