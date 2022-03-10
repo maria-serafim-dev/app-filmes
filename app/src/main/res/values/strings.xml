@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">App De Filmes</string>
-    <string name="nome_empresa">Maria Filmes</string>
+    <string name="logo">MM</string>
+    <string name="nome_empresa">Maria Movies</string>
     <string name="text_novidades">Novidades</string>
     <string name="text_sucesso">Grandes Sucessos</string>
     <string name="text_exclusivos">Filmes Exlusivos</string>
@@ -44,8 +45,7 @@
     <string name="valor_elenco">Tom Holland. Personagem : Nathan Drake ; Mark Wahlberg. Personagem : Victor &quot;Sully&quot; Sullivan ; Sophia Ali. Personagem : Chloe Frazer ; Antonio Banderas.</string>
     <string name="titulo_disponivel">Disponível até:</string>
     <string name="valor_disponivel">05/03/2050</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="voltar">Voltar</string>
 
 

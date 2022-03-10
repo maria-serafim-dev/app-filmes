@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.FichaTecnicaFragment"
-    android:background="@color/cinza_fundo">
+    android:background="@color/cinza_fundo"
+    android:id="@+id/ficha">
 
 
     <TextView
@@ -254,6 +255,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/text_titulo_disponivel"
         app:layout_constraintTop_toTopOf="@id/text_titulo_disponivel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
