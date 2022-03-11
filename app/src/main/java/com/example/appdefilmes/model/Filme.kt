@@ -3,7 +3,7 @@ package com.example.appdefilmes.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class UmFilme(
+class Filme(
     val backdrop_path: String?,
     val id: Int?,
     val original_language: String?,
