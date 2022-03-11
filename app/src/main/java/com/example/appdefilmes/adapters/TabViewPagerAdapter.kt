@@ -6,11 +6,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.appdefilmes.R
 import com.example.appdefilmes.fragments.AssistaTambemFragment
 import com.example.appdefilmes.fragments.FichaTecnicaFragment
+import com.example.appdefilmes.model.UmFilme
 
-class TabViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
+class TabViewPagerAdapter(fa: FragmentActivity, filme: UmFilme?): FragmentStateAdapter(fa) {
 
     val tabsText = arrayOf(R.string.text_tab_first, R.string.text_tab_second)
-    val fragments = arrayOf(AssistaTambemFragment(), FichaTecnicaFragment())
+    val fragments = arrayOf(AssistaTambemFragment(), FichaTecnicaFragment(filme))
 
     override fun getItemCount() = fragments.size
 

@@ -83,34 +83,6 @@
         app:layout_constraintTop_toTopOf="@id/txt_genero"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/txt_epsodios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="@string/text_epsodios"
-        android:textColor="@color/cinza_letras"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/text_numero_epsodio"
-        app:layout_constraintStart_toStartOf="@id/txt_genero"
-        app:layout_constraintTop_toBottomOf="@id/txt_genero"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_numero_epsodio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_num_epsodios"
-        android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/txt_epsodios"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/txt_epsodios"
-        app:layout_constraintTop_toTopOf="@id/txt_epsodios"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text_titulo_ano"
@@ -124,8 +96,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintEnd_toStartOf="@id/txt_valor_ano"
-        app:layout_constraintStart_toStartOf="@id/txt_epsodios"
-        app:layout_constraintTop_toBottomOf="@id/txt_epsodios"
+        app:layout_constraintStart_toStartOf="@id/txt_genero"
+        app:layout_constraintTop_toBottomOf="@id/txt_genero"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView

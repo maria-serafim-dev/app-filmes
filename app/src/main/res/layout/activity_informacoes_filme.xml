@@ -20,7 +20,7 @@
             android:layout_height="420dp"
             android:alpha="0.2"
             android:contentDescription="@string/dc_uncharted"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             android:src="@drawable/uncharted"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

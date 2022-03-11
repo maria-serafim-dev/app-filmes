@@ -5,18 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.example.appdefilmes.R
+import com.example.appdefilmes.model.UmFilme
 
-class FichaTecnicaFragment : Fragment() {
+class FichaTecnicaFragment(filme: UmFilme?) : Fragment() {
 
-
+    var filmeSelecionado = filme
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_ficha_tecnica, container, false)
+        val titulo = view.findViewById<TextView>(R.id.text_nome_filme)
+        titulo.text = filmeSelecionado?.title
 
-        return inflater.inflate(R.layout.fragment_ficha_tecnica, container, false)
+        val ano = view.findViewById<TextView>(R.id.txt_valor_ano)
+        ano.text = filmeSelecionado?.release_date
+
+        return view
     }
 
     override fun onResume() {
