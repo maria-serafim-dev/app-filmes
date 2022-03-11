@@ -6,9 +6,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.appdefilmes.R
 import com.example.appdefilmes.fragments.AssistaTambemFragment
 import com.example.appdefilmes.fragments.FichaTecnicaFragment
-import com.example.appdefilmes.model.UmFilme
+import com.example.appdefilmes.model.Filme
 
-class TabViewPagerAdapter(fa: FragmentActivity, filme: UmFilme?): FragmentStateAdapter(fa) {
+class TabViewPagerAdapter(fa: FragmentActivity, filme: Filme?): FragmentStateAdapter(fa) {
 
     val tabsText = arrayOf(R.string.text_tab_first, R.string.text_tab_second)
     val fragments = arrayOf(AssistaTambemFragment(), FichaTecnicaFragment(filme))
