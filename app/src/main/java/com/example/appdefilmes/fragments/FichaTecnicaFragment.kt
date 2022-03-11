@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.appdefilmes.R
-import com.example.appdefilmes.model.UmFilme
+import com.example.appdefilmes.model.Filme
 
-class FichaTecnicaFragment(filme: UmFilme?) : Fragment() {
+class FichaTecnicaFragment(filme: Filme?) : Fragment() {
 
     var filmeSelecionado = filme
 

@@ -1,7 +1,7 @@
 package com.example.appdefilmes.retrofit.service
 
+import com.example.appdefilmes.model.Result
 import com.example.appdefilmes.model.Filme
-import com.example.appdefilmes.model.UmFilme
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,12 +15,12 @@ interface FilmeService {
         @Path("category") categoria: String,
         @Query("api_key") chaveApi: String,
         @Query("language") idioma: String,
-    ) : Call<Filme>
+    ) : Call<Result>
 
     @GET("/3/movie/{movie_id}")
     fun getFilmeId(
         @Path("movie_id") idFilme: Int,
         @Query("api_key") chaveApi: String,
         @Query("language") idioma: String,
-    ) : Call<UmFilme>
+    ) : Call<Filme>
 }
