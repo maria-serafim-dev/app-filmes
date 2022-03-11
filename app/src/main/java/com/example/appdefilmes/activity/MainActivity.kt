@@ -3,6 +3,7 @@ package com.example.appdefilmes.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.appdefilmes.model.Result
 import com.example.appdefilmes.retrofit.FilmeRetrofit
 import com.example.appdefilmes.retrofit.service.FilmeService
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,13 +54,15 @@ class MainActivity : AppCompatActivity() {
 
         callback.enqueue(object : Callback<Filme> {
             override fun onResponse(call: Call<Filme>, response: Response<Filme>) {
-                Log.i("Teste", response.toString())
 
                 val results: Filme? = response.body()
                 val listaFilmes: List<Result>? = results?.results
                 listaFilmes?.forEach{
                     Log.i("Retrofit", it.title)
                 }
+
+                val imagem = findViewById<ImageView>(R.id.imagem_picasso)
+                Picasso.get().load("https://image.tmdb.org/t/p/w500/9PbtCo5IIkd26WPQfZUpPyn6fTz.jpg").into(imagem)
             }
 
             override fun onFailure(call: Call<Filme>, t: Throwable) {
@@ -90,7 +94,6 @@ class MainActivity : AppCompatActivity() {
     private fun iniciarFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainerView, fragment)
-        transaction.addToBackStack(null)
         transaction.commit()
     }
 
