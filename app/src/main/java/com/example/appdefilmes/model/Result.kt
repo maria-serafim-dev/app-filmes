@@ -1,6 +1,6 @@
 package com.example.appdefilmes.model
 
-class Filme(
+class Result(
 
     val page: Int,
     val results: List<Result>,
