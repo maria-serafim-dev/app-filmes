@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class Filme(
-    val backdrop_path: String?,
     val id: Int?,
     val original_language: String?,
     val original_title: String?,
@@ -17,7 +16,6 @@ class Filme(
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
@@ -31,7 +29,6 @@ class Filme(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(backdrop_path)
         if (id != null) {
             parcel.writeInt(id)
         }
@@ -53,12 +50,12 @@ class Filme(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<UmFilme> {
-        override fun createFromParcel(parcel: Parcel): UmFilme {
-            return UmFilme(parcel)
+    companion object CREATOR : Parcelable.Creator<Filme> {
+        override fun createFromParcel(parcel: Parcel): Filme {
+            return Filme(parcel)
         }
 
-        override fun newArray(size: Int): Array<UmFilme?> {
+        override fun newArray(size: Int): Array<Filme?> {
             return arrayOfNulls(size)
         }
     }
