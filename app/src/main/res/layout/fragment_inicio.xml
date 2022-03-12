@@ -50,14 +50,15 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/f_inicio_scroll_horizontal_first"
+                app:layout_constraintBottom_toTopOf="@id/recyclerViewNovidades"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <HorizontalScrollView
-                android:id="@+id/f_inicio_scroll_horizontal_first"
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNovidades"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -65,64 +66,7 @@
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/f_inicio_text_novidade">
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
-
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
-
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
-
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
+                app:layout_constraintTop_toBottomOf="@id/f_inicio_text_novidade"/>
 
             <TextView
                 android:id="@+id/f_inicio_text_sucesso"
@@ -133,13 +77,13 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/f_inicio_scroll_horizontal_second"
+                app:layout_constraintBottom_toTopOf="@id/recyclerViewSucesso"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/f_inicio_scroll_horizontal_first" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewNovidades" />
 
-            <HorizontalScrollView
-                android:id="@+id/f_inicio_scroll_horizontal_second"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSucesso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -148,59 +92,8 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
                 app:layout_constraintTop_toBottomOf="@id/f_inicio_text_sucesso">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp">
-
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:contentDescription="@string/dc_magico_oz"
-                        app:srcCompat="@drawable/magico_oz" />
-
-                    <ImageView
-                        android:id="@+id/imageView8"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_to_rica"
-                        app:srcCompat="@drawable/to_rica" />
-
-                    <ImageView
-                        android:id="@+id/imageView9"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_magico_oz"
-                        app:srcCompat="@drawable/magico_oz" />
-
-                    <ImageView
-                        android:id="@+id/imageView10"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_to_rica"
-                        app:srcCompat="@drawable/to_rica" />
-
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_magico_oz"
-                        app:srcCompat="@drawable/magico_oz" />
-
-                    <ImageView
-                        android:id="@+id/imageView12"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_to_rica"
-                        app:srcCompat="@drawable/to_rica" />
-                </LinearLayout>
-            </HorizontalScrollView>
+                
+            </androidx.recyclerview.widget.RecyclerView>
 
 
             <TextView
@@ -212,15 +105,15 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/f_inicio_scroll_horizontal_third"
+                app:layout_constraintBottom_toTopOf="@id/recyclerViewExclusivos"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/f_inicio_scroll_horizontal_second"
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewSucesso"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <HorizontalScrollView
-                android:id="@+id/f_inicio_scroll_horizontal_third"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewExclusivos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -231,59 +124,8 @@
                 app:layout_constraintTop_toBottomOf="@id/f_inicio_text_exclusivos"
                 app:layout_constraintVertical_bias="0.0">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp">
-
-                    <ImageView
-                        android:id="@+id/imageView13"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
-
-                    <ImageView
-                        android:id="@+id/imageView14"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
-
-                    <ImageView
-                        android:id="@+id/imageView15"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
-
-                    <ImageView
-                        android:id="@+id/imageView16"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
-
-                    <ImageView
-                        android:id="@+id/imageView17"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/dc_encanto"
-                        app:srcCompat="@drawable/encanto" />
-
-                    <ImageView
-                        android:id="@+id/imageView18"
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginBottom="16dp"
-                        android:contentDescription="@string/dc_uncharted"
-                        app:srcCompat="@drawable/uncharted" />
-                </LinearLayout>
-            </HorizontalScrollView>
+              
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

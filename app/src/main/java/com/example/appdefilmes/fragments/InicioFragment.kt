@@ -12,14 +12,28 @@ import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.model.Filme
 
 
-class InicioFragment() : Fragment() {
+class InicioFragment(var listaFilmes: List<Filme>) : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_inicio, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
+
+        adaptarRecycleView(view, R.id.recyclerViewNovidades)
+        adaptarRecycleView(view, R.id.recyclerViewSucesso)
+        adaptarRecycleView(view, R.id.recyclerViewExclusivos)
+
+        return view
+
     }
 
+    fun adaptarRecycleView(view: View, id: Int){
+        val recyclerView: RecyclerView = view.findViewById(id)
+        recyclerView.adapter = this.listaFilmes.let { FilmeAdapter(view.context, it) }
+        val layoutManagerRecyclerView = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = layoutManagerRecyclerView
+    }
 
 }
