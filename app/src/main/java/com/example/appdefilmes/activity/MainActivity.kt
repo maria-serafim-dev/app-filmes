@@ -6,7 +6,10 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
+import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.fragments.InicioFragment
 import com.example.appdefilmes.fragments.MinhaListaFragment
 import com.example.appdefilmes.model.ApiKey
@@ -26,21 +29,23 @@ class MainActivity : AppCompatActivity() {
     val CATEGORY: String = "popular"
     val LANGUAGE: String = "pt-BR"
     val ID_FILME: Int = 634649
+    val PAGE: Int = 1
 
     var umFilme: Filme? = null
+    var listaFilmes: List<Filme>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        consumirApiTodosFilmes()
         consumirApiUmFilme()
 
         val fragment = InicioFragment()
-
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment)
-                .commit()
+                supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment)
+                    .commit()
         }
 
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -75,12 +80,17 @@ class MainActivity : AppCompatActivity() {
         val retrofit = FilmeRetrofit.getRetrofitInstance(BASE_URL)
         val endpoint = retrofit.create(FilmeService::class.java)
 
-        val callback = endpoint.getFilmes(CATEGORY, API_KEY, LANGUAGE)
+        val callback = endpoint.getFilmes(CATEGORY, API_KEY, LANGUAGE, PAGE)
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
 
                 val results: Result? = response.body()
-                val listaFilmes: List<Filme>? = results?.results
+                listaFilmes = results?.results
+
+                val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+                recyclerView.adapter = listaFilmes?.let { FilmeAdapter(applicationContext, it) }
+                val layoutManagerRecyclerView = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                recyclerView.layoutManager = layoutManagerRecyclerView
 
             }
 
@@ -89,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
     }
 
     private val selecionarMenu = BottomNavigationView.OnNavigationItemSelectedListener { item ->

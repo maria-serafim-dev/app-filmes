@@ -15,6 +15,7 @@ interface FilmeService {
         @Path("category") categoria: String,
         @Query("api_key") chaveApi: String,
         @Query("language") idioma: String,
+        @Query("page") pagina: Int,
     ) : Call<Result>
 
     @GET("/3/movie/{movie_id}")

@@ -9,9 +9,7 @@ import android.widget.TextView
 import com.example.appdefilmes.R
 import com.example.appdefilmes.model.Filme
 
-class FichaTecnicaFragment(filme: Filme?) : Fragment() {
-
-    var filmeSelecionado = filme
+class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,10 +17,10 @@ class FichaTecnicaFragment(filme: Filme?) : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ficha_tecnica, container, false)
         val titulo = view.findViewById<TextView>(R.id.text_nome_filme)
-        titulo.text = filmeSelecionado?.title
+        titulo.text = filme?.title
 
         val ano = view.findViewById<TextView>(R.id.txt_valor_ano)
-        ano.text = filmeSelecionado?.release_date
+        ano.text = filme?.release_date
 
         return view
     }
