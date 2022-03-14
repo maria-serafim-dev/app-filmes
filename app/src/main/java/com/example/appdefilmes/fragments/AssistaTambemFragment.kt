@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
@@ -15,7 +14,7 @@ import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
 
-class AssistaTambemFragment() : Fragment() {
+class AssistaTambemFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -26,8 +25,6 @@ class AssistaTambemFragment() : Fragment() {
         val view = inflater.inflate(R.layout.fragment_assista_tambem, container, false)
         filmesPopulares(view)
         return view
-
-
     }
 
     fun filmesPopulares(view: View){

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
@@ -15,14 +14,14 @@ import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
 
-class InicioFragment() : Fragment() {
+class InicioFragment : Fragment() {
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        var view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
 
         filmesPopulares(view)
         filmesExclusivos(view)
