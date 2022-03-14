@@ -10,21 +10,23 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.model.Filme
 import com.squareup.picasso.Picasso
 
-class FilmeAdapter(var context: Context, var filmes: List<Filme>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class FilmeAdapter(var context: Context, var filmes: List<Filme>?) : RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder>() {
 
     private val urlDaImagem = "https://image.tmdb.org/t/p/w500"
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
         val view = LayoutInflater.from(this.context).inflate(R.layout.item_imagem_filme, parent,false)
         return FilmeViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FilmeViewHolder, position: Int) {
         val filme: Filme? = this.filmes?.get(position)
-        val imagem = holder.itemView.findViewById<ImageView>(R.id.imagemReplica)
+
         if (filme != null) {
-            Picasso.get().load(urlDaImagem + filme.poster_path).into(imagem)
+            Picasso.get().load(urlDaImagem + filme.poster_path).into(holder.imagem)
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -32,7 +34,7 @@ class FilmeAdapter(var context: Context, var filmes: List<Filme>?) : RecyclerVie
     }
 
     class FilmeViewHolder(view: View): RecyclerView.ViewHolder(view) {
-
+        val imagem = view.findViewById<ImageView>(R.id.imagemReplica)
     }
 
 

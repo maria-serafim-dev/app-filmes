@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
@@ -34,8 +33,6 @@ class InicioFragment : Fragment() {
     fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
         val recyclerView: RecyclerView = view.findViewById(id)
         recyclerView.adapter = filmes.let { FilmeAdapter(view.context, it) }
-        val layoutManagerRecyclerView = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManagerRecyclerView
     }
 
     fun filmesPopulares(view: View){

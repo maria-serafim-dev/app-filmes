@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
@@ -39,8 +38,6 @@ class AssistaTambemFragment : Fragment() {
     fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
         val recyclerView: RecyclerView = view.findViewById(id)
         recyclerView.adapter = filmes.let { FilmeAdapter(view.context, it) }
-        val layoutManagerRecyclerView = GridLayoutManager(view.context, 3)
-        recyclerView.layoutManager = layoutManagerRecyclerView
     }
 
 
