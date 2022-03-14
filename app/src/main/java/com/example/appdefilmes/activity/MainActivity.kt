@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity() {
     val PAGE: Int = 1
 
     var umFilme: Filme? = null
+    var listaFilmes = MutableLiveData<List<Filme>>()
+    var listaFilmesPopulares: MutableList<Filme>? = null
+    var listaFilmesMutavel: List<Filme> = listOf()
+    var adapter = FilmeAdapter(this, listaFilmesMutavel)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -41,19 +46,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                val fragment = filmes?.let { InicioFragment(it) }
-                if(savedInstanceState == null) fragment?.let {
-                    supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, it)
-                        .commit()
-                }
-            }
-
-        })
-
-
-
+        val fragment = InicioFragment()
+        if (savedInstanceState == null)
+            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment)
+                .commit()
 
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navigation.setOnNavigationItemSelectedListener(selecionarMenu)
@@ -61,11 +57,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
     private val selecionarMenu = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.page_1 -> {
-                //val fragment = InicioFragment()
-                //iniciarFragment(fragment)
+                val fragment = InicioFragment()
+                iniciarFragment(fragment)
             }
             R.id.page_2 -> {
                 val fragment = MinhaListaFragment()

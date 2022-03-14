@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
 import com.example.appdefilmes.model.Filme
 import com.squareup.picasso.Picasso
 
-class FilmeAdapter(var context: Context, var filmes: List<Filme>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FilmeAdapter(var context: Context, var filmes: List<Filme>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var URL_IMAGEM = "https://image.tmdb.org/t/p/w500"
 
@@ -20,17 +21,20 @@ class FilmeAdapter(var context: Context, var filmes: List<Filme>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val filme: Filme = this.filmes.get(position)
+        val filme: Filme? = this.filmes?.get(position)
         val imagem = holder.itemView.findViewById<ImageView>(R.id.imagemReplica)
-        Picasso.get().load(URL_IMAGEM + filme.poster_path).into(imagem)
+        if (filme != null) {
+            Picasso.get().load(URL_IMAGEM + filme.poster_path).into(imagem)
+        }
     }
 
     override fun getItemCount(): Int {
-        return this.filmes.size
+        return this.filmes?.size ?: 0
     }
 
     class FilmeViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     }
+
 
 }

@@ -8,6 +8,7 @@
     tools:context=".fragments.AssistaTambemFragment"
     android:id="@+id/assista">
 
+<!--
     <ImageView
         android:id="@+id/imgEncantoDireita"
         android:layout_width="120dp"
@@ -167,5 +168,17 @@
         app:layout_constraintTop_toBottomOf="@id/imgUnchartedMeio"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/to_rica" />
+-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAssitaTambem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
