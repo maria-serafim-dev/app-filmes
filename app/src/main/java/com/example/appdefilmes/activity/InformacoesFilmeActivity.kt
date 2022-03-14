@@ -71,7 +71,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     private fun inicializarTabsFragments() {
         val tabs = findViewById<TabLayout>(R.id.tabs)
         val viewPage2 = findViewById<ViewPager2>(R.id.viewpager2)
-        val adapter = TabViewPagerAdapter(this, umFilme, listaFilmes)
+        val adapter = TabViewPagerAdapter(this, umFilme)
         viewPage2.adapter = adapter
 
         TabLayoutMediator(tabs, viewPage2) { tab, position ->

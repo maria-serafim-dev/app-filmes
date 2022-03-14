@@ -5,7 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
+import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
+import com.example.appdefilmes.dao.FilmeDAO
+import com.example.appdefilmes.model.Filme
+import com.example.appdefilmes.retrofit.FilmeResponse
 
 
 class MinhaListaFragment : Fragment() {
@@ -14,8 +21,25 @@ class MinhaListaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_minha_lista, container, false)
+        val view = inflater.inflate(R.layout.fragment_minha_lista, container, false)
+        filmesPopulares(view)
+        return view
     }
 
+    fun filmesPopulares(view: View){
+        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
+            override fun sucesso(filmes: List<Filme>) {
+                adaptarRecycleView(view, R.id.recyclerViewMinhasLista, filmes)
+            }
+
+        })
+    }
+
+    fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
+        val recyclerView: RecyclerView = view.findViewById(id)
+        recyclerView.adapter = filmes.let { FilmeAdapter(view.context, it) }
+        val layoutManagerRecyclerView = GridLayoutManager(view.context, 3)
+        recyclerView.layoutManager = layoutManagerRecyclerView
+    }
 
 }

@@ -8,10 +8,10 @@ import com.example.appdefilmes.fragments.AssistaTambemFragment
 import com.example.appdefilmes.fragments.FichaTecnicaFragment
 import com.example.appdefilmes.model.Filme
 
-class TabViewPagerAdapter(fa: FragmentActivity, filme: Filme?, listaFilmes: List<Filme>?): FragmentStateAdapter(fa) {
+class TabViewPagerAdapter(fa: FragmentActivity, filme: Filme?): FragmentStateAdapter(fa) {
 
     val tabsText = arrayOf(R.string.text_tab_first, R.string.text_tab_second)
-    val fragments = arrayOf(AssistaTambemFragment(listaFilmes), FichaTecnicaFragment(filme))
+    val fragments = arrayOf(AssistaTambemFragment(), FichaTecnicaFragment(filme))
 
     override fun getItemCount() = fragments.size
 
