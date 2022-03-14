@@ -29,7 +29,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun inicializarActivity() {
-        //umFilme = intent.extras?.getParcelable<Filme>("filme")
+        umFilme = intent.extras?.getParcelable<Filme>("filme")
 
         val titulo = findViewById<TextView>(R.id.text_nome_obra)
         titulo.text = umFilme?.title
@@ -45,7 +45,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         val imagem = findViewById<ImageView>(R.id.a_informacoes_back)
 
         imagem.setOnClickListener {
-            voltarTela()
+            finish()
         }
 
     }
@@ -66,12 +66,5 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         }.attach()
 
     }
-
-    private fun voltarTela() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
 
 }
