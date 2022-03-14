@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/f_inicio_logoEmpresa">
@@ -62,14 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/f_inicio_text_sucesso"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
                 app:layout_constraintTop_toBottomOf="@id/f_inicio_text_novidade"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_imagem_filme"/>
+                tools:listitem="@layout/item_imagem_filme" />
 
             <TextView
                 android:id="@+id/f_inicio_text_sucesso"
@@ -90,14 +90,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/f_inicio_text_exclusivos"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
                 app:layout_constraintTop_toBottomOf="@id/f_inicio_text_sucesso"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_imagem_filme"/>
+                tools:listitem="@layout/item_imagem_filme" />
 
 
             <TextView
@@ -121,15 +121,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="@id/view"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
                 app:layout_constraintTop_toBottomOf="@id/f_inicio_text_exclusivos"
                 app:layout_constraintVertical_bias="0.0"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_imagem_filme"/>
+                tools:listitem="@layout/item_imagem_filme" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,11 +44,6 @@ class MainActivity : AppCompatActivity() {
                     val fragment = MinhaListaFragment()
                     iniciarFragment(fragment)
                 }
-                R.id.page_3 -> {
-                    val intent = Intent(this, InformacoesFilmeActivity::class.java)
-                    intent.putExtra("filme", umFilme)
-                    startActivity(intent)
-                }
             }
             false
         }

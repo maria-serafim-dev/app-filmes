@@ -25,30 +25,13 @@ class FilmeDAO {
     val endpoint = retrofit.create(FilmeService::class.java)
 
 
-    fun getFilme(filmeResponse: FilmeResponse) {
-        val callback = endpoint.getFilmeId(ID_FILME, API_KEY, LANGUAGE)
-
-        callback.enqueue(object : Callback<Filme> {
-            override fun onResponse(call: Call<Filme>, response: Response<Filme>) {
-
-                val results: Filme? = response.body()
-
-            }
-
-            override fun onFailure(call: Call<Filme>, t: Throwable) {
-                Log.i("Retrofit", t.message.toString())
-            }
-        })
-
-    }
-
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
         val callback = endpoint.getFilmes(category, API_KEY, LANGUAGE, PAGE)
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
-                response?.body()?.let{
+                response.body()?.let{
                     val results: Result = it
                     val listaFilmes: List<Filme> = results.results
                     filmeResponse.sucesso(listaFilmes)
@@ -69,7 +52,7 @@ class FilmeDAO {
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
-                response?.body()?.let{
+                response.body()?.let{
                     val results: Result = it
                     val listaFilmes: List<Filme> = results.results
                     filmeResponse.sucesso(listaFilmes)
@@ -90,7 +73,7 @@ class FilmeDAO {
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
-                response?.body()?.let{
+                response.body()?.let{
                     val results: Result = it
                     val listaFilmes: List<Filme> = results.results
                     filmeResponse.sucesso(listaFilmes)
