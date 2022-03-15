@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/f_inicio_logoEmpresa"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_margin="20dp"
         android:scaleType="centerCrop"
         android:contentDescription="@string/logo"
