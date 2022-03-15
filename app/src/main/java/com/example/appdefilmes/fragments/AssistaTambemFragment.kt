@@ -56,6 +56,7 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
         val intent = Intent(view.context, InformacoesFilmeActivity::class.java)
         intent.putExtra("filme", filme)
         startActivity(intent)
+        activity?.finish()
     }
 
 
