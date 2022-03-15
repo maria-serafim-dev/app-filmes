@@ -24,4 +24,12 @@ interface FilmeService {
         @Query("api_key") chaveApi: String,
         @Query("language") idioma: String,
     ) : Call<Filme>
+
+    @GET("/3/movie/{movie_id}/similar")
+    fun getFilmeSimilaresId(
+        @Path("movie_id") idFilme: Int,
+        @Query("api_key") chaveApi: String,
+        @Query("language") idioma: String,
+        @Query("page") pagina: Int,
+    ) : Call<Result>
 }

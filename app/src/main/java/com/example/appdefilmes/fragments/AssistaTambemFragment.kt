@@ -16,7 +16,7 @@ import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
 
-class AssistaTambemFragment : Fragment() {
+class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
 
     override fun onCreateView(
@@ -30,12 +30,14 @@ class AssistaTambemFragment : Fragment() {
     }
 
     fun filmesPopulares(view: View){
-        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.recyclerViewAssitaTambem, filmes)
-            }
+        filme?.id?.let {
+            FilmeDAO().getFilmesSimilares(object: FilmeResponse {
+                override fun sucesso(filmes: List<Filme>) {
+                    adaptarRecycleView(view, R.id.recyclerViewAssitaTambem, filmes)
+                }
 
-        })
+            }, it)
+        }
     }
 
     fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
@@ -45,6 +47,7 @@ class AssistaTambemFragment : Fragment() {
         adapter.setOnClick(object: InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
                 telaInformacaoFilme(filme, view)
+
             }
         })
     }

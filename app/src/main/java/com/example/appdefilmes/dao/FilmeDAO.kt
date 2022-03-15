@@ -13,18 +13,18 @@ import retrofit2.Response
 
 class FilmeDAO {
 
-    private val BASE_URL: String = "https://api.themoviedb.org"
-    private val API_KEY: String = ApiKey().apiKey
+    private val baseUrl: String = "https://api.themoviedb.org"
+    private val chaveAPI: String = ApiKey().apiKey
     private var category: String = ""
-    private val LANGUAGE: String = "pt-BR"
-    private val PAGE: Int = 1
-    private val retrofit = FilmeRetrofit.getRetrofitInstance(BASE_URL)
+    private val idioma: String = "pt-BR"
+    private val qtdePagina: Int = 1
+    private val retrofit = FilmeRetrofit.getRetrofitInstance(baseUrl)
     private val endpoint = retrofit.create(FilmeService::class.java)
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
-        val callback = endpoint.getFilmes(category, API_KEY, LANGUAGE, PAGE)
+        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina)
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -43,9 +43,9 @@ class FilmeDAO {
 
     }
 
-    fun getFilmesNovidades(filmeResponse: FilmeResponse) {
+    fun getFilmesSimilares(filmeResponse: FilmeResponse, id: Int) {
         category = "latest"
-        val callback = endpoint.getFilmes(category, API_KEY, LANGUAGE, PAGE)
+        val callback = endpoint.getFilmeSimilaresId(id, chaveAPI, idioma, qtdePagina)
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -66,7 +66,7 @@ class FilmeDAO {
 
     fun getFilmesBemAvaliados(filmeResponse: FilmeResponse) {
         category = "top_rated"
-        val callback = endpoint.getFilmes(category, API_KEY, LANGUAGE, PAGE)
+        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina)
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {

@@ -11,7 +11,7 @@ import com.example.appdefilmes.model.Filme
 class TabViewPagerAdapter(fa: FragmentActivity, filme: Filme?): FragmentStateAdapter(fa) {
 
     val tabsText = arrayOf(R.string.text_tab_first, R.string.text_tab_second)
-    val fragments = arrayOf(AssistaTambemFragment(), FichaTecnicaFragment(filme))
+    val fragments = arrayOf(AssistaTambemFragment(filme), FichaTecnicaFragment(filme))
 
     override fun getItemCount() = fragments.size
 
