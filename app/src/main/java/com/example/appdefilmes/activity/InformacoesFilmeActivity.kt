@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
@@ -32,7 +31,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun inicializarActivity() {
-        umFilme = intent.extras?.getParcelable<Filme>("filme")
+        umFilme = intent.extras?.getParcelable("filme")
 
         val titulo = findViewById<TextView>(R.id.text_nome_obra)
         titulo.text = umFilme?.title

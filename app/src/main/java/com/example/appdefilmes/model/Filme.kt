@@ -4,15 +4,15 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class Filme(
-    val id: Int?,
-    val original_language: String?,
-    val original_title: String?,
-    val overview: String?,
-    val poster_path: String?,
-    val release_date: String?,
-    val title: String?,
-    val vote_average: Double?,
-    val vote_count: Int?
+    val id: Int? = 0,
+    val original_language: String? = "",
+    val original_title: String? = "",
+    val overview: String? = "",
+    val poster_path: String? = "",
+    val release_date: String? = "",
+    val title: String? = "",
+    val vote_average: Double? = 0.0,
+    val vote_count: Int? = 0
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -59,4 +59,6 @@ class Filme(
             return arrayOfNulls(size)
         }
     }
+
+
 }

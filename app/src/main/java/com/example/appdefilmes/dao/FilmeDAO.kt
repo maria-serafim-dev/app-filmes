@@ -1,9 +1,7 @@
 package com.example.appdefilmes.dao
 
 import android.util.Log
-import com.example.appdefilmes.model.ApiKey
-import com.example.appdefilmes.model.Filme
-import com.example.appdefilmes.model.Result
+import com.example.appdefilmes.model.*
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.example.appdefilmes.retrofit.FilmeRetrofit
 import com.example.appdefilmes.retrofit.service.FilmeService
@@ -12,17 +10,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class FilmeDAO {
 
-    val BASE_URL: String = "https://api.themoviedb.org"
-    val API_KEY: String = ApiKey().apiKey
-    var category: String = ""
-    val LANGUAGE: String = "pt-BR"
-    val ID_FILME: Int = 634649
-    val PAGE: Int = 1
-    val retrofit = FilmeRetrofit.getRetrofitInstance(BASE_URL)
-    val endpoint = retrofit.create(FilmeService::class.java)
-    private var referencia: DatabaseReference = FirebaseDatabase.getInstance().getReference()
+    private val BASE_URL: String = "https://api.themoviedb.org"
+    private val API_KEY: String = ApiKey().apiKey
+    private var category: String = ""
+    private val LANGUAGE: String = "pt-BR"
+    private val PAGE: Int = 1
+    private val retrofit = FilmeRetrofit.getRetrofitInstance(BASE_URL)
+    private val endpoint = retrofit.create(FilmeService::class.java)
+    private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
@@ -92,22 +90,24 @@ class FilmeDAO {
             referencia.child("minhaLista").child(filme.id.toString()).setValue(filme)
     }
 
-    fun getListaFavoritos(){
-        val minhaLista: DatabaseReference = referencia.child("minhaLista").child("001")
+    fun getListaFavoritos(filmeResponse: FilmeResponse){
+        val minhaLista: DatabaseReference = referencia.child("minhaLista")
+        val listaFilmes: MutableList<Filme> = mutableListOf()
 
-
-        val postListener = object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val post = snapshot.getValue().toString()
-                Log.i("ListaFavoritos", post)
+        minhaLista.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                dataSnapshot.children.forEach {
+                    val filme: Filme? = it.getValue(Filme::class.java)
+                    filme?.let { it1 -> listaFilmes.add(it1) }
+                }
+                filmeResponse.sucesso(listaFilmes)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.w("ListaFavoritos", "loadPost:onCancelled", error.toException())
+                Log.w("DAO:ListaFavoritos", "Falha ao ler o valor.", error.toException())
             }
+        })
 
-        }
-        minhaLista.addValueEventListener(postListener)
 
     }
 

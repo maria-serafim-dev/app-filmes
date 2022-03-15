@@ -28,7 +28,7 @@ class MinhaListaFragment : Fragment() {
     }
 
     fun filmesPopulares(view: View){
-        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
+        FilmeDAO().getListaFavoritos(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.recyclerViewMinhasLista, filmes)
             }
