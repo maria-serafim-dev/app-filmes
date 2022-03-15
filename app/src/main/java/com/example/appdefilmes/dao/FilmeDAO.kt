@@ -91,10 +91,10 @@ class FilmeDAO {
     }
 
     fun getListaFavoritos(filmeResponse: FilmeResponse){
-        val minhaLista: DatabaseReference = referencia.child("minhaLista")
+        val query: Query = referencia.child("minhaLista")
         val listaFilmes: MutableList<Filme> = mutableListOf()
 
-        minhaLista.addValueEventListener(object : ValueEventListener {
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach {
                     val filme: Filme? = it.getValue(Filme::class.java)
@@ -108,6 +108,19 @@ class FilmeDAO {
             }
         })
 
+
+    }
+
+    fun verificaFilmeFavorito(id: String, callback: (Boolean) -> Unit){
+        referencia.child("minhaLista").child(id).get().addOnSuccessListener {
+            if(it.value != null){
+                callback(true)
+            }else{
+                callback(false)
+            }
+        }.addOnFailureListener{
+            Log.e("DAO:FilmeFavorito", "Erro ao obter dados", it)
+        }
 
     }
 
