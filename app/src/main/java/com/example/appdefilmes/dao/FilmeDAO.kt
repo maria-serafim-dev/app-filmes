@@ -1,17 +1,16 @@
 package com.example.appdefilmes.dao
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.example.appdefilmes.model.ApiKey
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.model.Result
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.example.appdefilmes.retrofit.FilmeRetrofit
 import com.example.appdefilmes.retrofit.service.FilmeService
+import com.google.firebase.database.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class FilmeDAO {
 
@@ -23,7 +22,7 @@ class FilmeDAO {
     val PAGE: Int = 1
     val retrofit = FilmeRetrofit.getRetrofitInstance(BASE_URL)
     val endpoint = retrofit.create(FilmeService::class.java)
-
+    private var referencia: DatabaseReference = FirebaseDatabase.getInstance().getReference()
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
@@ -85,6 +84,30 @@ class FilmeDAO {
             }
 
         })
+
+    }
+
+
+    fun inserirMinhaLista(filme: Filme){
+            referencia.child("minhaLista").child(filme.id.toString()).setValue(filme)
+    }
+
+    fun getListaFavoritos(){
+        val minhaLista: DatabaseReference = referencia.child("minhaLista").child("001")
+
+
+        val postListener = object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val post = snapshot.getValue().toString()
+                Log.i("ListaFavoritos", post)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("ListaFavoritos", "loadPost:onCancelled", error.toException())
+            }
+
+        }
+        minhaLista.addValueEventListener(postListener)
 
     }
 

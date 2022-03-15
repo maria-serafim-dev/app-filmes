@@ -1,13 +1,16 @@
 package com.example.appdefilmes.activity
 
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
+import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.model.Filme
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -47,6 +50,16 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         imagem.setOnClickListener {
             finish()
         }
+
+        val buttonMinhaLista: Button = findViewById(R.id.button_minha_lista)
+        buttonMinhaLista.setOnClickListener{
+            val dao = FilmeDAO()
+            umFilme?.let {
+                   dao.inserirMinhaLista(it)
+            }
+        }
+
+
 
     }
 
