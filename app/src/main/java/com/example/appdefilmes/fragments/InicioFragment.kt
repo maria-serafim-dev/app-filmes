@@ -28,7 +28,7 @@ class InicioFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
 
         filmesPopulares(view)
-        filmesExclusivos(view)
+        filmesAtuaisNosCinemais(view)
         filmesNovidades(view)
 
         return view
@@ -70,8 +70,8 @@ class InicioFragment : Fragment() {
         })
     }
 
-    fun filmesExclusivos(view: View){
-        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
+    fun filmesAtuaisNosCinemais(view: View){
+        FilmeDAO().getFilmeAtuaisNosCinemais(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.recyclerViewExclusivos, filmes)
             }

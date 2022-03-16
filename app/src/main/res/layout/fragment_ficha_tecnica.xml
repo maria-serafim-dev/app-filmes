@@ -114,120 +114,35 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/text_titulo_pais"
+        android:id="@+id/text_titulo_nome_original"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
-        android:text="@string/titulo_pais"
+        android:text="@string/titulo_nome_original"
         android:textColor="@color/cinza_letras"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/txt_valor_pais"
+        app:layout_constraintEnd_toStartOf="@id/txt_valor_nome_original"
         app:layout_constraintStart_toStartOf="@id/text_titulo_ano"
         app:layout_constraintTop_toBottomOf="@id/text_titulo_ano"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/txt_valor_pais"
+        android:id="@+id/txt_valor_nome_original"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/valor_pais"
+        android:text="@string/valor_nome_original"
         android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/text_titulo_pais"
+        app:layout_constraintBottom_toBottomOf="@id/text_titulo_nome_original"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/text_titulo_pais"
-        app:layout_constraintTop_toTopOf="@id/text_titulo_pais"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_titulo_direcao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="@string/titulo_direcao"
-        android:textColor="@color/cinza_letras"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/txt_valor_direcao"
-        app:layout_constraintStart_toStartOf="@id/text_titulo_pais"
-        app:layout_constraintTop_toBottomOf="@id/text_titulo_pais"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/txt_valor_direcao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/valor_direcao"
-        android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/text_titulo_direcao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/text_titulo_direcao"
-        app:layout_constraintTop_toTopOf="@id/text_titulo_direcao"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_titulo_elenco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="@string/titulo_elenco"
-        android:textColor="@color/cinza_letras"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/txt_valor_elenco"
-        app:layout_constraintStart_toStartOf="@id/text_titulo_direcao"
-        app:layout_constraintTop_toBottomOf="@id/text_titulo_direcao"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/txt_valor_elenco"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/valor_elenco"
-        android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/text_titulo_elenco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/text_titulo_elenco"
-        app:layout_constraintTop_toTopOf="@id/text_titulo_elenco"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/text_titulo_disponivel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:text="@string/titulo_disponivel"
-        android:textColor="@color/cinza_letras"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/txt_valor_disponivel"
-        app:layout_constraintStart_toStartOf="@id/text_titulo_elenco"
-        app:layout_constraintTop_toBottomOf="@id/txt_valor_elenco"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/txt_valor_disponivel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/valor_disponivel"
-        android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/text_titulo_disponivel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/text_titulo_disponivel"
-        app:layout_constraintTop_toTopOf="@id/text_titulo_disponivel"
+        app:layout_constraintStart_toEndOf="@id/text_titulo_nome_original"
+        app:layout_constraintTop_toTopOf="@id/text_titulo_nome_original"
         app:layout_constraintVertical_bias="0.0"
         android:layout_marginBottom="50dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

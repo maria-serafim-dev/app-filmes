@@ -22,6 +22,9 @@ class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
         val ano = view.findViewById<TextView>(R.id.txt_valor_ano)
         ano.text = filme?.release_date
 
+        val tituloOriginal = view.findViewById<TextView>(R.id.txt_valor_nome_original)
+        tituloOriginal.text = filme?.original_title
+
         return view
     }
 

@@ -17,6 +17,7 @@ class FilmeDAO {
     private val chaveAPI: String = ApiKey().apiKey
     private var category: String = ""
     private val idioma: String = "pt-BR"
+    private val regiao: String = "BR"
     private val qtdePagina: Int = 1
     private val retrofit = FilmeRetrofit.getRetrofitInstance(baseUrl)
     private val endpoint = retrofit.create(FilmeService::class.java)
@@ -24,7 +25,7 @@ class FilmeDAO {
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
-        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina)
+        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina, regiao)
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -66,7 +67,27 @@ class FilmeDAO {
 
     fun getFilmesBemAvaliados(filmeResponse: FilmeResponse) {
         category = "top_rated"
-        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina)
+        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina, regiao)
+
+        callback.enqueue(object : Callback<Result> {
+            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                response.body()?.let{
+                    val results: Result = it
+                    val listaFilmes: List<Filme> = results.results
+                    filmeResponse.sucesso(listaFilmes)
+                }
+            }
+
+            override fun onFailure(call: Call<Result>, t: Throwable) {
+                Log.i("Retrofit", t.message.toString())
+            }
+
+        })
+
+    }
+    fun getFilmeAtuaisNosCinemais(filmeResponse: FilmeResponse) {
+        category = "now_playing"
+        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina, regiao)
 
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {

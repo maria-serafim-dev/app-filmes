@@ -2,9 +2,9 @@
     <string name="app_name">App De Filmes</string>
     <string name="logo">MM</string>
     <string name="nome_empresa">Maria Movies</string>
-    <string name="text_novidades">Novidades</string>
+    <string name="text_ultimos_adicionados">Últimos Filmes Adicionados</string>
     <string name="text_sucesso">Grandes Sucessos</string>
-    <string name="text_exclusivos">Filmes Exlusivos</string>
+    <string name="text_atuais_no_cinema">Atualmente Nos Cinemas</string>
 
 
     <string name="text_minha_lista">Minha Lista</string>
@@ -37,8 +37,8 @@
     <string name="ficha_tecnica">Ficha Técnica</string>
     <string name="titulo_ano_produção">Ano de Produção:</string>
     <string name="valor_ano_produção">2021</string>
-    <string name="titulo_pais">País:</string>
-    <string name="valor_pais">Estados Unidos</string>
+    <string name="titulo_nome_original">Título Original:</string>
+    <string name="valor_nome_original">Uncharted</string>
     <string name="titulo_direcao">Direção:</string>
     <string name="valor_direcao">Ruben Fleischer</string>
     <string name="titulo_elenco">Elenco:</string>

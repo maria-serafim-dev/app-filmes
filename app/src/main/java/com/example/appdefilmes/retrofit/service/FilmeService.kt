@@ -16,6 +16,7 @@ interface FilmeService {
         @Query("api_key") chaveApi: String,
         @Query("language") idioma: String,
         @Query("page") pagina: Int,
+        @Query("region") regiao: String,
     ) : Call<Result>
 
     @GET("/3/movie/{movie_id}")
@@ -32,4 +33,5 @@ interface FilmeService {
         @Query("language") idioma: String,
         @Query("page") pagina: Int,
     ) : Call<Result>
+
 }
