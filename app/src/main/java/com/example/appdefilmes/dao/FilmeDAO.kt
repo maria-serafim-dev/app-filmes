@@ -113,11 +113,9 @@ class FilmeDAO {
 
     fun verificaFilmeFavorito(id: String, callback: (Boolean) -> Unit){
         referencia.child("minhaLista").child(id).get().addOnSuccessListener {
-            if(it.value != null){
-                callback(true)
-            }else{
-                callback(false)
-            }
+            if(it.value != null) callback(true)
+            else callback(false)
+
         }.addOnFailureListener{
             Log.e("DAO:FilmeFavorito", "Erro ao obter dados", it)
         }

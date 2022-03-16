@@ -3,8 +3,6 @@ package com.example.appdefilmes.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
@@ -35,48 +33,55 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     private fun inicializarActivity() {
         umFilme = intent.extras?.getParcelable("filme")
 
-        val titulo = findViewById<TextView>(R.id.text_nome_obra)
-        titulo.text = umFilme?.title
+        inicializarTextos()
+        inicializarImagens()
+        inicializarBotoes()
+    }
 
-        val descricao = findViewById<TextView>(R.id.text_sinopse)
-        descricao.text = umFilme?.overview
+    private fun inicializarBotoes() {
+        val buttonMinhaLista = findViewById<MaterialButton>(R.id.button_minha_lista)
+        val dao = FilmeDAO()
+        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
+            if (it) {
+                modificarLayoutBotao(buttonMinhaLista)
+            }
+        }
 
+        buttonMinhaLista.setOnClickListener {
+            val textMinhaLista = getString(R.string.button_minha_lista)
+            if (buttonMinhaLista.text.equals(textMinhaLista)) {
+                umFilme?.let {
+                    dao.inserirMinhaLista(it)
+                    modificarLayoutBotao(buttonMinhaLista)
+                }
+            }
+        }
+    }
+
+    private fun modificarLayoutBotao(buttonMinhaLista: MaterialButton) {
+        buttonMinhaLista.setIconResource(R.drawable.ic_adicionado)
+        buttonMinhaLista.text = getString(R.string.button_minha_lista_adicionado)
+    }
+
+    private fun inicializarImagens() {
         val imagemPoster = findViewById<ImageView>(R.id.a_informacoes_cartaz)
         val imagemPosterBackground = findViewById<ImageView>(R.id.a_informacoes_cartaz_fundo)
         urlDaImagem += umFilme?.poster_path
         receberImagens(urlDaImagem, imagemPoster, imagemPosterBackground)
 
-        val buttonMinhaLista = findViewById<MaterialButton>(R.id.button_minha_lista)
-        val dao = FilmeDAO()
-        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
-            if (it) {
-                buttonMinhaLista.setIconResource(R.drawable.ic_adicionado)
-                buttonMinhaLista.text = getString(R.string.button_minha_lista_adicionado)
-            }
-        }
-
-        val imagem = findViewById<ImageView>(R.id.a_informacoes_back)
-
-        imagem.setOnClickListener {
+        val iconBack = findViewById<ImageView>(R.id.a_informacoes_back)
+        iconBack.setOnClickListener {
             finish()
         }
 
+    }
 
+    private fun inicializarTextos() {
+        val titulo = findViewById<TextView>(R.id.text_nome_obra)
+        titulo.text = umFilme?.title
 
-        buttonMinhaLista.setOnClickListener {
-
-            if (buttonMinhaLista.text.equals("Minha Lista")) {
-                umFilme?.let {
-                    dao.inserirMinhaLista(it)
-                    buttonMinhaLista.setIconResource(R.drawable.ic_adicionado)
-                    buttonMinhaLista.text = getString(R.string.button_minha_lista_adicionado)
-                }
-            } else {
-                Log.i("INFO", "false")
-            }
-        }
-
-
+        val descricao = findViewById<TextView>(R.id.text_sinopse)
+        descricao.text = umFilme?.overview
     }
 
     private fun receberImagens(url: String, imagem: ImageView?, imagemBack: ImageView?) {
