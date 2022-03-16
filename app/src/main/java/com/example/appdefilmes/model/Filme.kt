@@ -2,6 +2,8 @@ package com.example.appdefilmes.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.sql.Date
+import java.text.SimpleDateFormat
 
 class Filme(
     val id: Int? = 0,
@@ -36,7 +38,7 @@ class Filme(
         parcel.writeString(original_title)
         parcel.writeString(overview)
         parcel.writeString(poster_path)
-        parcel.writeString(release_date)
+        parcel.writeString(formatarDataPadraoBrasil())
         parcel.writeString(title)
         if (vote_average != null) {
             parcel.writeDouble(vote_average)
@@ -60,5 +62,12 @@ class Filme(
         }
     }
 
+    fun formatarDataPadraoBrasil(): String{
+        val data = Date.valueOf(release_date)
+        val format = SimpleDateFormat("dd-MM-yyyy")
+        val dataFinal = format.format(data)
+
+        return dataFinal
+    }
 
 }
