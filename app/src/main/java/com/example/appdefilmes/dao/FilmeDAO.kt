@@ -25,8 +25,17 @@ class FilmeDAO {
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
-        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina, regiao)
+        listaFilmes(filmeResponse, category)
+    }
 
+    fun getFilmesBemAvaliados(filmeResponse: FilmeResponse) {
+        category = "top_rated"
+        listaFilmes(filmeResponse, category)
+    }
+
+
+    private fun listaFilmes(filmeResponse: FilmeResponse, categoria: String){
+        val callback = endpoint.getFilmes(categoria, chaveAPI, idioma, qtdePagina, regiao)
         callback.enqueue(object : Callback<Result> {
             override fun onResponse(call: Call<Result>, response: Response<Result>) {
                 response.body()?.let{
@@ -41,8 +50,8 @@ class FilmeDAO {
             }
 
         })
-
     }
+
 
     fun getFilmesSimilares(filmeResponse: FilmeResponse, id: Int) {
         category = "latest"
@@ -65,26 +74,6 @@ class FilmeDAO {
 
     }
 
-    fun getFilmesBemAvaliados(filmeResponse: FilmeResponse) {
-        category = "top_rated"
-        val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina, regiao)
-
-        callback.enqueue(object : Callback<Result> {
-            override fun onResponse(call: Call<Result>, response: Response<Result>) {
-                response.body()?.let{
-                    val results: Result = it
-                    val listaFilmes: List<Filme> = results.results
-                    filmeResponse.sucesso(listaFilmes)
-                }
-            }
-
-            override fun onFailure(call: Call<Result>, t: Throwable) {
-                Log.i("Retrofit", t.message.toString())
-            }
-
-        })
-
-    }
     fun getFilmeAtuaisNosCinemais(filmeResponse: FilmeResponse) {
         category = "now_playing"
         val callback = endpoint.getFilmes(category, chaveAPI, idioma, qtdePagina, regiao)
