@@ -27,6 +27,7 @@
     <style name="Estilo.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
 
         <item name="materialAlertDialogTitleTextStyle">@style/Titutlo.AlertDialog</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Icone.AlertDialog</item>
 
         <item name="materialAlertDialogBodyTextStyle">@style/Corpo.AlertDialog</item>
 
@@ -48,6 +49,9 @@
         <item name="android:textColor">@color/cinza_claro</item>
     </style>
 
+    <style name="Icone.AlertDialog" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Icon">
+        <item name="android:tint">@color/white</item>
+    </style>
 
 
 </resources>

@@ -63,9 +63,8 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     private fun abrirDialog(buttonMinhaLista: MaterialButton) {
         MaterialAlertDialogBuilder(this, R.style.Estilo_MaterialAlertDialog)
             .setTitle(resources.getString(R.string.titulo_dialog))
+            .setIcon(R.drawable.ic_remover)
             .setMessage(resources.getString(R.string.mensagem_dialog))
-            .setNeutralButton(resources.getString(R.string.cancelar_dialog)) { dialog, which ->
-            }
             .setNegativeButton(resources.getString(R.string.negativo_dialog)) { dialog, which ->
             }
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { dialog, which ->
