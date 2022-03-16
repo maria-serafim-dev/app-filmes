@@ -43,7 +43,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         val dao = FilmeDAO()
         dao.verificaFilmeFavorito(umFilme?.id.toString()) {
             if (it) {
-                modificarLayoutBotao(buttonMinhaLista)
+                modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_adicionado, R.string.button_minha_lista_adicionado)
             }
         }
 
@@ -52,15 +52,18 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             if (buttonMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
                     dao.inserirMinhaLista(it)
-                    modificarLayoutBotao(buttonMinhaLista)
+                    modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_adicionado, R.string.button_minha_lista_adicionado)
                 }
+            }else{
+                dao.removerFavorito(umFilme?.id.toString())
+                modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_star, R.string.button_minha_lista)
             }
         }
     }
 
-    private fun modificarLayoutBotao(buttonMinhaLista: MaterialButton) {
-        buttonMinhaLista.setIconResource(R.drawable.ic_adicionado)
-        buttonMinhaLista.text = getString(R.string.button_minha_lista_adicionado)
+    private fun modificarLayoutBotao(buttonMinhaLista: MaterialButton, idDrawable: Int, idTexto: Int) {
+        buttonMinhaLista.setIconResource(idDrawable)
+        buttonMinhaLista.text = getString(idTexto)
     }
 
     private fun inicializarImagens() {
