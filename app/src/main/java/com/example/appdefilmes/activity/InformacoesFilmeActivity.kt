@@ -11,6 +11,7 @@ import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.model.Filme
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
@@ -20,7 +21,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
     var umFilme: Filme? = null
     var urlDaImagem = "https://image.tmdb.org/t/p/w500"
-
+    val dao = FilmeDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,6 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
     private fun inicializarBotoes() {
         val buttonMinhaLista = findViewById<MaterialButton>(R.id.button_minha_lista)
-        val dao = FilmeDAO()
         dao.verificaFilmeFavorito(umFilme?.id.toString()) {
             if (it) {
                 modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_adicionado, R.string.button_minha_lista_adicionado)
@@ -55,10 +55,24 @@ class InformacoesFilmeActivity : AppCompatActivity() {
                     modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_adicionado, R.string.button_minha_lista_adicionado)
                 }
             }else{
+                abrirDialog(buttonMinhaLista)
+            }
+        }
+    }
+
+    private fun abrirDialog(buttonMinhaLista: MaterialButton) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.titulo_dialog))
+            .setMessage(resources.getString(R.string.mensagem_dialog))
+            .setNeutralButton(resources.getString(R.string.cancelar_dialog)) { dialog, which ->
+            }
+            .setNegativeButton(resources.getString(R.string.negativo_dialog)) { dialog, which ->
+            }
+            .setPositiveButton(resources.getString(R.string.positivo_dialog)) { dialog, which ->
                 dao.removerFavorito(umFilme?.id.toString())
                 modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_star, R.string.button_minha_lista)
             }
-        }
+            .show()
     }
 
     private fun modificarLayoutBotao(buttonMinhaLista: MaterialButton, idDrawable: Int, idTexto: Int) {

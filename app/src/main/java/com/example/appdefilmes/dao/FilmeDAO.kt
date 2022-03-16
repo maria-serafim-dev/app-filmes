@@ -123,8 +123,7 @@ class FilmeDAO {
     }
 
     fun removerFavorito(id: String){
-        referencia.child("minhaLista").child(id).removeValue()
-
+       referencia.child("minhaLista").child(id).removeValue()
     }
 
 }

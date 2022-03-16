@@ -49,5 +49,11 @@
     <string name="voltar">Voltar</string>
     <string name="button_minha_lista_adicionado">Adicionado</string>
 
+    <string name="mensagem_dialog">Deseja remover esse filme da sua lista de favoritos?</string>
+    <string name="negativo_dialog">Não</string>
+    <string name="positivo_dialog">Sim</string>
+    <string name="titulo_dialog">"Remover Filme "</string>
+    <string name="cancelar_dialog">Cancelar</string>
+
 
 </resources>
