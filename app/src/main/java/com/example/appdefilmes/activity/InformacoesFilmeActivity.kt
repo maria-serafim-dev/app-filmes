@@ -61,7 +61,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun abrirDialog(buttonMinhaLista: MaterialButton) {
-        MaterialAlertDialogBuilder(this)
+        MaterialAlertDialogBuilder(this, R.style.Estilo_MaterialAlertDialog)
             .setTitle(resources.getString(R.string.titulo_dialog))
             .setMessage(resources.getString(R.string.mensagem_dialog))
             .setNeutralButton(resources.getString(R.string.cancelar_dialog)) { dialog, which ->
@@ -71,8 +71,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { dialog, which ->
                 dao.removerFavorito(umFilme?.id.toString())
                 modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_star, R.string.button_minha_lista)
-            }
-            .show()
+            }.show()
     }
 
     private fun modificarLayoutBotao(buttonMinhaLista: MaterialButton, idDrawable: Int, idTexto: Int) {

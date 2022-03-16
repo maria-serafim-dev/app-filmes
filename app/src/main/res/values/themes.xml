@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
@@ -21,4 +22,32 @@
         <item name="postSplashScreenTheme">@style/Theme.AppDeFilmes</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+
+    <style name="Estilo.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+
+        <item name="materialAlertDialogTitleTextStyle">@style/Titutlo.AlertDialog</item>
+
+        <item name="materialAlertDialogBodyTextStyle">@style/Corpo.AlertDialog</item>
+
+        <item name="buttonBarPositiveButtonStyle">@style/Botoes.AlertDialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Botoes.AlertDialog</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Botoes.AlertDialog</item>
+    </style>
+
+
+    <style name="Botoes.AlertDialog" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/vermelho_laranja</item>
+    </style>
+
+    <style name="Titutlo.AlertDialog" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Corpo.AlertDialog" parent="@style/TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/cinza_claro</item>
+    </style>
+
+
+
 </resources>
