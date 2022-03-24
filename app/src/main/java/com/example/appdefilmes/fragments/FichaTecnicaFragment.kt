@@ -20,11 +20,15 @@ class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
         _binding = FragmentFichaTecnicaBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        atribuirValoresFilme()
+
+        return view
+    }
+
+    private fun atribuirValoresFilme() {
         binding.textNomeFilme.text = filme?.title
         binding.txtValorAno.text = filme?.release_date
         binding.txtValorNomeOriginal.text = filme?.original_title
-
-        return view
     }
 
     override fun onResume() {

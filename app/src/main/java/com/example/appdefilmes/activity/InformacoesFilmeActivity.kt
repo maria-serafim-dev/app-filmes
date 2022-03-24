@@ -1,29 +1,23 @@
 package com.example.appdefilmes.activity
 
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.ActivityInformacoesFilmeBinding
-import com.example.appdefilmes.databinding.FragmentAssistaTambemBinding
 import com.example.appdefilmes.model.Filme
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
 
 class InformacoesFilmeActivity : AppCompatActivity() {
 
-    var umFilme: Filme? = null
-    var urlDaImagem = "https://image.tmdb.org/t/p/w500"
-    val dao = FilmeDAO()
+    private var umFilme: Filme? = null
+    private var urlDaImagem = "https://image.tmdb.org/t/p/w500"
+    private val dao = FilmeDAO()
 
     private lateinit var binding: ActivityInformacoesFilmeBinding
 
@@ -33,9 +27,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         inicializarActivity()
         inicializarTabsFragments()
+
     }
 
     private fun inicializarActivity() {
@@ -43,31 +37,61 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
         inicializarTextos()
         inicializarImagens()
-        inicializarBotoes()
+        inicializarBotaoMinhaLista()
+        inicializarBotaoVoltar()
     }
 
-    private fun inicializarBotoes() {
-        val buttonMinhaLista = findViewById<MaterialButton>(R.id.button_minha_lista)
+    private fun inicializarTabsFragments() {
+        val adapter = TabViewPagerAdapter(this, umFilme)
+        binding.viewpager2.adapter = adapter
+
+        TabLayoutMediator(binding.tabs, binding.viewpager2) { tab, position ->
+            tab.text = getString(adapter.tabsText[position])
+        }.attach()
+
+    }
+
+
+    private fun inicializarTextos() {
+        binding.textNomeObra.text = umFilme?.title
+        binding.textSinopse.text = umFilme?.overview
+    }
+
+    private fun inicializarImagens() {
+        urlDaImagem += umFilme?.poster_path
+        Picasso.get().load(urlDaImagem).into(binding.aInformacoesCartaz)
+        Picasso.get().load(urlDaImagem).into(binding.aInformacoesCartaz)
+    }
+
+
+    private fun inicializarBotaoMinhaLista() {
+
         dao.verificaFilmeFavorito(umFilme?.id.toString()) {
             if (it) {
-                modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_adicionado, R.string.button_minha_lista_adicionado)
+                modificarLayoutBotao(
+                    R.drawable.ic_adicionado,
+                    R.string.button_minha_lista_adicionado
+                )
             }
         }
 
-        buttonMinhaLista.setOnClickListener {
+        binding.buttonMinhaLista.setOnClickListener {
             val textMinhaLista = getString(R.string.button_minha_lista)
-            if (buttonMinhaLista.text.equals(textMinhaLista)) {
+            if (binding.buttonMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
                     dao.inserirMinhaLista(it)
-                    modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_adicionado, R.string.button_minha_lista_adicionado)
+                    modificarLayoutBotao(
+                        R.drawable.ic_adicionado,
+                        R.string.button_minha_lista_adicionado
+                    )
                 }
             }else{
-                abrirDialog(buttonMinhaLista)
+                abrirDialog()
             }
         }
     }
 
-    private fun abrirDialog(buttonMinhaLista: MaterialButton) {
+    private fun abrirDialog() {
         MaterialAlertDialogBuilder(this, R.style.Estilo_MaterialAlertDialog)
             .setTitle(resources.getString(R.string.titulo_dialog))
             .setIcon(R.drawable.ic_remover)
@@ -76,51 +100,23 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             }
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { dialog, which ->
                 dao.removerFavorito(umFilme?.id.toString())
-                modificarLayoutBotao(buttonMinhaLista, R.drawable.ic_star, R.string.button_minha_lista)
+                modificarLayoutBotao(R.drawable.ic_star, R.string.button_minha_lista)
             }.show()
     }
 
-    private fun modificarLayoutBotao(buttonMinhaLista: MaterialButton, idDrawable: Int, idTexto: Int) {
-        buttonMinhaLista.setIconResource(idDrawable)
-        buttonMinhaLista.text = getString(idTexto)
-    }
-
-    private fun inicializarImagens() {
-        val imagemPoster = findViewById<ImageView>(R.id.a_informacoes_cartaz)
-        val imagemPosterBackground = findViewById<ImageView>(R.id.a_informacoes_cartaz_fundo)
-        urlDaImagem += umFilme?.poster_path
-        receberImagens(urlDaImagem, imagemPoster, imagemPosterBackground)
-
-        val iconBack = findViewById<ImageView>(R.id.a_informacoes_back)
-        iconBack.setOnClickListener {
+    private fun inicializarBotaoVoltar() {
+        binding.aInformacoesBack.setOnClickListener {
             finish()
         }
-
     }
 
-    private fun inicializarTextos() {
-        val titulo = findViewById<TextView>(R.id.text_nome_obra)
-        titulo.text = umFilme?.title
-
-        val descricao = findViewById<TextView>(R.id.text_sinopse)
-        descricao.text = umFilme?.overview
+    private fun modificarLayoutBotao(idDrawable: Int, idTexto: Int) {
+        binding.buttonMinhaLista.setIconResource(idDrawable)
+        binding.buttonMinhaLista.text = getString(idTexto)
     }
 
-    private fun receberImagens(url: String, imagem: ImageView?, imagemBack: ImageView?) {
-        Picasso.get().load(url).into(imagem)
-        Picasso.get().load(url).into(imagemBack)
-    }
 
-    private fun inicializarTabsFragments() {
-        val tabs = findViewById<TabLayout>(R.id.tabs)
-        val viewPage2 = findViewById<ViewPager2>(R.id.viewpager2)
-        val adapter = TabViewPagerAdapter(this, umFilme)
-        viewPage2.adapter = adapter
 
-        TabLayoutMediator(tabs, viewPage2) { tab, position ->
-            tab.text = getString(adapter.tabsText[position])
-        }.attach()
 
-    }
 
 }

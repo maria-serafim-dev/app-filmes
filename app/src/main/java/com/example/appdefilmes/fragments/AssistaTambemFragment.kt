@@ -27,11 +27,11 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
         _binding = FragmentAssistaTambemBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        filmesPopulares(view)
+        buscarFilmesPopulares(view)
         return view
     }
 
-    private fun filmesPopulares(view: View){
+    private fun buscarFilmesPopulares(view: View){
         filme?.id?.let {
             FilmeDAO().getFilmesSimilares(object: FilmeResponse {
                 override fun sucesso(filmes: List<Filme>) {
@@ -47,12 +47,12 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
         binding.recyclerViewAssitaTambem.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
-                telaInformacaoFilme(filme, view)
+                abrirTelaInformacaoFilme(filme, view)
             }
         })
     }
 
-    private fun telaInformacaoFilme(filme: Filme, view: View) {
+    private fun abrirTelaInformacaoFilme(filme: Filme, view: View) {
         val intent = Intent(view.context, InformacoesFilmeActivity::class.java)
         intent.putExtra("filme", filme)
         startActivity(intent)
@@ -66,7 +66,6 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
     }
 
     private fun setProperHeightOfView() {
-
         val layoutParams = binding.assista.layoutParams
         if (layoutParams != null) {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
