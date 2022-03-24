@@ -14,18 +14,23 @@ import com.example.appdefilmes.activity.MainActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.dao.FilmeDAO
+import com.example.appdefilmes.databinding.FragmentInicioBinding
+import com.example.appdefilmes.databinding.FragmentMinhaListaBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
 
 class InicioFragment : Fragment() {
 
+    private var _binding: FragmentInicioBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
+        _binding = FragmentInicioBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         filmesPopulares(view)
         filmesAtuaisNosCinemais(view)
@@ -36,9 +41,13 @@ class InicioFragment : Fragment() {
     }
 
     fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
-        val recyclerView: RecyclerView = view.findViewById(id)
         val adapter = filmes.let { FilmeAdapter(view.context, it) }
-        recyclerView.adapter = adapter
+        when(id){
+            R.id.recyclerViewSucesso -> binding.recyclerViewSucesso.adapter = adapter
+            R.id.recyclerViewNovidades -> binding.recyclerViewNovidades.adapter = adapter
+            R.id.recyclerViewExclusivos -> binding.recyclerViewExclusivos.adapter = adapter
+        }
+
         adapter.setOnClick(object: InterfaceOnClick{
             override fun onItemClick(filme: Filme) {
                 telaInformacaoFilme(filme, view)
@@ -52,7 +61,7 @@ class InicioFragment : Fragment() {
         startActivity(intent)
     }
 
-    fun filmesPopulares(view: View){
+    private fun filmesPopulares(view: View){
         FilmeDAO().getFilmesPopulares(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.recyclerViewSucesso, filmes)
@@ -61,7 +70,7 @@ class InicioFragment : Fragment() {
         })
     }
 
-    fun filmesNovidades(view: View){
+    private fun filmesNovidades(view: View){
         FilmeDAO().getFilmesBemAvaliados(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.recyclerViewNovidades, filmes)
@@ -70,7 +79,7 @@ class InicioFragment : Fragment() {
         })
     }
 
-    fun filmesAtuaisNosCinemais(view: View){
+    private fun filmesAtuaisNosCinemais(view: View){
         FilmeDAO().getFilmeAtuaisNosCinemais(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.recyclerViewExclusivos, filmes)
@@ -78,7 +87,5 @@ class InicioFragment : Fragment() {
 
         })
     }
-
-
 
 }

@@ -12,17 +12,23 @@ import com.example.appdefilmes.activity.InformacoesFilmeActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.dao.FilmeDAO
+import com.example.appdefilmes.databinding.ActivityMainBinding
+import com.example.appdefilmes.databinding.FragmentMinhaListaBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
 
 class MinhaListaFragment : Fragment() {
 
+    private var _binding: FragmentMinhaListaBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_minha_lista, container, false)
+        _binding = FragmentMinhaListaBinding.inflate(inflater, container, false)
+        val view = binding.root
         filmesPopulares(view)
         return view
     }
@@ -30,14 +36,14 @@ class MinhaListaFragment : Fragment() {
     fun filmesPopulares(view: View){
         FilmeDAO().getListaFavoritos(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.recyclerViewMinhasLista, filmes)
+                adaptarRecycleView(view, filmes)
             }
 
         })
     }
 
-    fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
-        val recyclerView: RecyclerView = view.findViewById(id)
+    fun adaptarRecycleView(view: View, filmes: List<Filme>){
+        val recyclerView: RecyclerView = binding.recyclerViewMinhasLista
         val adapter = filmes.let { FilmeAdapter(view.context, it) }
         recyclerView.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {
@@ -51,6 +57,11 @@ class MinhaListaFragment : Fragment() {
         val intent = Intent(view.context, InformacoesFilmeActivity::class.java)
         intent.putExtra("filme", filme)
         startActivity(intent)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

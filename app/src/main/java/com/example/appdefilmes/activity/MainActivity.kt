@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import com.example.appdefilmes.R
+import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.fragments.InicioFragment
 import com.example.appdefilmes.fragments.MinhaListaFragment
 import com.example.appdefilmes.model.Filme
@@ -15,10 +16,14 @@ class MainActivity : AppCompatActivity() {
 
     private var umFilme: Filme? = null
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
 
         val fragment = InicioFragment()
@@ -32,8 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun iniciarMenu() {
-        val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        navigation?.setOnItemSelectedListener {
+        binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.page_1 -> {
                     val fragment = InicioFragment()
