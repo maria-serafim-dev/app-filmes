@@ -1,6 +1,5 @@
 package com.example.appdefilmes.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -10,11 +9,9 @@ import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.fragments.InicioFragment
 import com.example.appdefilmes.fragments.MinhaListaFragment
 import com.example.appdefilmes.model.Filme
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private var umFilme: Filme? = null
 
     private lateinit var binding: ActivityMainBinding
 

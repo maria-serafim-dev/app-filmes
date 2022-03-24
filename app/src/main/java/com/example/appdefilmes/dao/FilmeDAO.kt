@@ -97,7 +97,7 @@ class FilmeDAO {
 
 
     fun inserirMinhaLista(filme: Filme){
-            referencia.child("minhaLista").child(filme.id.toString()).setValue(filme)
+        referencia.child("minhaLista").child(filme.id.toString()).setValue(filme)
     }
 
     fun getListaFavoritos(filmeResponse: FilmeResponse){
@@ -133,7 +133,7 @@ class FilmeDAO {
     }
 
     fun removerFavorito(id: String){
-       referencia.child("minhaLista").child(id).removeValue()
+        referencia.child("minhaLista").child(id).removeValue()
     }
 
 }
