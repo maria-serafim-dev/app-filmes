@@ -2,20 +2,16 @@ package com.example.appdefilmes.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
 import com.example.appdefilmes.R
 import com.example.appdefilmes.activity.InformacoesFilmeActivity
-import com.example.appdefilmes.activity.MainActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.FragmentInicioBinding
-import com.example.appdefilmes.databinding.FragmentMinhaListaBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
@@ -41,7 +37,7 @@ class InicioFragment : Fragment() {
     }
 
     fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
-        val adapter = filmes.let { FilmeAdapter(view.context, it) }
+        val adapter = FilmeAdapter(view.context, filmes)
         when(id){
             R.id.recyclerViewSucesso -> binding.recyclerViewSucesso.adapter = adapter
             R.id.recyclerViewNovidades -> binding.recyclerViewNovidades.adapter = adapter
