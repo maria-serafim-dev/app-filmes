@@ -9,6 +9,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
+import com.example.appdefilmes.databinding.ActivityInformacoesFilmeBinding
+import com.example.appdefilmes.databinding.FragmentAssistaTambemBinding
 import com.example.appdefilmes.model.Filme
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -23,9 +25,14 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     var urlDaImagem = "https://image.tmdb.org/t/p/w500"
     val dao = FilmeDAO()
 
+    private lateinit var binding: ActivityInformacoesFilmeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_informacoes_filme)
+        binding = ActivityInformacoesFilmeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
 
         inicializarActivity()
         inicializarTabsFragments()
