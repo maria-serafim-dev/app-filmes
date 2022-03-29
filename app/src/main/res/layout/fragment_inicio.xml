@@ -43,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/f_inicio_text_novidade"
+                android:id="@+id/tv_novidade"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -51,7 +51,7 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/recyclerViewNovidades"
+                app:layout_constraintBottom_toTopOf="@id/rv_novidades"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,21 +59,21 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewNovidades"
+                android:id="@+id/rv_novidades"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@id/f_inicio_text_sucesso"
+                app:layout_constraintBottom_toTopOf="@id/tv_sucesso"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/f_inicio_text_novidade"
+                app:layout_constraintTop_toBottomOf="@id/tv_novidade"
                 tools:listitem="@layout/item_imagem_filme" />
 
             <TextView
-                android:id="@+id/f_inicio_text_sucesso"
+                android:id="@+id/tv_sucesso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -81,28 +81,28 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/recyclerViewSucesso"
+                app:layout_constraintBottom_toTopOf="@id/rv_sucesso"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/recyclerViewNovidades" />
+                app:layout_constraintTop_toBottomOf="@id/rv_novidades" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewSucesso"
+                android:id="@+id/rv_sucesso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@id/f_inicio_text_atuais_no_cinema"
+                app:layout_constraintBottom_toTopOf="@id/tv_atuais_no_cinema"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/f_inicio_text_sucesso"
+                app:layout_constraintTop_toBottomOf="@id/tv_sucesso"
                 tools:listitem="@layout/item_imagem_filme" />
 
 
             <TextView
-                android:id="@+id/f_inicio_text_atuais_no_cinema"
+                android:id="@+id/tv_atuais_no_cinema"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -110,15 +110,15 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/recyclerViewExclusivos"
+                app:layout_constraintBottom_toTopOf="@id/rv_exclusivos"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/recyclerViewSucesso"
+                app:layout_constraintTop_toBottomOf="@id/rv_sucesso"
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewExclusivos"
+                android:id="@+id/rv_exclusivos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -128,7 +128,7 @@
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/f_inicio_text_atuais_no_cinema"
+                app:layout_constraintTop_toBottomOf="@id/tv_atuais_no_cinema"
                 app:layout_constraintVertical_bias="0.0"
                 tools:listitem="@layout/item_imagem_filme" />
 

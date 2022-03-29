@@ -39,7 +39,7 @@ class InicioFragment : Fragment() {
     private fun buscarFilmesPopulares(view: View){
         FilmeDAO().getFilmesPopulares(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.recyclerViewSucesso, filmes)
+                adaptarRecycleView(view, R.id.rv_sucesso, filmes)
             }
 
         })
@@ -48,7 +48,7 @@ class InicioFragment : Fragment() {
     private fun buscarFilmesNovidades(view: View){
         FilmeDAO().getFilmesBemAvaliados(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.recyclerViewNovidades, filmes)
+                adaptarRecycleView(view, R.id.rv_novidades, filmes)
             }
 
         })
@@ -57,7 +57,7 @@ class InicioFragment : Fragment() {
     private fun buscarFilmesAtuaisNosCinemais(view: View){
         FilmeDAO().getFilmeAtuaisNosCinemais(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.recyclerViewExclusivos, filmes)
+                adaptarRecycleView(view, R.id.rv_exclusivos, filmes)
             }
 
         })
@@ -66,9 +66,9 @@ class InicioFragment : Fragment() {
     private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
         val adapter = FilmeAdapter(view.context, filmes)
         when(id){
-            R.id.recyclerViewSucesso -> binding.recyclerViewSucesso.adapter = adapter
-            R.id.recyclerViewNovidades -> binding.recyclerViewNovidades.adapter = adapter
-            R.id.recyclerViewExclusivos -> binding.recyclerViewExclusivos.adapter = adapter
+            R.id.rv_sucesso -> binding.rvSucesso.adapter = adapter
+            R.id.rv_novidades -> binding.rvNovidades.adapter = adapter
+            R.id.rv_exclusivos -> binding.rvExclusivos.adapter = adapter
         }
 
         adapter.setOnClick(object: InterfaceOnClick{

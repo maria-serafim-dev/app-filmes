@@ -26,9 +26,9 @@ class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
     }
 
     private fun atribuirValoresFilme() {
-        binding.textNomeFilme.text = filme?.title
-        binding.txtValorAno.text = filme?.release_date
-        binding.txtValorNomeOriginal.text = filme?.original_title
+        binding.tvNomeFilme.text = filme?.title
+        binding.tvValorAno.text = filme?.release_date
+        binding.tvValorNomeOriginal.text = filme?.original_title
     }
 
     override fun onResume() {

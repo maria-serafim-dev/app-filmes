@@ -7,7 +7,7 @@
     tools:context=".fragments.MinhaListaFragment">
 
     <TextView
-        android:id="@+id/minhaLista"
+        android:id="@+id/tv_minha_lista"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -15,7 +15,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/recyclerViewMinhasLista"
+        app:layout_constraintBottom_toTopOf="@id/rv_minha_lista"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,11 +24,11 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMinhasLista"
+        android:id="@+id/rv_minha_lista"
         android:background="#252424"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/minhaLista"
+        app:layout_constraintTop_toBottomOf="@id/tv_minha_lista"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

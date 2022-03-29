@@ -10,14 +10,14 @@
 
 
     <TextView
-        android:id="@+id/txt_ficha_tecnica"
+        android:id="@+id/tv_ficha_tecnica"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/ficha_tecnica"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/txt_titulo"
+        app:layout_constraintBottom_toTopOf="@id/tv_titulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,36 +26,36 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/txt_titulo"
+        android:id="@+id/tv_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
         android:text="@string/text_titulo_original"
         android:textColor="@color/cinza_letras"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/txt_genero"
-        app:layout_constraintEnd_toStartOf="@id/text_nome_filme"
+        app:layout_constraintBottom_toTopOf="@id/tv_genero"
+        app:layout_constraintEnd_toStartOf="@id/tv_nome_filme"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/txt_ficha_tecnica"
-        app:layout_constraintTop_toBottomOf="@id/txt_ficha_tecnica"
+        app:layout_constraintStart_toStartOf="@id/tv_ficha_tecnica"
+        app:layout_constraintTop_toBottomOf="@id/tv_ficha_tecnica"
         app:layout_constraintVertical_bias="0" />
 
     <TextView
-        android:id="@+id/text_nome_filme"
+        android:id="@+id/tv_nome_filme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_filme_uncharted"
         android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/txt_titulo"
+        app:layout_constraintBottom_toBottomOf="@id/tv_titulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@id/txt_titulo"
-        app:layout_constraintTop_toTopOf="@id/txt_titulo"
+        app:layout_constraintStart_toEndOf="@id/tv_titulo"
+        app:layout_constraintTop_toTopOf="@id/tv_titulo"
         app:layout_constraintVertical_bias="0" />
 
     <TextView
-        android:id="@+id/txt_genero"
+        android:id="@+id/tv_genero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -65,27 +65,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/txt_titulo"
-        app:layout_constraintTop_toBottomOf="@id/txt_titulo"
-        app:layout_constraintEnd_toStartOf="@id/text_tipo_genero"
+        app:layout_constraintStart_toStartOf="@id/tv_titulo"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo"
+        app:layout_constraintEnd_toStartOf="@id/tv_tipo_genero"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/text_tipo_genero"
+        android:id="@+id/tv_tipo_genero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_filme"
         android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/txt_genero"
+        app:layout_constraintBottom_toBottomOf="@id/tv_genero"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/txt_genero"
-        app:layout_constraintTop_toTopOf="@id/txt_genero"
+        app:layout_constraintStart_toEndOf="@id/tv_genero"
+        app:layout_constraintTop_toTopOf="@id/tv_genero"
         app:layout_constraintVertical_bias="0.0" />
 
 
     <TextView
-        android:id="@+id/text_titulo_ano"
+        android:id="@+id/tv_titulo_ano"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -95,26 +95,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/txt_valor_ano"
-        app:layout_constraintStart_toStartOf="@id/txt_genero"
-        app:layout_constraintTop_toBottomOf="@id/txt_genero"
+        app:layout_constraintEnd_toStartOf="@id/tv_valor_ano"
+        app:layout_constraintStart_toStartOf="@id/tv_genero"
+        app:layout_constraintTop_toBottomOf="@id/tv_genero"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/txt_valor_ano"
+        android:id="@+id/tv_valor_ano"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valor_ano_produção"
         android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/text_titulo_ano"
+        app:layout_constraintBottom_toBottomOf="@id/tv_titulo_ano"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/text_titulo_ano"
-        app:layout_constraintTop_toTopOf="@id/text_titulo_ano"
+        app:layout_constraintStart_toEndOf="@id/tv_titulo_ano"
+        app:layout_constraintTop_toTopOf="@id/tv_titulo_ano"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/text_titulo_nome_original"
+        android:id="@+id/tv_titulo_nome_original"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -124,22 +124,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@id/txt_valor_nome_original"
-        app:layout_constraintStart_toStartOf="@id/text_titulo_ano"
-        app:layout_constraintTop_toBottomOf="@id/text_titulo_ano"
+        app:layout_constraintEnd_toStartOf="@id/tv_valor_nome_original"
+        app:layout_constraintStart_toStartOf="@id/tv_titulo_ano"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo_ano"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/txt_valor_nome_original"
+        android:id="@+id/tv_valor_nome_original"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/valor_nome_original"
         android:textColor="@color/cinza_letras"
-        app:layout_constraintBottom_toBottomOf="@id/text_titulo_nome_original"
+        app:layout_constraintBottom_toBottomOf="@id/tv_titulo_nome_original"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/text_titulo_nome_original"
-        app:layout_constraintTop_toTopOf="@id/text_titulo_nome_original"
+        app:layout_constraintStart_toEndOf="@id/tv_titulo_nome_original"
+        app:layout_constraintTop_toTopOf="@id/tv_titulo_nome_original"
         app:layout_constraintVertical_bias="0.0"
         android:layout_marginBottom="50dp"/>
 

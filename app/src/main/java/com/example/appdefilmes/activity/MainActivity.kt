@@ -8,7 +8,6 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.fragments.InicioFragment
 import com.example.appdefilmes.fragments.MinhaListaFragment
-import com.example.appdefilmes.model.Filme
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragment = InicioFragment()
         if (savedInstanceState == null)
-            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, fragment)
+            supportFragmentManager.beginTransaction().add(binding.fragmentInicio.id, fragment)
                 .commit()
 
         iniciarMenu()
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun iniciarMenu() {
-        binding.bottomNavigation.setOnItemSelectedListener {
+        binding.btNavegacaoInicio.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.page_1 -> {
                     val fragment = InicioFragment()
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun iniciarFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainerView, fragment)
+        transaction.replace(binding.fragmentInicio.id, fragment)
         transaction.commit()
     }
 

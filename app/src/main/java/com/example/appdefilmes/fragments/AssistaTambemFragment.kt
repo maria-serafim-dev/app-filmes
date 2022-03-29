@@ -44,7 +44,7 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
     private fun adaptarRecycleView(view: View, filmes: List<Filme>){
         val adapter = FilmeAdapter(view.context, filmes)
-        binding.recyclerViewAssitaTambem.adapter = adapter
+        binding.rvAssitaTambem.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
                 abrirTelaInformacaoFilme(filme, view)

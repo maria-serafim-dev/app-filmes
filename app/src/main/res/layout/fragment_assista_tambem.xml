@@ -9,7 +9,7 @@
     android:id="@+id/assista">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewAssitaTambem"
+        android:id="@+id/rv_assita_tambem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"

@@ -14,17 +14,17 @@
         tools:context=".activity.InformacoesFilmeActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutInfomacoesFilmes"
+            android:id="@+id/layout_infomacoes_filmes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/button_assistir"
+            app:layout_constraintBottom_toTopOf="@id/bt_assistir"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
 
             <ImageView
-                android:id="@+id/a_informacoes_cartaz_fundo"
+                android:id="@+id/img_cartaz_fundo"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:alpha="0.2"
@@ -38,7 +38,7 @@
 
 
             <ImageView
-                android:id="@+id/a_informacoes_back"
+                android:id="@+id/img_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -51,20 +51,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/a_informacoes_cartaz"
+                android:id="@+id/img_cartaz"
                 android:layout_width="150dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
                 android:contentDescription="@string/dc_uncharted"
-                app:layout_constraintBottom_toTopOf="@id/text_nome_obra"
+                app:layout_constraintBottom_toTopOf="@id/tv_nome_obra"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/a_informacoes_back" />
+                app:layout_constraintTop_toBottomOf="@id/img_back" />
 
 
             <TextView
-                android:id="@+id/text_nome_obra"
+                android:id="@+id/tv_nome_obra"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -72,28 +72,28 @@
                 android:text="@string/txt_filme_uncharted"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/text_estilos"
+                app:layout_constraintBottom_toTopOf="@id/tv_estilos"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/a_informacoes_cartaz"
+                app:layout_constraintTop_toBottomOf="@id/img_cartaz"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/text_estilos"
+                android:id="@+id/tv_estilos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/txt_filme"
                 android:textColor="@color/cinza_claro"
-                app:layout_constraintBottom_toTopOf="@id/text_sinopse"
+                app:layout_constraintBottom_toTopOf="@id/tv_sinopse"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_nome_obra"
+                app:layout_constraintTop_toBottomOf="@id/tv_nome_obra"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/text_sinopse"
+                android:id="@+id/tv_sinopse"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -102,15 +102,15 @@
                 android:text="@string/txt_sinopse_filme_uncharted"
                 android:textAlignment="viewStart"
                 android:textColor="@color/cinza_claro"
-                app:layout_constraintBottom_toBottomOf="@+id/a_informacoes_cartaz_fundo"
+                app:layout_constraintBottom_toBottomOf="@+id/img_cartaz_fundo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_estilos" />
+                app:layout_constraintTop_toBottomOf="@id/tv_estilos" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_assistir"
+            android:id="@+id/bt_assistir"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="180dp"
             android:layout_height="60dp"
@@ -121,12 +121,12 @@
             android:textSize="14sp"
             app:icon="@drawable/ic_play"
             app:iconTint="@color/cinza_escuro"
-            app:layout_constraintEnd_toStartOf="@id/button_minha_lista"
+            app:layout_constraintEnd_toStartOf="@id/bt_minha_lista"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutInfomacoesFilmes" />
+            app:layout_constraintTop_toBottomOf="@id/layout_infomacoes_filmes" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_minha_lista"
+            android:id="@+id/bt_minha_lista"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="180dp"
             android:layout_height="60dp"
@@ -138,8 +138,8 @@
             app:icon="@drawable/ic_star"
             app:iconTint="@color/cinza_claro"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/button_assistir"
-            app:layout_constraintTop_toBottomOf="@id/layoutInfomacoesFilmes"
+            app:layout_constraintStart_toEndOf="@id/bt_assistir"
+            app:layout_constraintTop_toBottomOf="@id/layout_infomacoes_filmes"
             app:strokeColor="@color/cinza_claro" />
 
         <com.google.android.material.tabs.TabLayout
@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_minha_lista"
+            app:layout_constraintTop_toBottomOf="@id/bt_minha_lista"
             app:tabIndicatorColor="@color/white"
             app:tabIndicatorFullWidth="false"
             app:tabIndicatorHeight="1dp"
@@ -155,7 +155,7 @@
             app:tabSelectedTextColor="@color/white" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager2"
+            android:id="@+id/view_pager_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

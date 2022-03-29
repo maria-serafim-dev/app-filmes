@@ -43,9 +43,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
     private fun inicializarTabsFragments() {
         val adapter = TabViewPagerAdapter(this, umFilme)
-        binding.viewpager2.adapter = adapter
+        binding.viewPager2.adapter = adapter
 
-        TabLayoutMediator(binding.tabs, binding.viewpager2) { tab, position ->
+        TabLayoutMediator(binding.tabs, binding.viewPager2) { tab, position ->
             tab.text = getString(adapter.tabsText[position])
         }.attach()
 
@@ -53,14 +53,14 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
 
     private fun inicializarTextos() {
-        binding.textNomeObra.text = umFilme?.title
-        binding.textSinopse.text = umFilme?.overview
+        binding.tvNomeObra.text = umFilme?.title
+        binding.tvSinopse.text = umFilme?.overview
     }
 
     private fun inicializarImagens() {
         urlDaImagem += umFilme?.poster_path
-        Picasso.get().load(urlDaImagem).into(binding.aInformacoesCartaz)
-        Picasso.get().load(urlDaImagem).into(binding.aInformacoesCartaz)
+        Picasso.get().load(urlDaImagem).into(binding.imgCartaz)
+        Picasso.get().load(urlDaImagem).into(binding.imgCartazFundo)
     }
 
 
@@ -75,9 +75,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             }
         }
 
-        binding.buttonMinhaLista.setOnClickListener {
+        binding.btMinhaLista.setOnClickListener {
             val textMinhaLista = getString(R.string.button_minha_lista)
-            if (binding.buttonMinhaLista.text.equals(textMinhaLista)) {
+            if (binding.btMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
                     dao.inserirMinhaLista(it)
                     modificarLayoutBotao(
@@ -105,14 +105,14 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun inicializarBotaoVoltar() {
-        binding.aInformacoesBack.setOnClickListener {
+        binding.imgBack.setOnClickListener {
             finish()
         }
     }
 
     private fun modificarLayoutBotao(idDrawable: Int, idTexto: Int) {
-        binding.buttonMinhaLista.setIconResource(idDrawable)
-        binding.buttonMinhaLista.text = getString(idTexto)
+        binding.btMinhaLista.setIconResource(idDrawable)
+        binding.btMinhaLista.text = getString(idTexto)
     }
 
 

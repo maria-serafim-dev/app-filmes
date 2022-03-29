@@ -63,10 +63,13 @@ class Filme(
     }
 
     fun formatarDataPadraoBrasil(): String{
-        val data = Date.valueOf(release_date)
-        val format = SimpleDateFormat("dd-MM-yyyy")
-        val dataFinal = format.format(data)
 
+        var dataFinal = ""
+        if(release_date?.isNotEmpty() == true) {
+            val data = Date.valueOf(release_date)
+            val format = SimpleDateFormat("dd-MM-yyyy")
+            dataFinal = format.format(data)
+        }
         return dataFinal
     }
 

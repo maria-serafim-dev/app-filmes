@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/imagemReplica"
+        android:id="@+id/img_capa_filme"
         android:layout_width="120dp"
         android:layout_height="190dp"
         android:contentDescription="@string/dc_uncharted"
