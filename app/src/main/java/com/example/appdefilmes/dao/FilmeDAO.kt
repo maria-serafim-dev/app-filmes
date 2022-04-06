@@ -106,6 +106,7 @@ class FilmeDAO {
 
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                listaFilmes.clear()
                 dataSnapshot.children.forEach {
                     val filme: Filme? = it.getValue(Filme::class.java)
                     filme?.let { it1 -> listaFilmes.add(it1) }
