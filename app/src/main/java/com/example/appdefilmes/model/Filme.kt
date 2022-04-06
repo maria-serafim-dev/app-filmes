@@ -3,6 +3,9 @@ package com.example.appdefilmes.model
 import android.os.Parcel
 import android.os.Parcelable
 import java.sql.Date
+import java.text.DateFormat
+import java.text.DateFormatSymbols
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 
 class Filme(
@@ -27,8 +30,7 @@ class Filme(
         parcel.readString(),
         parcel.readDouble(),
         parcel.readInt()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         if (id != null) {
@@ -38,7 +40,7 @@ class Filme(
         parcel.writeString(original_title)
         parcel.writeString(overview)
         parcel.writeString(poster_path)
-        parcel.writeString(formatarDataPadraoBrasil())
+        parcel.writeString(release_date)
         parcel.writeString(title)
         if (vote_average != null) {
             parcel.writeDouble(vote_average)
@@ -62,12 +64,12 @@ class Filme(
         }
     }
 
-    fun formatarDataPadraoBrasil(): String{
+    fun formatarDataDeAcordoComALocalidade(): String{
 
         var dataFinal = ""
         if(release_date?.isNotEmpty() == true) {
             val data = Date.valueOf(release_date)
-            val format = SimpleDateFormat("dd-MM-yyyy")
+            val format =  DateFormat.getDateInstance(DateFormat.SHORT)
             dataFinal = format.format(data)
         }
         return dataFinal

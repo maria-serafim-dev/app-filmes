@@ -27,7 +27,7 @@ class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
 
     private fun atribuirValoresFilme() {
         binding.tvNomeFilme.text = filme?.title
-        binding.tvValorAno.text = filme?.release_date
+        binding.tvValorAno.text = filme?.formatarDataDeAcordoComALocalidade()
         binding.tvValorNomeOriginal.text = filme?.original_title
     }
 
