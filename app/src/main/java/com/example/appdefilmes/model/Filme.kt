@@ -4,9 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.sql.Date
 import java.text.DateFormat
-import java.text.DateFormatSymbols
-import java.text.NumberFormat
-import java.text.SimpleDateFormat
 
 class Filme(
     val id: Int? = 0,

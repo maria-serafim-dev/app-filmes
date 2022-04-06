@@ -19,13 +19,6 @@ interface FilmeService {
         @Query("region") regiao: String,
     ) : Call<Result>
 
-    @GET("/3/movie/{movie_id}")
-    fun getFilmeId(
-        @Path("movie_id") idFilme: Int,
-        @Query("api_key") chaveApi: String,
-        @Query("language") idioma: String,
-    ) : Call<Filme>
-
     @GET("/3/movie/{movie_id}/similar")
     fun getFilmeSimilaresId(
         @Path("movie_id") idFilme: Int,

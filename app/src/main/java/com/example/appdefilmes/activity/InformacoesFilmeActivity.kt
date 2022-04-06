@@ -96,9 +96,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             .setTitle(resources.getString(R.string.titulo_dialog))
             .setIcon(R.drawable.ic_remover)
             .setMessage(resources.getString(R.string.mensagem_dialog))
-            .setNegativeButton(resources.getString(R.string.negativo_dialog)) { dialog, which ->
+            .setNegativeButton(resources.getString(R.string.negativo_dialog)) { _, _ ->
             }
-            .setPositiveButton(resources.getString(R.string.positivo_dialog)) { dialog, which ->
+            .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
                 dao.removerFavorito(umFilme?.id.toString())
                 modificarLayoutBotao(R.drawable.ic_star, R.string.button_minha_lista)
             }.show()
