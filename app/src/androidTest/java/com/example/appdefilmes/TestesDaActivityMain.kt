@@ -47,6 +47,11 @@ class TestesDaActivityMain {
     }
 
     @Test
+    fun bottomNavigationCarregada() {
+        onView(withId(R.id.bt_navegacao_inicio)).check(matches(isDisplayed()))
+    }
+
+    @Test
     fun inicioFragramentCarregada() {
         onView(withId(R.id.page_1)).perform(click())
         recyclerViewNovidadesCarregada()
