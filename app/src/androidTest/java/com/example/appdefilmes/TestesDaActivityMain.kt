@@ -1,6 +1,7 @@
 package com.example.appdefilmes
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -34,7 +35,22 @@ class TestesDaActivityMain {
 
     @Test
     fun recyclerViewExclusivosCarregada() {
-        onView(withId(R.id.rv_exclusivos))
+        onView(withId(R.id.fragment_inicio)).perform(swipeUp())
+        onView(withId(R.id.rv_exclusivos)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun recyclerViewMinhaListaCarregada() {
+        onView(withId(R.id.page_2)).perform(click())
+        onView(withId(R.id.rv_minha_lista))
             .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun inicioFragramentCarregada() {
+        onView(withId(R.id.page_1)).perform(click())
+        recyclerViewNovidadesCarregada()
+        recyclerViewSucessoCarregada()
+        recyclerViewExclusivosCarregada()
     }
 }
