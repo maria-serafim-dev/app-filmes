@@ -3,12 +3,14 @@ package com.example.appdefilmes.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.ActivityInformacoesFilmeBinding
 import com.example.appdefilmes.model.Filme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
@@ -84,12 +86,18 @@ class InformacoesFilmeActivity : AppCompatActivity() {
                         R.drawable.ic_adicionado,
                         R.string.button_minha_lista_adicionado
                     )
+                    abrirSnackBar("Filme inserido com sucesso").show()
                 }
             }else{
                 abrirDialog()
             }
         }
     }
+
+    private fun abrirSnackBar(mensagem: String) =
+        Snackbar.make(binding.btMinhaLista, mensagem, Snackbar.LENGTH_LONG)
+            .setBackgroundTint(ContextCompat.getColor(this, R.color.white))
+            .setActionTextColor(ContextCompat.getColor(this, R.color.gray))
 
     private fun abrirDialog() {
         MaterialAlertDialogBuilder(this, R.style.Estilo_MaterialAlertDialog)
@@ -101,6 +109,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
                 dao.removerFavorito(umFilme?.id.toString())
                 modificarLayoutBotao(R.drawable.ic_star, R.string.button_minha_lista)
+                abrirSnackBar("Filme removido com sucesso").show()
             }.show()
     }
 
