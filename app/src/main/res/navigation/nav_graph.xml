@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_inicioFragment2_to_minhaListaFragment2"
             app:destination="@id/minhaListaFragment2" />
+        <action
+            android:id="@+id/action_inicioFragment2_to_informacoesFilmeActivity"
+            app:destination="@id/informacoesFilmeActivity" />
     </fragment>
     <fragment
         android:id="@+id/minhaListaFragment2"
@@ -21,5 +24,16 @@
         <action
             android:id="@+id/action_minhaListaFragment2_to_inicioFragment2"
             app:destination="@id/inicioFragment2" />
+        <action
+            android:id="@+id/action_minhaListaFragment2_to_informacoesFilmeActivity"
+            app:destination="@id/informacoesFilmeActivity" />
     </fragment>
+    <activity
+        android:id="@+id/informacoesFilmeActivity"
+        android:name="com.example.appdefilmes.activity.InformacoesFilmeActivity"
+        android:label="InformacoesFilmeActivity" >
+        <argument
+            android:name="filme"
+            app:argType="com.example.appdefilmes.model.Filme" />
+    </activity>
 </navigation>

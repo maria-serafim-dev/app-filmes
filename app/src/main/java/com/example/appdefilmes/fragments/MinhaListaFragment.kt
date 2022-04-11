@@ -1,12 +1,12 @@
 package com.example.appdefilmes.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appdefilmes.R
-import com.example.appdefilmes.activity.InformacoesFilmeActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.dao.FilmeDAO
@@ -50,15 +50,10 @@ class MinhaListaFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
-                telaInformacaoFilme(filme, view)
+                val action = MinhaListaFragmentDirections.actionMinhaListaFragment2ToInformacoesFilmeActivity(filme = filme)
+                findNavController().navigate(action)
             }
         })
-    }
-
-    private fun telaInformacaoFilme(filme: Filme, view: View) {
-        val intent = Intent(view.context, InformacoesFilmeActivity::class.java)
-        intent.putExtra("filme", filme)
-        startActivity(intent)
     }
 
     override fun onDestroyView() {
