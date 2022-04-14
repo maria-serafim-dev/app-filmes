@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.PrincipalActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
@@ -21,7 +21,7 @@
             android:name=".activity.InformacoesFilmeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PrincipalActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
