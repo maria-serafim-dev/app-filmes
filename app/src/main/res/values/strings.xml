@@ -60,7 +60,7 @@
     <string name="text_subtitulo_conta_globo">Uma só conta para Goloboplay e todos os produtos Globo</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_senha">Senha</string>
-    <string name="text_nao_possui_conta"><![CDATA[Não possui conta? <b> cadastre-se. </b>]]></string>
+    <string name="text_nao_possui_conta">Não possui conta? <b> CADASTRE-SE. </b></string>
     <string name="text_esqueceu_email">Esqueceu o e-mail?</string>
     <string name="text_esqueceu_a_senha">Esqueceu a senha?</string>
     <string name="text_verificao_de_seguanca">Verificação de seguança</string>

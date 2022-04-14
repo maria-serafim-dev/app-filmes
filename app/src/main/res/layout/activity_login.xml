@@ -128,6 +128,7 @@
         android:text="@string/text_nao_possui_conta"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:textSize="18sp" />
 
