@@ -138,10 +138,12 @@
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_esquerda"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_texto_divider"
+            app:layout_constraintEnd_toStartOf="@id/tv_texto_divider"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_texto_divider" />
 
@@ -150,19 +152,21 @@
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="5dp"
             android:layout_marginTop="20dp"
             android:text="@string/text_divider"
             android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/divider_direita"
             app:layout_constraintStart_toEndOf="@id/divider_esquerda"
             app:layout_constraintTop_toBottomOf="@id/tv_nao_possui_conta" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider_direita"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_texto_divider"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_texto_divider"
             app:layout_constraintTop_toTopOf="@id/tv_texto_divider" />
 
