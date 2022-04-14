@@ -66,6 +66,13 @@
     <string name="text_verificao_de_seguanca">Verificação de seguança</string>
     <string name="btn_entrar">Entrar</string>
     <string name="text_divider">ou entre com</string>
+    <string name="text_faca_login">Faça seu Login</string>
+    <string name="text_tenha_ofertas">E tenha ofertas</string>
+    <string name="text_ofertas_personalizadas">personalizadas!</string>
+    <string name="text_ja_tenho_login">Já tenho um login</string>
+    <string name="text_cadastrar_de_graca">Cadastre-se de graça</string>
+    <string name="text_criar_mais_tarde">Criar mais tarde</string>
+    <string name="dc_imagem_principal">Imagem com diversos dispositivos com tamanho de telas diferentes</string>
 
 
 </resources>
