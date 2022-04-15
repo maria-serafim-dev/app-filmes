@@ -10,9 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo_globo_play_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.NoActionBar">
+        android:theme="@style/Theme.AppDeFilmes">
         <activity
             android:name=".activity.PrincipalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
@@ -21,7 +24,7 @@
             android:name=".activity.InformacoesFilmeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.CadastroActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>

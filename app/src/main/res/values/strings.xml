@@ -73,6 +73,13 @@
     <string name="text_cadastrar_de_graca">Cadastre-se de graça</string>
     <string name="text_criar_mais_tarde">Criar mais tarde</string>
     <string name="dc_imagem_principal">Imagem com diversos dispositivos com tamanho de telas diferentes</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_data_nascimento">Data de Nascimento</string>
+    <string name="hint_genero">Gênero</string>
+    <string name="hint_cidade">Cidade</string>
+    <string name="hint_estado">Estado</string>
+    <string name="btn_cadastrar">Cadastrar</string>
+    <string name="text_subtitulo_crear_conta">Crie a sua conta única para todos os produtos Globo</string>
 
 
 </resources>
