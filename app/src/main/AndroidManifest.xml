@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDeFilmes">
         <activity
-            android:name=".activity.PrincipalActivity"
+            android:name=".activity.CadastroActivity"
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
@@ -24,7 +24,7 @@
             android:name=".activity.InformacoesFilmeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CadastroActivity"
+            android:name=".activity.PrincipalActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>

@@ -14,7 +14,6 @@ class CadastroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCadastroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityCadastroBinding.inflate(layoutInflater)
         setContentView(binding.root)
