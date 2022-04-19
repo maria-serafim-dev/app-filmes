@@ -1,5 +1,6 @@
 package com.example.appdefilmes.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
+import com.example.appdefilmes.activity.PrincipalActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.FragmentInicioBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
+import com.google.firebase.auth.FirebaseAuth
 
 
 class InicioFragment : Fragment() {
@@ -81,6 +84,14 @@ class InicioFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
+
+        binding.fInicioLogout.setOnClickListener {
+            val auth = FirebaseAuth.getInstance()
+            auth.signOut()
+            val intent = Intent(view.context, PrincipalActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
     }
 
 }
