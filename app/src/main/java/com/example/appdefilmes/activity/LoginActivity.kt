@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun nextActivity() {
+    private fun nextActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

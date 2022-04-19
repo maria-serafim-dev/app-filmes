@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.appdefilmes.databinding.ActivityPrincipalBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -38,6 +39,16 @@ class PrincipalActivity : AppCompatActivity() {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        if(auth.currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 
