@@ -81,5 +81,9 @@
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="text_subtitulo_crear_conta">Crie a sua conta única para todos os produtos Globo</string>
 
+    <string name="text_snack_bar">Filme %s com sucesso</string>
+
+
+
 
 </resources>
