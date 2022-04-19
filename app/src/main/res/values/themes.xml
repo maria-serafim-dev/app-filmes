@@ -11,9 +11,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnSecondary</item>
+        <!-- Customize your theme here. -->
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>
-        <!-- Customize your theme here. -->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
 
     </style>
 
@@ -25,8 +26,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="Estilo.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
 
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorSurface">@color/cinza_fundo</item>
         <item name="materialAlertDialogTitleTextStyle">@style/Titutlo.AlertDialog</item>
         <item name="materialAlertDialogTitleIconStyle">@style/Icone.AlertDialog</item>
 
@@ -38,7 +41,7 @@
     </style>
 
     <style name="Botoes.AlertDialog" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/vermelho_laranja</item>
+        <item name="android:textColor">@color/vermelho_escuro</item>
     </style>
 
     <style name="Titutlo.AlertDialog" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
@@ -53,6 +56,7 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
     </style>
@@ -62,6 +66,7 @@
         <item name="colorOnSurface">@color/white</item>
         <item name="colorSurface">@color/cinza_fundo</item>
     </style>
+
 
     <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>

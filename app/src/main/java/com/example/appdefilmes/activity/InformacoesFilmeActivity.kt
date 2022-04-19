@@ -50,9 +50,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabs, binding.viewPager2) { tab, position ->
             tab.text = getString(adapter.tabsText[position])
         }.attach()
-
     }
-
 
     private fun inicializarTextos() {
         binding.tvNomeObra.text = umFilme?.title
@@ -100,10 +98,10 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             .setActionTextColor(ContextCompat.getColor(this, R.color.gray))
 
     private fun abrirDialog() {
-        MaterialAlertDialogBuilder(this, R.style.Estilo_MaterialAlertDialog)
+        MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.titulo_dialog))
             .setIcon(R.drawable.ic_remover)
-            .setMessage(resources.getString(R.string.mensagem_dialog))
+            .setMessage(resources.getString(R.string.mensagem_dialog, umFilme?.title.toString()))
             .setNegativeButton(resources.getString(R.string.negativo_dialog)) { _, _ ->
             }
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
