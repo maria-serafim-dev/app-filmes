@@ -19,8 +19,8 @@
         android:src="@drawable/globoplay_logo"
         app:layout_constraintBottom_toTopOf="@id/f_inicio_scroll"
         app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/f_inicio_logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/f_inicio_logout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -35,8 +35,8 @@
         android:scaleType="centerInside"
         android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toTopOf="@id/f_inicio_scroll"
-        app:layout_constraintLeft_toRightOf="@id/f_inicio_logoEmpresa"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/f_inicio_logoEmpresa"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -46,8 +46,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/f_inicio_logoEmpresa">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -149,7 +149,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_atuais_no_cinema"
                 app:layout_constraintVertical_bias="0.0"
                 tools:listitem="@layout/item_imagem_filme" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
