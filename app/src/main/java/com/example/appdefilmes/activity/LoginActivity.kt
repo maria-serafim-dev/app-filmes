@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 class LoginActivity : AppCompatActivity() {
 
