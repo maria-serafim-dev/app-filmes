@@ -167,23 +167,45 @@
             app:layout_constraintStart_toEndOf="@id/tv_texto_divider"
             app:layout_constraintTop_toTopOf="@id/tv_texto_divider" />
 
-        <com.facebook.login.widget.LoginButton
+        <Button
             android:id="@+id/bt_facebook"
+            style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
+            android:backgroundTint="@color/white"
+            android:elevation="2dp"
+            android:text="@string/text_btn_facebook"
+            app:iconTint="@null"
+            app:iconSize="24dp"
+            android:gravity="start|center"
+            android:paddingHorizontal="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/cinza_escuro"
+            app:icon="@drawable/ic_facebook"
+            app:layout_constraintEnd_toStartOf="@id/bt_google"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_texto_divider" />
 
-        <com.google.android.gms.common.SignInButton
+        <Button
             android:id="@+id/bt_google"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:backgroundTint="@color/white"
+            android:elevation="2dp"
+            android:text="@string/text_btn_google"
+            app:iconTint="@null"
+            app:iconSize="20dp"
+            android:gravity="start|center"
+            android:paddingHorizontal="40dp"
+            android:textAllCaps="false"
+            android:textColor="@color/cinza_escuro"
+            app:icon="@drawable/ic_google"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/bt_facebook"
             app:layout_constraintTop_toBottomOf="@id/tv_texto_divider" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
