@@ -15,6 +15,7 @@ import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.FragmentInicioBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -86,12 +87,23 @@ class InicioFragment : Fragment() {
         })
 
         binding.fInicioLogout.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            auth.signOut()
-            val intent = Intent(view.context, PrincipalActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            logOutEmailSenha()
+            logOutFacebook()
+            voltarActivityPrincipal(view)
         }
     }
 
+    private fun logOutEmailSenha() {
+        FirebaseAuth.getInstance().signOut()
+    }
+
+    private fun logOutFacebook() {
+        LoginManager.getInstance().logOut()
+    }
+
+    private fun voltarActivityPrincipal(view: View) {
+        val intent = Intent(view.context, PrincipalActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
+    }
 }
