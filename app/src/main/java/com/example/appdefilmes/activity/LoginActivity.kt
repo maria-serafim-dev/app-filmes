@@ -6,12 +6,21 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.databinding.ActivityLoginBinding
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+
 
 class LoginActivity : AppCompatActivity() {
 
+    private var callbackManager: CallbackManager? = null
     private lateinit var binding: ActivityLoginBinding
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -21,6 +30,55 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         ouvinteBotaoLogin()
+        ouvinteBotaoFacebook()
+
+       callbackManager = CallbackManager.Factory.create()
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult?> {
+                override fun onSuccess(loginResult: LoginResult?) {
+                    loginResult?.let { it1 -> sucesso(it1.accessToken) }
+                }
+
+                override fun onCancel() {
+                    mensagemCancelar("Facebook")
+                }
+
+                override fun onError(exception: FacebookException) {
+                    mensagemErro("Facebook")
+                }
+            })
+    }
+
+    private fun ouvinteBotaoFacebook() {
+        binding.btFacebook.setOnClickListener {
+            LoginManager.getInstance().logInWithReadPermissions(
+                this,
+                listOf("email", "public_profile", "user_friends")
+            )
+        }
+    }
+
+    private fun sucesso(token: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(token.token)
+
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(
+                this
+            ) { task: Task<AuthResult?> ->
+                if (task.isSuccessful) {
+                    Log.i("Mensagem", "Sucesso")
+                    nextActivity()
+                } else {
+                    Log.w("FaceBookLogin", "signInWithCredential:failure", task.exception)
+                    mensagemErro("Facebook")
+                }
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager!!.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun ouvinteBotaoLogin() {
@@ -33,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.i("signIn", "Sucesso ao logar usuário")
                     nextActivity()
                 } else {
-                    messageErro("e-mail e senha")
+                    mensagemErro("e-mail e senha")
                     Log.i("signIn", "Erro ao logar usuário", task.exception)
                 }
             }
@@ -46,8 +104,10 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun messageErro(provedor: String) {
-        Toast.makeText(this, "Falha na autenticação com $provedor",Toast.LENGTH_LONG).show()
+    private fun mensagemErro(provedor: String) {
+        Toast.makeText(this, "Falha na autenticação com $provedor", Toast.LENGTH_LONG).show()
     }
-
+    private fun mensagemCancelar(provedor: String) {
+        Toast.makeText(this, "Login com $provedor cancelado" , Toast.LENGTH_LONG).show()
+    }
 }
