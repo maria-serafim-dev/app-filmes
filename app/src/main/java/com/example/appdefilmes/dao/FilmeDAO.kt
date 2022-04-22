@@ -102,8 +102,11 @@ class FilmeDAO {
         }
     }
 
-    fun getListaFavoritos(filmeResponse: FilmeResponse){
-        val query: Query = referencia.child("minhaLista")
+    fun getListaFavoritos(idUsuario: String?, filmeResponse: FilmeResponse){
+        lateinit var query: Query
+        if (idUsuario != null) {
+            query = referencia.child(idUsuario)
+        }
         val listaFilmes: MutableList<Filme> = mutableListOf()
 
         query.addValueEventListener(object : ValueEventListener {
