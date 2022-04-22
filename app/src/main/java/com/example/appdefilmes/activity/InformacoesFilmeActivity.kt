@@ -68,7 +68,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
     private fun inicializarBotaoMinhaLista() {
 
-        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
+        dao.verificaFilmeFavorito(userId, umFilme?.id.toString()) {
             if (it) {
                 modificarLayoutBotao(
                     R.drawable.ic_adicionado,
