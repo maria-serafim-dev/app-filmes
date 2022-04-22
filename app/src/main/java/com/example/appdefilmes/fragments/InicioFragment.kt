@@ -36,14 +36,14 @@ class InicioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentInicioBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         buscarFilmesPopulares(view)
         buscarFilmesAtuaisNosCinemais(view)
         buscarFilmesNovidades(view)
-
-        return view
-
     }
 
     private fun buscarFilmesPopulares(view: View){
@@ -51,7 +51,6 @@ class InicioFragment : Fragment() {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.rv_sucesso, filmes)
             }
-
         })
     }
 
@@ -60,7 +59,6 @@ class InicioFragment : Fragment() {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.rv_novidades, filmes)
             }
-
         })
     }
 
@@ -69,7 +67,6 @@ class InicioFragment : Fragment() {
             override fun sucesso(filmes: List<Filme>) {
                 adaptarRecycleView(view, R.id.rv_exclusivos, filmes)
             }
-
         })
     }
 

@@ -18,13 +18,13 @@ class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFichaTecnicaBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        atribuirValoresFilme()
-
-        return view
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        atribuirValoresFilme()
+    }
     private fun atribuirValoresFilme() {
         binding.tvNomeFilme.text = filme?.title
         binding.tvValorAno.text = filme?.formatarDataDeAcordoComALocalidade()

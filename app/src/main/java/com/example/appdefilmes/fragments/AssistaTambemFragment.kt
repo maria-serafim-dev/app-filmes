@@ -25,10 +25,12 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAssistaTambemBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         buscarFilmesPopulares(view)
-        return view
     }
 
     private fun buscarFilmesPopulares(view: View){
