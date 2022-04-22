@@ -1,7 +1,9 @@
 package com.example.appdefilmes.dao
 
 import android.util.Log
-import com.example.appdefilmes.model.*
+import com.example.appdefilmes.data.*
+import com.example.appdefilmes.model.Filme
+import com.example.appdefilmes.model.Result
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.example.appdefilmes.retrofit.FilmeRetrofit
 import com.example.appdefilmes.retrofit.service.FilmeService
@@ -14,12 +16,7 @@ import retrofit2.Response
 
 class FilmeDAO {
 
-    private val baseUrl: String = "https://api.themoviedb.org"
-    private val chaveAPI: String = ApiKey().apiKey
     private var category: String = ""
-    private val idioma: String = "pt-BR"
-    private val regiao: String = "BR"
-    private val qtdePagina: Int = 1
     private val retrofit = FilmeRetrofit.getRetrofitInstance(baseUrl)
     private val endpoint = retrofit.create(FilmeService::class.java)
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference

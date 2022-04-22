@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
-import com.google.firebase.auth.FirebaseAuth
 
 class FilmeViewModel : ViewModel() {
 

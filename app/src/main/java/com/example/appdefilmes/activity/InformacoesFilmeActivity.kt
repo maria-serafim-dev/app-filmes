@@ -11,7 +11,6 @@ import com.example.appdefilmes.model.Filme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 

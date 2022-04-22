@@ -1,8 +1,17 @@
 package com.example.appdefilmes.data
 
+
+import com.example.appdefilmes.model.apiKey
+
 val itensGenero: List<String> = listOf("Feminino", "Masculino", "Outro", "Não quero informar")
 
 val itensEstadosBrasileiros: List<String> = listOf("Acre (AC)", "Alagoas (AL)","Amapá (AP)","Amazonas (AM)","Bahia (BA)","Ceará (CE)", "Distrito Federal (DF)","Espírito Santo (ES)", "Goiás (GO)",
     "Maranhão (MA)","Mato Grosso (MT)","Mato Grosso do Sul (MS)","Minas Gerais (MG)","Pará (PA)","Paraíba (PB)","Paraná (PR)","Pernambuco (PE)",
     "Piauí (PI)","Rio de Janeiro (RJ)","Rio Grande do Norte (RN)","Rio Grande do Sul (RS)","Rondônia (RO)","Roraima (RR)","Santa Catarina (SC)","São Paulo (SP)",
     "Sergipe (SE)","Tocantins (TO)")
+
+const val baseUrl: String = "https://api.themoviedb.org"
+const val chaveAPI: String = apiKey
+const val idioma: String = "pt-BR"
+const val regiao: String = "BR"
+const val qtdePagina: Int = 1
