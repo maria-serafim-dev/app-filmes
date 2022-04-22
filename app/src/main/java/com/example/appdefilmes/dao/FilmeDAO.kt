@@ -5,6 +5,7 @@ import com.example.appdefilmes.model.*
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.example.appdefilmes.retrofit.FilmeRetrofit
 import com.example.appdefilmes.retrofit.service.FilmeService
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,6 +23,9 @@ class FilmeDAO {
     private val retrofit = FilmeRetrofit.getRetrofitInstance(baseUrl)
     private val endpoint = retrofit.create(FilmeService::class.java)
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
+    private val auth = FirebaseAuth.getInstance().currentUser
+    private val userId = auth?.uid
+
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
         category = "popular"
@@ -96,16 +100,16 @@ class FilmeDAO {
     }
 
 
-    fun inserirMinhaLista(filme: Filme, uid: String?){
-        if (uid != null) {
-            referencia.child(uid).child(filme.id.toString()).setValue(filme)
+    fun inserirMinhaLista(filme: Filme){
+        if (userId != null) {
+            referencia.child(userId).child(filme.id.toString()).setValue(filme)
         }
     }
 
-    fun getListaFavoritos(idUsuario: String?, filmeResponse: FilmeResponse){
+    fun getListaFavoritos(filmeResponse: FilmeResponse){
         lateinit var query: Query
-        if (idUsuario != null) {
-            query = referencia.child(idUsuario)
+        if (userId != null) {
+            query = referencia.child(userId)
         }
         val listaFilmes: MutableList<Filme> = mutableListOf()
 
@@ -124,10 +128,9 @@ class FilmeDAO {
             }
         })
 
-
     }
 
-    fun verificaFilmeFavorito(userId: String?, id: String, callback: (Boolean) -> Unit){
+    fun verificaFilmeFavorito(id: String, callback: (Boolean) -> Unit){
         if (userId != null) {
             referencia.child(userId).child(id).get().addOnSuccessListener {
                 if (it.value != null) callback(true)
@@ -140,7 +143,7 @@ class FilmeDAO {
 
     }
 
-    fun removerFavorito(id: String, userId: String?){
+    fun removerFavorito(id: String){
         if (userId != null) {
             referencia.child(userId).child(id).removeValue()
         }

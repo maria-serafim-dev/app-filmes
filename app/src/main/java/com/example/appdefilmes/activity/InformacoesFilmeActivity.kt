@@ -20,8 +20,6 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     private var umFilme: Filme? = null
     private var urlDaImagem = "https://image.tmdb.org/t/p/w500"
     private val dao = FilmeDAO()
-    private val auth = FirebaseAuth.getInstance().currentUser
-    private val userId = auth?.uid
 
     private lateinit var binding: ActivityInformacoesFilmeBinding
 
@@ -68,7 +66,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
 
     private fun inicializarBotaoMinhaLista() {
 
-        dao.verificaFilmeFavorito(userId, umFilme?.id.toString()) {
+        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
             if (it) {
                 modificarLayoutBotao(
                     R.drawable.ic_adicionado,
@@ -81,7 +79,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             val textMinhaLista = getString(R.string.button_minha_lista)
             if (binding.btMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
-                    dao.inserirMinhaLista(it, userId)
+                    dao.inserirMinhaLista(it)
                     modificarLayoutBotao(
                         R.drawable.ic_adicionado,
                         R.string.button_minha_lista_adicionado
@@ -105,7 +103,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             .setNegativeButton(resources.getString(R.string.negativo_dialog)) { _, _ ->
             }
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
-                dao.removerFavorito(umFilme?.id.toString(), userId)
+                dao.removerFavorito(umFilme?.id.toString())
                 modificarLayoutBotao(R.drawable.ic_star, R.string.button_minha_lista)
                 abrirSnackBar("removido").show()
             }.show()

@@ -15,8 +15,7 @@ class FilmeViewModel : ViewModel() {
         get() = _filmesFavoritos
 
     private fun filmesPopulares(){
-        val auth = FirebaseAuth.getInstance().currentUser
-        FilmeDAO().getListaFavoritos(auth?.uid, object: FilmeResponse {
+        FilmeDAO().getListaFavoritos(object: FilmeResponse {
             override fun sucesso(filmes: List<Filme>) {
                 _filmesFavoritos.value = filmes
             }
