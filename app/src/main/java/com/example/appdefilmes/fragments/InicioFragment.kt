@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class InicioFragment : Fragment() {
 
+    private val auth = FirebaseAuth.getInstance()
     private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
 
@@ -72,6 +74,8 @@ class InicioFragment : Fragment() {
     }
 
     private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
+        abrirToast(view)
+
         val adapter = FilmeAdapter(view.context, filmes)
         when(id){
             R.id.rv_sucesso -> binding.rvSucesso.adapter = adapter
@@ -105,5 +109,10 @@ class InicioFragment : Fragment() {
         val intent = Intent(view.context, PrincipalActivity::class.java)
         startActivity(intent)
         activity?.finish()
+    }
+
+    private fun abrirToast(view: View) {
+        val nome = auth.currentUser?.displayName
+        Toast.makeText(view.context, "Bem vinda ${nome}", Toast.LENGTH_LONG).show()
     }
 }

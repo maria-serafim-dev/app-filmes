@@ -67,7 +67,6 @@ class LoginActivity : AppCompatActivity() {
                 this
             ) { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
-                    Log.i("Mensagem", "Sucesso")
                     nextActivity()
                 } else {
                     Log.w("FaceBookLogin", "signInWithCredential:failure", task.exception)
@@ -88,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
 
             auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.i("signIn", "Sucesso ao logar usuário")
                     nextActivity()
                 } else {
                     mensagemErro("e-mail e senha")
