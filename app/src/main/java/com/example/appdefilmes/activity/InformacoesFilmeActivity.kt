@@ -11,6 +11,7 @@ import com.example.appdefilmes.model.Filme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 
@@ -78,7 +79,8 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             val textMinhaLista = getString(R.string.button_minha_lista)
             if (binding.btMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
-                    dao.inserirMinhaLista(it)
+                    val auth = FirebaseAuth.getInstance().currentUser
+                    dao.inserirMinhaLista(it, auth?.uid)
                     modificarLayoutBotao(
                         R.drawable.ic_adicionado,
                         R.string.button_minha_lista_adicionado

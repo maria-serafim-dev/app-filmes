@@ -96,8 +96,10 @@ class FilmeDAO {
     }
 
 
-    fun inserirMinhaLista(filme: Filme){
-        referencia.child("minhaLista").child(filme.id.toString()).setValue(filme)
+    fun inserirMinhaLista(filme: Filme, uid: String?){
+        if (uid != null) {
+            referencia.child(uid).child(filme.id.toString()).setValue(filme)
+        }
     }
 
     fun getListaFavoritos(filmeResponse: FilmeResponse){
