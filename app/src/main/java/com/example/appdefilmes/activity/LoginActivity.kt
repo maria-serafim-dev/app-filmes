@@ -31,13 +31,17 @@ class LoginActivity : AppCompatActivity() {
 
         ouvinteBotaoLogin()
         ouvinteBotaoFacebook()
+        registrarCallBackFacebook()
 
-       callbackManager = CallbackManager.Factory.create()
+    }
+
+    private fun registrarCallBackFacebook() {
+        callbackManager = CallbackManager.Factory.create()
 
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(loginResult: LoginResult?) {
-                    loginResult?.let { it1 -> sucesso(it1.accessToken) }
+                    loginResult?.let { it1 -> sucessoFacebook(it1.accessToken) }
                 }
 
                 override fun onCancel() {
@@ -59,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun sucesso(token: AccessToken) {
+    private fun sucessoFacebook(token: AccessToken) {
         val credential = FacebookAuthProvider.getCredential(token.token)
 
         auth.signInWithCredential(credential)
