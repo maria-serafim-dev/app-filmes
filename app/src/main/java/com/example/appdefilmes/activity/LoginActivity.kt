@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.databinding.ActivityLoginBinding
@@ -34,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         ouvinteBotaoLogin()
         ouvinteBotaoFacebook()
         registrarCallBackFacebook()
+        clickListenerInputs()
 
     }
 
@@ -121,10 +125,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validarCampos(): Boolean {
         binding.tfEmail.error = null
-        binding.tfSenha.setError(null)
+        binding.tfSenha.error = null
         var retorno = true
-        if (TextUtils.isEmpty(binding.editSenha.getText()) || binding.editSenha.getText() == null) {
-            binding.tfSenha.setError("Dígite uma senha")
+        if (TextUtils.isEmpty(binding.editSenha.text) || binding.editSenha.text == null) {
+            binding.tfSenha.error = "Dígite uma senha"
             binding.editSenha.requestFocus()
             retorno = false
         }
@@ -138,5 +142,19 @@ class LoginActivity : AppCompatActivity() {
             retorno = false
         }
         return retorno
+    }
+
+    private fun clickListenerInputs() {
+        binding.editEmail.setOnKeyListener { view, i, _ -> handleKeyEvent(view, i) }
+        binding.editSenha.setOnKeyListener { view, i, _ -> handleKeyEvent(view, i) }
+    }
+
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
 }
