@@ -2,7 +2,9 @@ package com.example.appdefilmes.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.databinding.ActivityLoginBinding
@@ -86,15 +88,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun ouvinteBotaoLogin() {
         binding.btnEntrar.setOnClickListener {
-            val email = binding.editEmail.text.toString()
-            val senha = binding.editSenha.text.toString()
 
-            auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    nextActivity()
-                } else {
-                    mensagemErro("e-mail e senha")
-                    Log.i("signIn", "Erro ao logar usuário", task.exception)
+            if(validarCampos()) {
+                val email = binding.editEmail.text.toString()
+                val senha = binding.editSenha.text.toString()
+
+                auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        nextActivity()
+                    } else {
+                        mensagemErro("e-mail e senha")
+                        Log.i("signIn", "Erro ao logar usuário", task.exception)
+                    }
                 }
             }
         }
@@ -111,5 +116,27 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun mensagemCancelar(provedor: String) {
         Toast.makeText(this, "Login com $provedor cancelado" , Toast.LENGTH_LONG).show()
+    }
+
+
+    private fun validarCampos(): Boolean {
+        binding.tfEmail.error = null
+        binding.tfSenha.setError(null)
+        var retorno = true
+        if (TextUtils.isEmpty(binding.editSenha.getText()) || binding.editSenha.getText() == null) {
+            binding.tfSenha.setError("Dígite uma senha")
+            binding.editSenha.requestFocus()
+            retorno = false
+        }
+        if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {
+            binding.tfEmail.error = "Dígite um email"
+            binding.editEmail.requestFocus()
+            retorno = false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.editEmail.text).matches()) {
+            binding.tfEmail.error = "E-mail inválido"
+            binding.editEmail.requestFocus()
+            retorno = false
+        }
+        return retorno
     }
 }
