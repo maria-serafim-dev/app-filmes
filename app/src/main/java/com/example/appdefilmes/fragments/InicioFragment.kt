@@ -17,12 +17,16 @@ import com.example.appdefilmes.databinding.FragmentInicioBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 
 
 class InicioFragment : Fragment() {
 
     private val auth = FirebaseAuth.getInstance()
+    private var mGoogleSignInClient: GoogleSignInClient? = null
     private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
 
@@ -44,6 +48,7 @@ class InicioFragment : Fragment() {
         buscarFilmesPopulares(view)
         buscarFilmesAtuaisNosCinemais(view)
         buscarFilmesNovidades(view)
+        initializeGoogle(view)
     }
 
     private fun buscarFilmesPopulares(view: View){
@@ -90,6 +95,7 @@ class InicioFragment : Fragment() {
         binding.fInicioLogout.setOnClickListener {
             logOutEmailSenha()
             logOutFacebook()
+            logOutGoogle()
             voltarActivityPrincipal(view)
         }
     }
@@ -100,6 +106,17 @@ class InicioFragment : Fragment() {
 
     private fun logOutFacebook() {
         LoginManager.getInstance().logOut()
+    }
+
+    private fun initializeGoogle(view: View) {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(view.context, gso)
+    }
+
+    private fun logOutGoogle() {
+        mGoogleSignInClient!!.signOut()
     }
 
     private fun voltarActivityPrincipal(view: View) {
