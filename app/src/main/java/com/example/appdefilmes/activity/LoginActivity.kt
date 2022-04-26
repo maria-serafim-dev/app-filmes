@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityLoginBinding
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -17,10 +18,13 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FacebookAuthProvider
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -28,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
     private var callbackManager: CallbackManager? = null
     private lateinit var binding: ActivityLoginBinding
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var mGoogleSignInClient: GoogleSignInClient? = null
+    private val RC_SIGN_IN = 9001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +44,8 @@ class LoginActivity : AppCompatActivity() {
         ouvinteBotaoFacebook()
         registrarCallBackFacebook()
         clickListenerInputs()
+        inicializarLoginGoogle()
+        clickListenerBotaoGoogle()
 
     }
 
@@ -77,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
                 this
             ) { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
-                    nextActivity()
+                    proximaActivity()
                 } else {
                     Log.w("FaceBookLogin", "signInWithCredential:failure", task.exception)
                     mensagemErro("Facebook")
@@ -86,8 +94,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager!!.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        } else {
+            callbackManager!!.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     private fun ouvinteBotaoLogin() {
@@ -99,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
 
                 auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        nextActivity()
+                        proximaActivity()
                     } else {
                         mensagemErro("e-mail e senha")
                         Log.i("signIn", "Erro ao logar usuário", task.exception)
@@ -109,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun nextActivity() {
+    private fun proximaActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
@@ -156,5 +169,50 @@ class LoginActivity : AppCompatActivity() {
             return true
         }
         return false
+    }
+
+    private fun inicializarLoginGoogle() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun clickListenerBotaoGoogle() {
+        binding.btGoogle.setOnClickListener { signIn() }
+    }
+
+    private fun signIn() {
+        val signInIntent = mGoogleSignInClient!!.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            firebaseAuthComGoogle(account.idToken)
+        } catch (e: ApiException) {
+            Log.w("Error message", "signInResult:failed code=" + e.statusCode)
+        }
+    }
+
+    private fun firebaseAuthComGoogle(idToken: String?) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(
+                this
+            ) { task: Task<AuthResult?> ->
+                if (task.isSuccessful) {
+                    proximaActivity()
+                } else {
+                    mensagemErro("Google")
+                    Log.w(
+                        "GoogleLogin",
+                        "signInWithCredential:failure",
+                        task.exception
+                    )
+                }
+            }
     }
 }
