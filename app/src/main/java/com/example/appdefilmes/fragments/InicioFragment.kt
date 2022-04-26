@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.activity.PrincipalActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
-import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.FragmentInicioBinding
 import com.example.appdefilmes.model.Filme
-import com.example.appdefilmes.retrofit.FilmeResponse
+import com.example.appdefilmes.viewModel.FilmeViewModel
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -29,6 +29,7 @@ class InicioFragment : Fragment() {
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: FilmeViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,34 +46,22 @@ class InicioFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        buscarFilmesPopulares(view)
-        buscarFilmesAtuaisNosCinemais(view)
-        buscarFilmesNovidades(view)
+        inicializarRecyclerView(view)
         initializeGoogle(view)
     }
 
-    private fun buscarFilmesPopulares(view: View){
-        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.rv_sucesso, filmes)
-            }
-        })
-    }
+    private fun inicializarRecyclerView(view: View) {
+        viewModel.filmesPopulares.observe(viewLifecycleOwner) { listaFilme ->
+            adaptarRecycleView(view, R.id.rv_sucesso, listaFilme)
+        }
 
-    private fun buscarFilmesNovidades(view: View){
-        FilmeDAO().getFilmesBemAvaliados(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.rv_novidades, filmes)
-            }
-        })
-    }
+        viewModel.filmesAtuaisNosCinemais.observe(viewLifecycleOwner) { listaFilme ->
+            adaptarRecycleView(view, R.id.rv_exclusivos, listaFilme)
+        }
 
-    private fun buscarFilmesAtuaisNosCinemais(view: View){
-        FilmeDAO().getFilmeAtuaisNosCinemais(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                adaptarRecycleView(view, R.id.rv_exclusivos, filmes)
-            }
-        })
+        viewModel.filmesNovidades.observe(viewLifecycleOwner) { listaFilme ->
+            adaptarRecycleView(view, R.id.rv_novidades, listaFilme)
+        }
     }
 
     private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
