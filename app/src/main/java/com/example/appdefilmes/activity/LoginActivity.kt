@@ -24,7 +24,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.*
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class LoginActivity : AppCompatActivity() {
@@ -149,7 +152,7 @@ class LoginActivity : AppCompatActivity() {
             binding.tfEmail.error = "Dígite um email"
             binding.editEmail.requestFocus()
             retorno = false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.editEmail.text).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.editEmail.text.toString()).matches()) {
             binding.tfEmail.error = "E-mail inválido"
             binding.editEmail.requestFocus()
             retorno = false

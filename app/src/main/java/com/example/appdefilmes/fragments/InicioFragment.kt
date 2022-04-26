@@ -47,7 +47,7 @@ class InicioFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inicializarRecyclerView(view)
-        initializeGoogle(view)
+        initializarGoogle(view)
     }
 
     private fun inicializarRecyclerView(view: View) {
@@ -97,7 +97,7 @@ class InicioFragment : Fragment() {
         LoginManager.getInstance().logOut()
     }
 
-    private fun initializeGoogle(view: View) {
+    private fun initializarGoogle(view: View) {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -116,6 +116,11 @@ class InicioFragment : Fragment() {
 
     private fun abrirToast(view: View) {
         val nome = auth.currentUser?.displayName
-        Toast.makeText(view.context, "Bem vinda ${nome}", Toast.LENGTH_LONG).show()
+        Toast.makeText(view.context, "Bem vinda $nome", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

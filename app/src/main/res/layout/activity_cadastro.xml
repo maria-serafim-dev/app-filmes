@@ -104,9 +104,11 @@
             app:layout_constraintTop_toBottomOf="@id/tf_senha">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_data_nascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"/>
+                android:focusable="false"
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
