@@ -1,5 +1,6 @@
 package com.example.appdefilmes.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -57,8 +58,8 @@ class CadastroActivity : AppCompatActivity() {
                     Log.i("createUser", "Sucesso ao logar usuário")
                     val idUsuario = auth.currentUser?.uid
                     if (idUsuario != null) {
-                        atualizarNomeUsuario(auth.currentUser!!, nome)
                         armazenarTodosDadosUsuario(idUsuario, email, senha, nome)
+                        atualizarNomeUsuario(auth.currentUser!!, nome)
                     }
                 } else {
                     Log.i("createUser", "Erro ao logar usuário")
@@ -80,7 +81,8 @@ class CadastroActivity : AppCompatActivity() {
         idUsuario.updateProfile(profileUpdates)
             .addOnCompleteListener { task: Task<Void?> ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Usuário cadastrado com sucesso", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+                    proximaActivity()
                 }
             }
     }
@@ -111,7 +113,6 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun ouvinteDataPicker(datePicker: MaterialDatePicker<Long>) {
         binding.editDataNascimento.setOnClickListener {
-            Log.i("Cadastro", "Edit")
             datePicker.show(supportFragmentManager, datePicker.tag)
 
             datePicker.addOnPositiveButtonClickListener {
@@ -192,5 +193,12 @@ class CadastroActivity : AppCompatActivity() {
         binding.tfGenero.error = null
         binding.tfCidade.error = null
         binding.tfEstado.error = null
+    }
+
+
+    private fun proximaActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
