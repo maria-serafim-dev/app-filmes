@@ -82,44 +82,43 @@ class CadastroActivity : AppCompatActivity() {
         }
 
         if (TextUtils.isEmpty(binding.editSenha.text) || binding.editSenha.text == null) {
-            binding.tfSenha.error = "Dígite uma senha"
+            binding.tfSenha.error = getString(R.string.erro_input_senha)
             binding.editSenha.requestFocus()
             retorno = false
         }
         if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {
-            binding.tfEmail.error = "Dígite um email"
+            binding.tfEmail.error = getString(R.string.erro_input_email)
             binding.editEmail.requestFocus()
             retorno = false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.editEmail.text.toString()).matches()) {
-            binding.tfEmail.error = "E-mail inválido"
+            binding.tfEmail.error = getString(R.string.erro_input_email_invalido)
             binding.editEmail.requestFocus()
             retorno = false
         }
 
         if (TextUtils.isEmpty(binding.editDataNascimento.text) || binding.editDataNascimento.text == null) {
-            binding.tfDataNascimento.error = "Selecione uma data"
+            binding.tfDataNascimento.error = getString(R.string.erro_input_data)
             binding.editDataNascimento.requestFocus()
             retorno = false
         }
 
         if (TextUtils.isEmpty(binding.editCidade.text) || binding.editCidade.text == null) {
-            binding.tfCidade.error = "Digite uma cidade"
+            binding.tfCidade.error = getString(R.string.erro_input_cidade)
             binding.editCidade.requestFocus()
             retorno = false
         }
 
-        if (TextUtils.isEmpty(binding.tfGenero.editText?.text.toString()) || binding.tfGenero.editText?.text.toString() == null) {
-            binding.tfGenero.error = "Selecione um gênero"
+        if (TextUtils.isEmpty(binding.tfGenero.editText?.text.toString())) {
+            binding.tfGenero.error = getString(R.string.erro_input_genero)
             binding.tfGenero.requestFocus()
             retorno = false
         }
 
-        if (TextUtils.isEmpty(binding.tfEstado.editText?.text.toString()) || binding.tfEstado.editText?.text.toString() == null) {
-            binding.tfEstado.error = "Selecione um estado"
+        if (TextUtils.isEmpty(binding.tfEstado.editText?.text.toString())) {
+            binding.tfEstado.error = getString(R.string.erro_input_estado)
             binding.tfEstado.requestFocus()
             retorno = false
         }
-
 
         return retorno
     }
