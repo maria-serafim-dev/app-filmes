@@ -50,6 +50,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_subtitulo_conta_globo">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -69,6 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/tf_nome">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"/>
@@ -87,6 +89,7 @@
             app:layout_constraintTop_toBottomOf="@id/tf_email">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"/>
@@ -146,6 +149,7 @@
             app:layout_constraintTop_toBottomOf="@id/tf_genero">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_cidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -165,6 +169,7 @@
             app:layout_constraintTop_toBottomOf="@id/tf_cidade">
 
             <AutoCompleteTextView
+                android:id="@+id/ac_estado"
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
@@ -174,7 +179,7 @@
 
 
         <Button
-            android:id="@+id/btn_entrar"
+            android:id="@+id/btn_cadastrar"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

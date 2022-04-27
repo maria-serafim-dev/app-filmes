@@ -1,7 +1,9 @@
 package com.example.appdefilmes.activity
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
@@ -21,10 +23,16 @@ class CadastroActivity : AppCompatActivity() {
         setContentView(binding.root)
         iniciarInputsDropdown()
 
-        val datePicker =
-            inicializarMaterialDatePicker()
+        val datePicker = inicializarMaterialDatePicker()
 
         ouvinteDataPicker(datePicker)
+        ouvinteBotaoCadastrar()
+    }
+
+    private fun ouvinteBotaoCadastrar() {
+        binding.btnCadastrar.setOnClickListener {
+            validarCampos()
+        }
     }
 
     private fun inicializarMaterialDatePicker(): MaterialDatePicker<Long> {
@@ -53,5 +61,66 @@ class CadastroActivity : AppCompatActivity() {
         val adapterEstados =
             ArrayAdapter(applicationContext, R.layout.lista_item_input, itensEstadosBrasileiros)
         (binding.tfEstado.editText as? AutoCompleteTextView)?.setAdapter(adapterEstados)
+    }
+
+    private fun validarCampos(): Boolean {
+        binding.tfNome.error = null
+        binding.tfEmail.error = null
+        binding.tfSenha.error = null
+        binding.tfDataNascimento.error = null
+        binding.tfGenero.error = null
+        binding.tfCidade.error = null
+        binding.tfEstado.error = null
+
+
+        var retorno = true
+
+        if (TextUtils.isEmpty(binding.editNome.text) || binding.editNome.text == null) {
+            binding.tfNome.error = "Digite um nome"
+            binding.editNome.requestFocus()
+            retorno = false
+        }
+
+        if (TextUtils.isEmpty(binding.editSenha.text) || binding.editSenha.text == null) {
+            binding.tfSenha.error = "Dígite uma senha"
+            binding.editSenha.requestFocus()
+            retorno = false
+        }
+        if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {
+            binding.tfEmail.error = "Dígite um email"
+            binding.editEmail.requestFocus()
+            retorno = false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.editEmail.text.toString()).matches()) {
+            binding.tfEmail.error = "E-mail inválido"
+            binding.editEmail.requestFocus()
+            retorno = false
+        }
+
+        if (TextUtils.isEmpty(binding.editDataNascimento.text) || binding.editDataNascimento.text == null) {
+            binding.tfDataNascimento.error = "Selecione uma data"
+            binding.editDataNascimento.requestFocus()
+            retorno = false
+        }
+
+        if (TextUtils.isEmpty(binding.editCidade.text) || binding.editCidade.text == null) {
+            binding.tfCidade.error = "Digite uma cidade"
+            binding.editCidade.requestFocus()
+            retorno = false
+        }
+
+        if (TextUtils.isEmpty(binding.tfGenero.editText?.text.toString()) || binding.tfGenero.editText?.text.toString() == null) {
+            binding.tfGenero.error = "Selecione um gênero"
+            binding.tfGenero.requestFocus()
+            retorno = false
+        }
+
+        if (TextUtils.isEmpty(binding.tfEstado.editText?.text.toString()) || binding.tfEstado.editText?.text.toString() == null) {
+            binding.tfEstado.error = "Selecione um estado"
+            binding.tfEstado.requestFocus()
+            retorno = false
+        }
+
+
+        return retorno
     }
 }
