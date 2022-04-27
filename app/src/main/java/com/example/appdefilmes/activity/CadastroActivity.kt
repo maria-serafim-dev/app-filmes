@@ -6,16 +6,22 @@ import android.util.Log
 import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.R
 import com.example.appdefilmes.data.itensEstadosBrasileiros
 import com.example.appdefilmes.data.itensGenero
 import com.example.appdefilmes.databinding.ActivityCadastroBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class CadastroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCadastroBinding
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +37,32 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun ouvinteBotaoCadastrar() {
         binding.btnCadastrar.setOnClickListener {
-            validarCampos()
+            if(validarCampos()){
+                cadastrarUsuario()
+            }
         }
+    }
+
+    private fun cadastrarUsuario() {
+
+        val email = binding.editEmail.text.toString()
+        val senha: String = binding.editSenha.text.toString()
+
+        auth.createUserWithEmailAndPassword(email, senha)
+            .addOnCompleteListener { task: Task<AuthResult?> ->
+                if (task.isSuccessful) {
+                    Log.i("createUser", "Sucesso ao logar usuário")
+                    Toast.makeText(applicationContext,"Usuário Criado com sucesso",Toast.LENGTH_LONG).show()
+                } else {
+                    Log.i("createUser", "Erro ao logar usuário")
+                    Log.i("createUser", "Resultado", task.exception)
+                    if (task.exception is FirebaseAuthUserCollisionException) {
+                        binding.tfEmail.error = "Já existe um usuário com esse e-mail"
+                        binding.editEmail.requestFocus()
+                    }
+                }
+            }
+
     }
 
     private fun inicializarMaterialDatePicker(): MaterialDatePicker<Long> {
