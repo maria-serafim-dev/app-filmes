@@ -90,13 +90,14 @@
     <string name="text_btn_facebook">Facebook</string>
 
 
-    <string name="erro_input_senha">Dígite uma senha</string>
-    <string name="erro_input_email">Dígite um email</string>
+    <string name="erro_input_senha">Digite uma senha</string>
+    <string name="erro_input_email">Digite um email</string>
     <string name="erro_input_email_invalido">E-mail inválido</string>
     <string name="erro_input_data">Selecione uma data</string>
     <string name="erro_input_cidade">Digite uma cidade</string>
     <string name="erro_input_genero">Selecione um gênero</string>
     <string name="erro_input_estado">Selecione um estado</string>
+    <string name="erro_input_nome">Digite um nome</string>
 
 
 </resources>

@@ -64,19 +64,13 @@ class CadastroActivity : AppCompatActivity() {
     }
 
     private fun validarCampos(): Boolean {
-        binding.tfNome.error = null
-        binding.tfEmail.error = null
-        binding.tfSenha.error = null
-        binding.tfDataNascimento.error = null
-        binding.tfGenero.error = null
-        binding.tfCidade.error = null
-        binding.tfEstado.error = null
 
+        limparErros()
 
         var retorno = true
 
         if (TextUtils.isEmpty(binding.editNome.text) || binding.editNome.text == null) {
-            binding.tfNome.error = "Digite um nome"
+            binding.tfNome.error = getString(R.string.erro_input_nome)
             binding.editNome.requestFocus()
             retorno = false
         }
@@ -86,6 +80,7 @@ class CadastroActivity : AppCompatActivity() {
             binding.editSenha.requestFocus()
             retorno = false
         }
+
         if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {
             binding.tfEmail.error = getString(R.string.erro_input_email)
             binding.editEmail.requestFocus()
@@ -121,5 +116,15 @@ class CadastroActivity : AppCompatActivity() {
         }
 
         return retorno
+    }
+
+    private fun limparErros() {
+        binding.tfNome.error = null
+        binding.tfEmail.error = null
+        binding.tfSenha.error = null
+        binding.tfDataNascimento.error = null
+        binding.tfGenero.error = null
+        binding.tfCidade.error = null
+        binding.tfEstado.error = null
     }
 }

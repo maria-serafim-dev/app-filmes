@@ -144,16 +144,16 @@ class LoginActivity : AppCompatActivity() {
         binding.tfSenha.error = null
         var retorno = true
         if (TextUtils.isEmpty(binding.editSenha.text) || binding.editSenha.text == null) {
-            binding.tfSenha.error = "Dígite uma senha"
+            binding.tfSenha.error = getString(R.string.erro_input_senha)
             binding.editSenha.requestFocus()
             retorno = false
         }
         if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {
-            binding.tfEmail.error = "Dígite um email"
+            binding.tfEmail.error = getString(R.string.erro_input_email)
             binding.editEmail.requestFocus()
             retorno = false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.editEmail.text.toString()).matches()) {
-            binding.tfEmail.error = "E-mail inválido"
+            binding.tfEmail.error = getString(R.string.erro_input_email_invalido)
             binding.editEmail.requestFocus()
             retorno = false
         }
