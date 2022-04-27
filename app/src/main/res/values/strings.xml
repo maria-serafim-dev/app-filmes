@@ -98,6 +98,10 @@
     <string name="erro_input_genero">Selecione um gênero</string>
     <string name="erro_input_estado">Selecione um estado</string>
     <string name="erro_input_nome">Digite um nome</string>
+    <string name="text_menu_configuracoes">Configurações</string>
+    <string name="text_menu_perguntas_frequentes">Perguntas Frequentes</string>
+    <string name="text_menu_termos_e_politicas">Termos e Políticas</string>
+    <string name="text_menu_sobre">Sobre</string>
 
 
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/item1"
+            android:icon="@drawable/ic_configuracao"
+            android:title="@string/text_menu_configuracoes"
+            android:checked="true" />
+        <item
+            android:id="@+id/item2"
+            android:icon="@drawable/ic_perguntas"
+            android:title="@string/text_menu_perguntas_frequentes" />
+        <item
+            android:id="@+id/item3"
+            android:icon="@drawable/ic_star"
+            android:title="@string/text_menu_termos_e_politicas" />
+        <item
+            android:id="@+id/item4"
+            android:icon="@drawable/ic_outline_informacoes"
+            android:title="@string/text_menu_sobre" />
+
+    </group>
+</menu>
