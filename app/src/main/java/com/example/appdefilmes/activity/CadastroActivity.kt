@@ -12,16 +12,20 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.data.itensEstadosBrasileiros
 import com.example.appdefilmes.data.itensGenero
 import com.example.appdefilmes.databinding.ActivityCadastroBinding
+import com.example.appdefilmes.model.Usuario
 import com.google.android.gms.tasks.Task
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class CadastroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCadastroBinding
     private val auth = FirebaseAuth.getInstance()
+    private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +56,10 @@ class CadastroActivity : AppCompatActivity() {
             .addOnCompleteListener { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
                     Log.i("createUser", "Sucesso ao logar usuário")
-                    Toast.makeText(applicationContext,"Usuário Criado com sucesso",Toast.LENGTH_LONG).show()
+                    val idUsuario = auth.currentUser?.uid
+                    if (idUsuario != null) {
+                        armazenarTodosDadosUsuario(idUsuario, email, senha)
+                    }
                 } else {
                     Log.i("createUser", "Erro ao logar usuário")
                     Log.i("createUser", "Resultado", task.exception)
@@ -62,6 +69,18 @@ class CadastroActivity : AppCompatActivity() {
                     }
                 }
             }
+
+    }
+
+    private fun armazenarTodosDadosUsuario(idUsuario: String, email: String, senha: String) {
+        val nome = binding.editNome.text.toString()
+        val dataNascimento = binding.editDataNascimento.text.toString()
+        val cidade = binding.editCidade.text.toString()
+        val genero = binding.tfGenero.editText?.text.toString()
+        val estado = binding.tfEstado.editText?.text.toString()
+
+        val usuario = Usuario(nome, email, senha, dataNascimento, genero, cidade, estado)
+        referencia.child("dadosUsuario").child(idUsuario).setValue(usuario)
 
     }
 
