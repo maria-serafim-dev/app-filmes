@@ -15,9 +15,7 @@ import com.example.appdefilmes.databinding.ActivityCadastroBinding
 import com.example.appdefilmes.model.Usuario
 import com.google.android.gms.tasks.Task
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -51,6 +49,7 @@ class CadastroActivity : AppCompatActivity() {
 
         val email = binding.editEmail.text.toString()
         val senha: String = binding.editSenha.text.toString()
+        val nome = binding.editNome.text.toString()
 
         auth.createUserWithEmailAndPassword(email, senha)
             .addOnCompleteListener { task: Task<AuthResult?> ->
@@ -58,7 +57,8 @@ class CadastroActivity : AppCompatActivity() {
                     Log.i("createUser", "Sucesso ao logar usuário")
                     val idUsuario = auth.currentUser?.uid
                     if (idUsuario != null) {
-                        armazenarTodosDadosUsuario(idUsuario, email, senha)
+                        atualizarNomeUsuario(auth.currentUser!!, nome)
+                        armazenarTodosDadosUsuario(idUsuario, email, senha, nome)
                     }
                 } else {
                     Log.i("createUser", "Erro ao logar usuário")
@@ -72,8 +72,26 @@ class CadastroActivity : AppCompatActivity() {
 
     }
 
-    private fun armazenarTodosDadosUsuario(idUsuario: String, email: String, senha: String) {
-        val nome = binding.editNome.text.toString()
+    private fun atualizarNomeUsuario(idUsuario: FirebaseUser, nome: String) {
+        val profileUpdates = UserProfileChangeRequest.Builder()
+            .setDisplayName(nome)
+            .build()
+
+        idUsuario.updateProfile(profileUpdates)
+            .addOnCompleteListener { task: Task<Void?> ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Usuário cadastrado com sucesso", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    private fun armazenarTodosDadosUsuario(
+        idUsuario: String,
+        email: String,
+        senha: String,
+        nome: String
+    ) {
+
         val dataNascimento = binding.editDataNascimento.text.toString()
         val cidade = binding.editCidade.text.toString()
         val genero = binding.tfGenero.editText?.text.toString()
@@ -86,7 +104,7 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun inicializarMaterialDatePicker(): MaterialDatePicker<Long> {
         return MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Seleciona a data de Nascimento")
+            .setTitleText("Selecione uma data de nascimento")
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
     }
@@ -100,7 +118,6 @@ class CadastroActivity : AppCompatActivity() {
                 binding.editDataNascimento.setText(datePicker.headerText.toString())
             }
         }
-
     }
 
     private fun iniciarInputsDropdown() {
