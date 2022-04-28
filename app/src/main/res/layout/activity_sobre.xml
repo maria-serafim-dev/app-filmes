@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SobreActivity"
+    android:orientation="vertical"
+    android:background="@color/cinza_escuro"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:scaleType="center"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/logo_globoplay_splash" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Versão v3.185.0"
+        android:gravity="center"
+        style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
+        android:text="Enviar comentário"
+        android:textColor="@color/cinza_escuro"
+        android:textAllCaps="false"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_gravity="center"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Copyright 2020"
+        android:layout_marginTop="200dp"
+        android:gravity="center|bottom"
+        style="@style/TextAppearance.MaterialComponents.Body1"/>
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:gravity="center|bottom"
+        android:text="Globo Comunicação e Participações S. A."
+        android:textColor="@color/white" />
+
+</LinearLayout>

@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun abrirSobre() {
-
+        val intent = Intent(this, SobreActivity::class.java)
+        startActivity(intent)
     }
 
     private fun abrirTermosPoliticas() {
