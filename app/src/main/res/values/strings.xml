@@ -19,7 +19,7 @@
     <string name="dc_magico_oz">Capa do filme Mágico de Oz</string>
     <string name="dc_to_rica">Capa do filme Tô rica</string>
     <string name="dc_logo_globo_branca">Imagem representando a logo do GloboPlay. Palavra GloboPlay escrito na cor branca</string>
-
+    <string name="dc_usuario">Icone de um boneco representando um usuário</string>
 
     <string name="txt_filme_uncharted">Uncharted: Fora do Mapa</string>
     <string name="txt_sinopse_filme_uncharted">Nathan Drake e seu parceiro canastrão Victor "Sully" Sullivan embarcam em uma perigosa busca para encontrar o maior tesouro jamais encontrado. Enquanto isso, eles também rastreiam pistas que podem levar ao irmão perdido de Nathan.Nathan Drake e seu parceiro canastrão Victor "Sully" Sullivan embarcam em uma perigosa busca para encontrar o maior tesouro jamais encontrado. Enquanto isso, eles também rastreiam pistas que podem levar ao irmão perdido de Nathan.</string>
@@ -90,7 +90,6 @@
     <string name="text_btn_google">Google</string>
     <string name="text_btn_facebook">Facebook</string>
 
-
     <string name="erro_input_senha">Digite uma senha</string>
     <string name="erro_input_email">Digite um email</string>
     <string name="erro_input_email_invalido">E-mail inválido</string>
@@ -109,6 +108,7 @@
     <string name="text_btn_enviar_comentario">Enviar comentário</string>
     <string name="text_copyright_2020">Copyright 2020</string>
     <string name="text_nome_globo">Globo Comunicação e Participações S. A.</string>
+    <string name="text_menu_abrir_app_bar">Abrir App Bar</string>
 
 
 </resources>

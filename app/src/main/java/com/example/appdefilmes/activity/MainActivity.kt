@@ -3,6 +3,7 @@ package com.example.appdefilmes.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -36,10 +37,17 @@ class MainActivity : AppCompatActivity() {
         binding.conteudoMain.btNavegacaoInicio.setupWithNavController(navController)
 
         abrirToast(view)
-
-        inicializarDrawerNavigation()
         ouvinteItemSelecionadoDrawerNavigation()
+        ouvinteMenuAppBar()
     }
+
+    private fun ouvinteMenuAppBar() {
+        binding.conteudoMain.topAppBar.setOnMenuItemClickListener {
+            inicializarDrawerNavigation()
+            false
+        }
+    }
+
 
     private fun ouvinteItemSelecionadoDrawerNavigation() {
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->

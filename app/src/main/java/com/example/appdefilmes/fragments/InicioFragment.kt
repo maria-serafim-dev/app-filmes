@@ -80,12 +80,13 @@ class InicioFragment : Fragment() {
             }
         })
 
-        binding.fInicioLogout.setOnClickListener {
+
+       /* binding.fInicioLogout.setOnClickListener {
             logOutEmailSenha()
             logOutFacebook()
             logOutGoogle()
             voltarActivityPrincipal(view)
-        }
+        }*/
     }
 
     private fun logOutEmailSenha() {
@@ -117,4 +118,5 @@ class InicioFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
