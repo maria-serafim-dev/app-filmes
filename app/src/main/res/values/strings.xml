@@ -18,6 +18,7 @@
     <string name="dc_uncharted">Capa do filme uncharted</string>
     <string name="dc_magico_oz">Capa do filme Mágico de Oz</string>
     <string name="dc_to_rica">Capa do filme Tô rica</string>
+    <string name="dc_logo_globo_branca">Imagem representando a logo do GloboPlay. Palavra GloboPlay escrito na cor branca</string>
 
 
     <string name="txt_filme_uncharted">Uncharted: Fora do Mapa</string>
@@ -102,6 +103,12 @@
     <string name="text_menu_perguntas_frequentes">Perguntas Frequentes</string>
     <string name="text_menu_termos_e_politicas">Termos e Políticas</string>
     <string name="text_menu_sobre">Sobre</string>
+
+
+    <string name="text_versao">Versão v3.185.0</string>
+    <string name="text_btn_enviar_comentario">Enviar comentário</string>
+    <string name="text_copyright_2020">Copyright 2020</string>
+    <string name="text_nome_globo">Globo Comunicação e Participações S. A.</string>
 
 
 </resources>
