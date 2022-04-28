@@ -1,6 +1,7 @@
 package com.example.appdefilmes.activity
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         binding.btNavegacaoInicio.setupWithNavController(navController)
 
         abrirToast(view)
+
+       binding.drawerLayout.openDrawer(Gravity.LEFT)
 
     }
 
