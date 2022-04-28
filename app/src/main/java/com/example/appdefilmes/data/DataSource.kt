@@ -15,3 +15,7 @@ const val chaveAPI: String = apiKey
 const val idioma: String = "pt-BR"
 const val regiao: String = "BR"
 const val qtdePagina: Int = 1
+
+val enderecoEmail: Array<String> = arrayOf("suporte@globoplay.com")
+const val assuntoEmail = "Comentário sobre o Globoplay"
+const val corpoEmail = "Escreva aqui seu comentário, dúvida ou sugestão"
