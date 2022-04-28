@@ -11,5 +11,11 @@ class SobreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySobreBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        configurarActionBar()
+    }
+
+    private fun configurarActionBar() {
+        setSupportActionBar(binding.topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

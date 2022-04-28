@@ -17,7 +17,8 @@
         android:theme="@style/Theme.AppDeFilmes">
         <activity
             android:name=".activity.SobreActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName="com.example.appdefilmes.activity.MainActivity"/>
         <activity
             android:name=".activity.CadastroActivity"
             android:exported="false" />
