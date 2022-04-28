@@ -1,11 +1,13 @@
 package com.example.appdefilmes.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -35,7 +37,47 @@ class MainActivity : AppCompatActivity() {
 
         abrirToast(view)
 
-       binding.drawerLayout.openDrawer(Gravity.LEFT)
+        inicializarDrawerNavigation()
+        ouvinteItemSelecionadoDrawerNavigation()
+    }
+
+    private fun ouvinteItemSelecionadoDrawerNavigation() {
+        binding.navigationView.setNavigationItemSelectedListener { menuItem ->
+
+            when(menuItem.itemId){
+                R.id.item1 -> abrirConfiguracoes()
+                R.id.item2 -> abrirPerguntasFrequentes()
+                R.id.item3 -> abrirTermosPoliticas()
+                R.id.item4 -> abrirSobre()
+            }
+
+            binding.drawerLayout.close()
+            true
+        }
+    }
+
+    private fun abrirSobre() {
+
+    }
+
+    private fun abrirTermosPoliticas() {
+        val queryUrl: Uri = Uri.parse("https://ajuda.globo/globoplay/termos-e-politicas/")
+        val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+        startActivity(intent)
+    }
+
+    private fun abrirPerguntasFrequentes() {
+        val queryUrl: Uri = Uri.parse("https://ajuda.globo/globoplay/")
+        val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+        startActivity(intent)
+    }
+
+    private fun abrirConfiguracoes() {
+
+    }
+
+    private fun inicializarDrawerNavigation() {
+        binding.drawerLayout.openDrawer(GravityCompat.START)
 
     }
 
