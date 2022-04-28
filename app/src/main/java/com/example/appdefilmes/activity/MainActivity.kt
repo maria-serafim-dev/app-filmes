@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
        val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_inicio) as NavHostFragment
         navController = navHostFragment.navController
-        binding.btNavegacaoInicio.setupWithNavController(navController)
+        binding.conteudoMain.btNavegacaoInicio.setupWithNavController(navController)
 
         abrirToast(view)
 
