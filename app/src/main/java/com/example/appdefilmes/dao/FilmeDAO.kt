@@ -99,14 +99,14 @@ class FilmeDAO {
 
     fun inserirMinhaLista(filme: Filme){
         if (userId != null) {
-            referencia.child(userId).child(filme.id.toString()).setValue(filme)
+            referencia.child("filmeFavoritos").child(userId).child(filme.id.toString()).setValue(filme)
         }
     }
 
     fun getListaFavoritos(filmeResponse: FilmeResponse){
         lateinit var query: Query
         if (userId != null) {
-            query = referencia.child(userId)
+            query = referencia.child("filmeFavoritos").child(userId)
         }
         val listaFilmes: MutableList<Filme> = mutableListOf()
 
@@ -127,9 +127,9 @@ class FilmeDAO {
 
     }
 
-    fun verificaFilmeFavorito(id: String, callback: (Boolean) -> Unit){
+    fun verificaFilmeFavorito(idFilme: String, callback: (Boolean) -> Unit){
         if (userId != null) {
-            referencia.child(userId).child(id).get().addOnSuccessListener {
+            referencia.child("filmeFavoritos").child(userId).child(idFilme).get().addOnSuccessListener {
                 if (it.value != null) callback(true)
                 else callback(false)
 
