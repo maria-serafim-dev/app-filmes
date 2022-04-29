@@ -1,6 +1,5 @@
 package com.example.appdefilmes.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,23 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
-import com.example.appdefilmes.activity.PrincipalActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.databinding.FragmentInicioBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.viewModel.FilmeViewModel
-import com.facebook.login.LoginManager
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FirebaseAuth
 
 
 class InicioFragment : Fragment() {
 
-
-    private var mGoogleSignInClient: GoogleSignInClient? = null
     private var _binding: FragmentInicioBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FilmeViewModel by activityViewModels()
@@ -46,7 +37,6 @@ class InicioFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inicializarRecyclerView(view)
-        initializarGoogle(view)
     }
 
     private fun inicializarRecyclerView(view: View) {
@@ -65,7 +55,6 @@ class InicioFragment : Fragment() {
 
     private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
 
-
         val adapter = FilmeAdapter(view.context, filmes)
         when(id){
             R.id.rv_sucesso -> binding.rvSucesso.adapter = adapter
@@ -80,38 +69,6 @@ class InicioFragment : Fragment() {
             }
         })
 
-
-       /* binding.fInicioLogout.setOnClickListener {
-            logOutEmailSenha()
-            logOutFacebook()
-            logOutGoogle()
-            voltarActivityPrincipal(view)
-        }*/
-    }
-
-    private fun logOutEmailSenha() {
-        FirebaseAuth.getInstance().signOut()
-    }
-
-    private fun logOutFacebook() {
-        LoginManager.getInstance().logOut()
-    }
-
-    private fun initializarGoogle(view: View) {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(view.context, gso)
-    }
-
-    private fun logOutGoogle() {
-        mGoogleSignInClient!!.signOut()
-    }
-
-    private fun voltarActivityPrincipal(view: View) {
-        val intent = Intent(view.context, PrincipalActivity::class.java)
-        startActivity(intent)
-        activity?.finish()
     }
 
     override fun onDestroyView() {
