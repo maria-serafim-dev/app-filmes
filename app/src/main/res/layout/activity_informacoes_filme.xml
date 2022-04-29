@@ -17,7 +17,7 @@
             android:id="@+id/layout_infomacoes_filmes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/bt_assistir"
+            app:layout_constraintBottom_toTopOf="@id/btn_assistir"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -108,7 +108,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_assistir"
+            android:id="@+id/btn_assistir"
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="180dp"
             android:layout_height="60dp"
@@ -119,12 +119,12 @@
             android:textSize="14sp"
             app:icon="@drawable/ic_play"
             app:iconTint="@color/cinza_escuro"
-            app:layout_constraintEnd_toStartOf="@id/bt_minha_lista"
+            app:layout_constraintEnd_toStartOf="@id/btn_minha_lista"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_infomacoes_filmes" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_minha_lista"
+            android:id="@+id/btn_minha_lista"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="180dp"
             android:layout_height="60dp"
@@ -136,7 +136,7 @@
             app:icon="@drawable/ic_star"
             app:iconTint="@color/cinza_claro"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bt_assistir"
+            app:layout_constraintStart_toEndOf="@id/btn_assistir"
             app:layout_constraintTop_toBottomOf="@id/layout_infomacoes_filmes"
             app:strokeColor="@color/cinza_claro" />
 
@@ -145,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bt_minha_lista"
+            app:layout_constraintTop_toBottomOf="@id/btn_minha_lista"
             app:tabIndicatorColor="@color/white"
             app:tabIndicatorFullWidth="false"
             app:tabTextColor="@color/cinza_letras"

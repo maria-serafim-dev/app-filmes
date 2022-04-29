@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_inicio) as NavHostFragment
         navController = navHostFragment.navController
-        binding.conteudoMain.btNavegacaoInicio.setupWithNavController(navController)
+        binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
 
         abrirToast()
         ouvinteItemSelecionadoDrawerNavigation()

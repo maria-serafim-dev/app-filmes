@@ -74,9 +74,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             }
         }
 
-        binding.btMinhaLista.setOnClickListener {
+        binding.btnMinhaLista.setOnClickListener {
             val textMinhaLista = getString(R.string.text_btn_minha_lista)
-            if (binding.btMinhaLista.text.equals(textMinhaLista)) {
+            if (binding.btnMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
                     dao.inserirMinhaLista(it)
                     modificarLayoutBotao(
@@ -92,7 +92,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun abrirSnackBar(mensagem: String) =
-        Snackbar.make(binding.btMinhaLista, getString(R.string.text_snack_bar, mensagem), Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.btnMinhaLista, getString(R.string.text_snack_bar, mensagem), Snackbar.LENGTH_LONG)
 
     private fun abrirDialog() {
         MaterialAlertDialogBuilder(this)
@@ -115,8 +115,8 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun modificarLayoutBotao(idDrawable: Int, idTexto: Int) {
-        binding.btMinhaLista.setIconResource(idDrawable)
-        binding.btMinhaLista.text = getString(idTexto)
+        binding.btnMinhaLista.setIconResource(idDrawable)
+        binding.btnMinhaLista.text = getString(idTexto)
     }
 
 

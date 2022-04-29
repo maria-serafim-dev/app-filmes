@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun ouvinteBotaoFacebook() {
-        binding.btFacebook.setOnClickListener {
+        binding.btnFacebook.setOnClickListener {
             LoginManager.getInstance().logInWithReadPermissions(
                 this,
                 listOf("email", "public_profile", "user_friends")
@@ -183,7 +183,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun clickListenerBotaoGoogle() {
-        binding.btGoogle.setOnClickListener { signIn() }
+        binding.btnGoogle.setOnClickListener { signIn() }
     }
 
     private fun signIn() {

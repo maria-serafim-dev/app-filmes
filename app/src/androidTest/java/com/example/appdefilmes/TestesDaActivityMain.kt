@@ -41,19 +41,19 @@ class TestesDaActivityMain {
 
     @Test
     fun recyclerViewMinhaListaCarregada() {
-        onView(withId(R.id.page_2)).perform(click())
+        onView(withId(R.id.minhaListaFragment2)).perform(click())
         onView(withId(R.id.rv_minha_lista))
             .check(matches(isDisplayed()))
     }
 
     @Test
     fun bottomNavigationCarregada() {
-        onView(withId(R.id.bt_navegacao_inicio)).check(matches(isDisplayed()))
+        onView(withId(R.id.bottom_navegacao_inicio)).check(matches(isDisplayed()))
     }
 
     @Test
     fun inicioFragramentCarregada() {
-        onView(withId(R.id.page_1)).perform(click())
+        onView(withId(R.id.inicioFragment2)).perform(click())
         recyclerViewNovidadesCarregada()
         recyclerViewSucessoCarregada()
         recyclerViewExclusivosCarregada()

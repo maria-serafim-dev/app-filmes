@@ -168,7 +168,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_texto_divider" />
 
         <Button
-            android:id="@+id/bt_facebook"
+            android:id="@+id/btn_facebook"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -183,12 +183,12 @@
             android:textAllCaps="false"
             android:textColor="@color/cinza_escuro"
             app:icon="@drawable/ic_facebook"
-            app:layout_constraintEnd_toStartOf="@id/bt_google"
+            app:layout_constraintEnd_toStartOf="@id/btn_google"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_texto_divider" />
 
         <Button
-            android:id="@+id/bt_google"
+            android:id="@+id/btn_google"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
             android:textColor="@color/cinza_escuro"
             app:icon="@drawable/ic_google"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bt_facebook"
+            app:layout_constraintStart_toEndOf="@id/btn_facebook"
             app:layout_constraintTop_toBottomOf="@id/tv_texto_divider" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

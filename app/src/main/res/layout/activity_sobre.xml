@@ -34,7 +34,7 @@
         android:layout_weight="1"
         android:layout_marginHorizontal="40dp"
         android:src="@drawable/globoplay_logo_branco"
-        android:contentDescription="@string/dc_logo_globo_branca"/>
+        android:contentDescription="@string/cd_logo_globo_branca"/>
 
     <TextView
         android:layout_width="match_parent"
