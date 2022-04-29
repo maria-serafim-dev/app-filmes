@@ -6,30 +6,21 @@
     <string name="text_sucesso">Grandes Sucessos</string>
     <string name="text_atuais_no_cinema">Atualmente Nos Cinemas</string>
 
-
     <string name="text_minha_lista">Minha Lista</string>
-
 
     <string name="text_home">Ínicio</string>
     <string name="text_star">Minha Lista</string>
 
-
-    <string name="dc_encanto">Capa do filme encanto</string>
-    <string name="dc_uncharted">Capa do filme uncharted</string>
-    <string name="dc_magico_oz">Capa do filme Mágico de Oz</string>
-    <string name="dc_to_rica">Capa do filme Tô rica</string>
-    <string name="dc_logo_globo_branca">Imagem representando a logo do GloboPlay. Palavra GloboPlay escrito na cor branca</string>
-    <string name="dc_usuario">Icone de um boneco representando um usuário</string>
+    <string name="cd_logo_globo_branca">Imagem representando a logo do GloboPlay. Palavra GloboPlay escrito na cor branca</string>
+    <string name="cd_usuario">Icone de um boneco representando um usuário</string>
+    <string name="cd_imagem_principal">Imagem com diversos dispositivos com tamanho de telas diferentes</string>
 
     <string name="txt_filme_uncharted">Uncharted: Fora do Mapa</string>
     <string name="txt_sinopse_filme_uncharted">Nathan Drake e seu parceiro canastrão Victor "Sully" Sullivan embarcam em uma perigosa busca para encontrar o maior tesouro jamais encontrado. Enquanto isso, eles também rastreiam pistas que podem levar ao irmão perdido de Nathan.Nathan Drake e seu parceiro canastrão Victor "Sully" Sullivan embarcam em uma perigosa busca para encontrar o maior tesouro jamais encontrado. Enquanto isso, eles também rastreiam pistas que podem levar ao irmão perdido de Nathan.</string>
     <string name="txt_novela">Novela</string>
     <string name="txt_filme">Filme</string>
-    <string name="button_assistir">Assista</string>
-    <string name="button_minha_lista">Minha Lista</string>
     <string name="text_tab_first">Assista Também</string>
     <string name="text_tab_second">Detalhes</string>
-
 
     <string name="text_titulo_original">Titulo Original:</string>
     <string name="text_genero">Gênero:</string>
@@ -48,7 +39,6 @@
     <string name="valor_disponivel">05/03/2050</string>
 
     <string name="voltar">Voltar</string>
-    <string name="button_minha_lista_adicionado">Adicionado</string>
 
     <string name="mensagem_dialog">Deseja remover o filme \" %s \" da sua lista de favoritos?</string>
     <string name="negativo_dialog">Cancelar</string>
@@ -56,16 +46,12 @@
     <string name="titulo_dialog">"Remover Filme "</string>
     <string name="cancelar_dialog">Cancelar</string>
 
-
     <string name="text_conta_globo">Conta Globo</string>
     <string name="text_subtitulo_conta_globo">Uma só conta para Goloboplay e todos os produtos Globo</string>
-    <string name="hint_email">E-mail</string>
-    <string name="hint_senha">Senha</string>
     <string name="text_nao_possui_conta">Não possui conta? <b> CADASTRE-SE. </b></string>
     <string name="text_esqueceu_email">Esqueceu o e-mail?</string>
     <string name="text_esqueceu_a_senha">Esqueceu a senha?</string>
     <string name="text_verificao_de_seguanca">Verificação de seguança</string>
-    <string name="btn_entrar">Entrar</string>
     <string name="text_divider">ou entre com</string>
     <string name="text_faca_login">Faça seu Login</string>
     <string name="text_tenha_ofertas">E tenha ofertas</string>
@@ -73,13 +59,15 @@
     <string name="text_ja_tenho_login">Já tenho um login</string>
     <string name="text_cadastrar_de_graca">Cadastre-se de graça</string>
     <string name="text_criar_mais_tarde">Criar mais tarde</string>
-    <string name="dc_imagem_principal">Imagem com diversos dispositivos com tamanho de telas diferentes</string>
+
     <string name="hint_nome">Nome</string>
     <string name="hint_data_nascimento">Data de Nascimento</string>
     <string name="hint_genero">Gênero</string>
     <string name="hint_cidade">Cidade</string>
     <string name="hint_estado">Estado</string>
-    <string name="btn_cadastrar">Cadastrar</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_senha">Senha</string>
+
     <string name="text_subtitulo_crear_conta">Crie a sua conta única para todos os produtos Globo</string>
 
     <string name="text_snack_bar">Filme %s com sucesso</string>
@@ -87,8 +75,15 @@
     <string name="facebook_app_id">1234</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">56789</string>
+
     <string name="text_btn_google">Google</string>
     <string name="text_btn_facebook">Facebook</string>
+    <string name="text_btn_enviar_comentario">Enviar comentário</string>
+    <string name="text_btn_cadastrar">Cadastrar</string>
+    <string name="text_btn_entrar">Entrar</string>
+    <string name="text_btn_assistir">Assista</string>
+    <string name="text_btn_minha_lista">Minha Lista</string>
+    <string name="text_btn_minha_lista_adicionado">Adicionado</string>
 
     <string name="erro_input_senha">Digite uma senha</string>
     <string name="erro_input_email">Digite um email</string>
@@ -98,17 +93,19 @@
     <string name="erro_input_genero">Selecione um gênero</string>
     <string name="erro_input_estado">Selecione um estado</string>
     <string name="erro_input_nome">Digite um nome</string>
+
     <string name="text_menu_configuracoes">Configurações</string>
     <string name="text_menu_perguntas_frequentes">Perguntas Frequentes</string>
     <string name="text_menu_termos_e_politicas">Termos e Políticas</string>
     <string name="text_menu_sobre">Sobre</string>
-
+    <string name="text_menu_sair">Sair</string>
 
     <string name="text_versao">Versão v3.185.0</string>
-    <string name="text_btn_enviar_comentario">Enviar comentário</string>
     <string name="text_copyright_2020">Copyright 2020</string>
     <string name="text_nome_globo">Globo Comunicação e Participações S. A.</string>
+
     <string name="text_menu_abrir_app_bar">Abrir App Bar</string>
+
 
 
 </resources>

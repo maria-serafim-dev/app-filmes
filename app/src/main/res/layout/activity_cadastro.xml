@@ -186,7 +186,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/black"
-            android:text="@string/btn_cadastrar"
+            android:text="@string/text_btn_cadastrar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tf_estado" />
 

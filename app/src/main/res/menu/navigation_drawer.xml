@@ -24,7 +24,7 @@
         <item
             android:id="@+id/item5"
             android:icon="@drawable/ic_logout"
-            android:title="@string/sair" />
+            android:title="@string/text_menu_sair" />
 
     </group>
 </menu>

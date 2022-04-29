@@ -69,19 +69,19 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             if (it) {
                 modificarLayoutBotao(
                     R.drawable.ic_adicionado,
-                    R.string.button_minha_lista_adicionado
+                    R.string.text_btn_minha_lista_adicionado
                 )
             }
         }
 
         binding.btMinhaLista.setOnClickListener {
-            val textMinhaLista = getString(R.string.button_minha_lista)
+            val textMinhaLista = getString(R.string.text_btn_minha_lista)
             if (binding.btMinhaLista.text.equals(textMinhaLista)) {
                 umFilme?.let {
                     dao.inserirMinhaLista(it)
                     modificarLayoutBotao(
                         R.drawable.ic_adicionado,
-                        R.string.button_minha_lista_adicionado
+                        R.string.text_btn_minha_lista_adicionado
                     )
                     abrirSnackBar("inserido").show()
                 }
@@ -103,7 +103,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             }
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
                 dao.removerFavorito(umFilme?.id.toString())
-                modificarLayoutBotao(R.drawable.ic_star, R.string.button_minha_lista)
+                modificarLayoutBotao(R.drawable.ic_star, R.string.text_btn_minha_lista)
                 abrirSnackBar("removido").show()
             }.show()
     }

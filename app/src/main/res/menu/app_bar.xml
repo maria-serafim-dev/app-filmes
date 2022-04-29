@@ -7,7 +7,7 @@
         android:title="@string/text_menu_abrir_app_bar"
         android:icon="@drawable/ic_usuario"
         app:showAsAction="always"
-        android:contentDescription="@string/dc_usuario"/>
+        android:contentDescription="@string/cd_usuario"/>
 
 
 </menu>

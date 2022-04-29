@@ -18,7 +18,7 @@
             android:layout_height="313dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="10dp"
-            android:contentDescription="@string/dc_imagem_principal"
+            android:contentDescription="@string/cd_imagem_principal"
             android:scaleType="fitCenter"
             android:src="@drawable/img_tela_principal" />
 

@@ -10,7 +10,6 @@
         android:id="@+id/img_capa_filme"
         android:layout_width="120dp"
         android:layout_height="190dp"
-        android:contentDescription="@string/dc_uncharted"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
