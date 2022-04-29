@@ -62,11 +62,11 @@ class MainActivity : AppCompatActivity() {
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
 
             when(menuItem.itemId){
-                R.id.item1 -> abrirConfiguracoes()
-                R.id.item2 -> abrirPerguntasFrequentes()
-                R.id.item3 -> abrirTermosPoliticas()
-                R.id.item4 -> abrirSobre()
-                R.id.item5 -> loginTodasContas()
+                R.id.item_configuracao -> abrirConfiguracoes()
+                R.id.item_perguntas -> abrirPerguntasFrequentes()
+                R.id.item_termos_politicas -> abrirTermosPoliticas()
+                R.id.item_sobre -> abrirSobre()
+                R.id.item_sair -> loginTodasContas()
             }
 
             binding.drawerLayout.close()
