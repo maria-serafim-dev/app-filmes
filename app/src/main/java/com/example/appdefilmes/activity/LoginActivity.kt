@@ -127,6 +127,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun proximaActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("cadastrado", 1)
         startActivity(intent)
         finish()
     }

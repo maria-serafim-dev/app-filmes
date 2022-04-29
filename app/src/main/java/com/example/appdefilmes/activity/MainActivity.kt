@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
+import com.example.appdefilmes.fragments.InicioFragment
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -33,15 +34,33 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.fragment_inicio) as NavHostFragment
-        navController = navHostFragment.navController
-        binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
-
-        abrirToast()
+        inicializarFragments(savedInstanceState)
         ouvinteItemSelecionadoDrawerNavigation()
         ouvinteMenuAppBar()
-        initializarGoogle()
+    }
+
+    private fun inicializarFragments(savedInstanceState: Bundle?) {
+        val extra = intent.getIntExtra("cadastrado", 0)
+
+        if (extra == 0) {
+            val fragment = InicioFragment()
+            if (savedInstanceState == null)
+                supportFragmentManager.beginTransaction()
+                    .add(binding.conteudoMain.fragmentInicio.id, fragment)
+                    .commit()
+            binding.conteudoMain.bottomNavegacaoInicio.menu.removeItem(R.id.minhaListaFragment2)
+            binding.navigationView.menu.removeItem(R.id.item_sair)
+
+        } else {
+
+            val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.fragment_inicio) as NavHostFragment
+            navController = navHostFragment.navController
+            binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
+
+            abrirToast()
+            initializarGoogle()
+        }
     }
 
     private fun ouvinteMenuAppBar() {
