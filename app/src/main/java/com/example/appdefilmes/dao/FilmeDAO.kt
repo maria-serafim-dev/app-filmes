@@ -142,7 +142,7 @@ class FilmeDAO {
 
     fun removerFavorito(id: String){
         if (userId != null) {
-            referencia.child(userId).child(id).removeValue()
+            referencia.child("filmeFavoritos").child(userId).child(id).removeValue()
         }
     }
 
