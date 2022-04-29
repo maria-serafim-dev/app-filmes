@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.appdefilmes.dao.FilmeDAO
+import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 
@@ -62,7 +63,7 @@ class FilmeViewModel : ViewModel() {
     }
 
     init {
-        filmesPopulares()
+        if(UsuarioDAO().usuarioLogado)filmesPopulares()
         buscarFilmesPopulares()
         buscarFilmesNovidades()
         buscarFilmesAtuaisNosCinemais()

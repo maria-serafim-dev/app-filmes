@@ -47,7 +47,6 @@ class PrincipalActivity : AppCompatActivity() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         if(auth.currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("cadastrado", 1)
             startActivity(intent)
             finish()
         }

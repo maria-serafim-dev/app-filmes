@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.appdefilmes.R
+import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.fragments.InicioFragment
 import com.facebook.login.LoginManager
@@ -40,9 +41,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun inicializarFragments(savedInstanceState: Bundle?) {
-        val extra = intent.getIntExtra("cadastrado", 0)
 
-        if (extra == 0) {
+        if (!UsuarioDAO().usuarioLogado) {
             val fragment = InicioFragment()
             if (savedInstanceState == null)
                 supportFragmentManager.beginTransaction()
@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
             binding.navigationView.menu.removeItem(R.id.item_sair)
 
         } else {
-
             val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.fragment_inicio) as NavHostFragment
             navController = navHostFragment.navController
