@@ -2,10 +2,12 @@ package com.example.appdefilmes.activity
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
+import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.databinding.ActivityInformacoesFilmeBinding
 import com.example.appdefilmes.model.Filme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -62,18 +64,18 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         Picasso.get().load(urlDaImagem).into(binding.imgCartazFundo)
     }
 
-
     private fun inicializarBotaoMinhaLista() {
 
-        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
-            if (it) {
-                modificarLayoutBotao(
-                    R.drawable.ic_adicionado,
-                    R.string.text_btn_minha_lista_adicionado
-                )
-            }
-        }
+        if(UsuarioDAO().usuarioLogado) {
+            configurarTextoBotaoMinhaLista()
+            ouvinteBotaoMinhaLista()
 
+        }else{
+            binding.btnMinhaLista.visibility = View.GONE
+        }
+    }
+
+    private fun ouvinteBotaoMinhaLista() {
         binding.btnMinhaLista.setOnClickListener {
             val textMinhaLista = getString(R.string.text_btn_minha_lista)
             if (binding.btnMinhaLista.text.equals(textMinhaLista)) {
@@ -85,8 +87,19 @@ class InformacoesFilmeActivity : AppCompatActivity() {
                     )
                     abrirSnackBar("inserido").show()
                 }
-            }else{
+            } else {
                 abrirDialog()
+            }
+        }
+    }
+
+    private fun configurarTextoBotaoMinhaLista() {
+        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
+            if (it) {
+                modificarLayoutBotao(
+                    R.drawable.ic_adicionado,
+                    R.string.text_btn_minha_lista_adicionado
+                )
             }
         }
     }
