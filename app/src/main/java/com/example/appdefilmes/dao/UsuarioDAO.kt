@@ -9,9 +9,16 @@ class UsuarioDAO {
     val usuarioLogado: Boolean
         get() = _usuarioLogado
 
+    private lateinit var _usuarioId : String
+    val usuarioId: String
+        get() = _usuarioId
+
     private fun verificarLogin(){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
-        if(auth.currentUser != null) _usuarioLogado = true
+        if(auth.currentUser != null) {
+            _usuarioLogado = true
+            _usuarioId = auth.uid!!
+        }
     }
 
     init {

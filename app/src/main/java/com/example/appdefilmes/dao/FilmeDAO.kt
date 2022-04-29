@@ -7,7 +7,6 @@ import com.example.appdefilmes.model.Result
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.example.appdefilmes.retrofit.FilmeRetrofit
 import com.example.appdefilmes.retrofit.service.FilmeService
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,8 +19,7 @@ class FilmeDAO {
     private val retrofit = FilmeRetrofit.getRetrofitInstance(baseUrl)
     private val endpoint = retrofit.create(FilmeService::class.java)
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
-    private val auth = FirebaseAuth.getInstance().currentUser
-    private val userId = auth?.uid
+    private val usuarioId = UsuarioDAO().usuarioId
 
 
     fun getFilmesPopulares(filmeResponse: FilmeResponse) {
@@ -33,7 +31,6 @@ class FilmeDAO {
         category = "top_rated"
         listaFilmes(filmeResponse, category)
     }
-
 
     private fun listaFilmes(filmeResponse: FilmeResponse, categoria: String){
         val callback = endpoint.getFilmes(categoria, chaveAPI, idioma, qtdePagina, regiao)
@@ -52,7 +49,6 @@ class FilmeDAO {
 
         })
     }
-
 
     fun getFilmesSimilares(filmeResponse: FilmeResponse, id: Int) {
         category = "latest"
@@ -98,16 +94,12 @@ class FilmeDAO {
 
 
     fun inserirMinhaLista(filme: Filme){
-        if (userId != null) {
-            referencia.child("filmeFavoritos").child(userId).child(filme.id.toString()).setValue(filme)
-        }
+        referencia.child("filmeFavoritos").child(usuarioId).child(filme.id.toString()).setValue(filme)
     }
 
     fun getListaFavoritos(filmeResponse: FilmeResponse){
         lateinit var query: Query
-        if (userId != null) {
-            query = referencia.child("filmeFavoritos").child(userId)
-        }
+        query = referencia.child("filmeFavoritos").child(usuarioId)
         val listaFilmes: MutableList<Filme> = mutableListOf()
 
         query.addValueEventListener(object : ValueEventListener {
@@ -128,22 +120,17 @@ class FilmeDAO {
     }
 
     fun verificaFilmeFavorito(idFilme: String, callback: (Boolean) -> Unit){
-        if (userId != null) {
-            referencia.child("filmeFavoritos").child(userId).child(idFilme).get().addOnSuccessListener {
-                if (it.value != null) callback(true)
-                else callback(false)
+        referencia.child("filmeFavoritos").child(usuarioId).child(idFilme).get().addOnSuccessListener {
+            if (it.value != null) callback(true)
+            else callback(false)
 
-            }.addOnFailureListener {
-                Log.e("DAO:FilmeFavorito", "Erro ao obter dados", it)
-            }
+        }.addOnFailureListener {
+            Log.e("DAO:FilmeFavorito", "Erro ao obter dados", it)
         }
-
     }
 
     fun removerFavorito(id: String){
-        if (userId != null) {
-            referencia.child("filmeFavoritos").child(userId).child(id).removeValue()
-        }
+        referencia.child("filmeFavoritos").child(usuarioId).child(id).removeValue()
     }
 
 }
