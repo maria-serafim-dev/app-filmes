@@ -3,9 +3,12 @@ package com.example.appdefilmes.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
@@ -19,6 +22,7 @@ import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.divider.MaterialDivider
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -43,14 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun configurarHeaderDrawer() {
-        val header = binding.navigationView.getHeaderView(0)
-        val nome: TextView = header.findViewById(R.id.tv_nome)
-        val email: TextView = header.findViewById(R.id.tv_email)
 
-        nome.setText(UsuarioDAO().usuarioNome)
-        email.setText(UsuarioDAO().usuarioEmail)
-    }
 
     private fun inicializarFragments(savedInstanceState: Bundle?) {
 
@@ -61,7 +58,8 @@ class MainActivity : AppCompatActivity() {
                     .add(binding.conteudoMain.fragmentInicio.id, fragment)
                     .commit()
             binding.conteudoMain.bottomNavegacaoInicio.menu.removeItem(R.id.minhaListaFragment2)
-            binding.navigationView.menu.removeItem(R.id.item_sair)
+
+            configurarHeaderDrawerSemLogin()
 
         } else {
             val navHostFragment = supportFragmentManager
@@ -75,6 +73,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun configurarHeaderDrawer() {
+        val header = binding.navigationView.getHeaderView(0)
+        val nome: TextView = header.findViewById(R.id.tv_nome)
+        val email: TextView = header.findViewById(R.id.tv_email)
+
+        nome.text = UsuarioDAO().usuarioNome
+        email.text = UsuarioDAO().usuarioEmail
+    }
+
+    private fun configurarHeaderDrawerSemLogin() {
+        binding.navigationView.menu.removeItem(R.id.item_sair)
+
+        val header = binding.navigationView.getHeaderView(0)
+        val nome: TextView = header.findViewById(R.id.tv_nome)
+        val email: TextView = header.findViewById(R.id.tv_email)
+        val entrar: TextView = header.findViewById(R.id.tv_entrar)
+        val divider: MaterialDivider = header.findViewById(R.id.divider_assinante)
+        val assinante: TextView = header.findViewById(R.id.tv_assinante)
+        val modoInfantil: Button = header.findViewById(R.id.btn_modo_infantil)
+        val maisPlanos: Button = header.findViewById(R.id.btn_mais_planos)
+        val sejaAssinante: Button = header.findViewById(R.id.btn_seja_assinante)
+        header.setBackgroundColor(ContextCompat.getColor(this, R.color.cinza_fundo))
+
+        nome.visibility = View.GONE
+        email.visibility = View.GONE
+        modoInfantil.visibility = View.GONE
+        assinante.visibility = View.GONE
+        divider.visibility = View.GONE
+        maisPlanos.visibility = View.GONE
+
+        entrar.visibility = View.VISIBLE
+        sejaAssinante.visibility = View.VISIBLE
+
+    }
     private fun ouvinteMenuAppBar() {
         binding.conteudoMain.topAppBar.setOnMenuItemClickListener {
             inicializarDrawerNavigation()
