@@ -84,6 +84,9 @@
     <string name="text_btn_assistir">Assista</string>
     <string name="text_btn_minha_lista">Minha Lista</string>
     <string name="text_btn_minha_lista_adicionado">Adicionado</string>
+    <string name="text_btn_conheca_mais_planos">Conheça mais planos</string>
+    <string name="text_btn_seja_assinante">Seja assinante</string>
+    <string name="text_btn_assinante">Assinante</string>
 
     <string name="erro_input_senha">Digite uma senha</string>
     <string name="erro_input_email">Digite um email</string>
@@ -106,6 +109,8 @@
 
     <string name="text_menu_abrir_app_bar">Abrir App Bar</string>
 
+    <string name="text_entrar">Entrar</string>
+    <string name="text_entrar_no_modo_infantil">Entrar no modo infantil</string>
 
 
 </resources>

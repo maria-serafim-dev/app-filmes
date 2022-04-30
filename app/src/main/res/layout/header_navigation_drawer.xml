@@ -5,11 +5,19 @@
     android:orientation="vertical"
     android:background="@color/vermelho">
 
+    <ImageView
+        android:id="@+id/imagem_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_usuario"/>
+
     <TextView
         android:id="@+id/tv_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:textColor="@color/white"
@@ -21,12 +29,12 @@
         android:id="@+id/tv_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:textColor="@color/white"
         android:gravity="center"
-        android:text="Entrar"
+        android:text="@string/text_entrar"
         android:visibility="gone"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:layout_gravity="center"/>
@@ -49,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:text="Entrar no modo infantil"
+        android:text="@string/text_entrar_no_modo_infantil"
         android:textColor="@color/white"
         android:layout_gravity="center"
         android:textAllCaps="false"
@@ -62,7 +70,7 @@
         android:layout_marginVertical="12dp"
         android:paddingHorizontal="24dp"
         style="@style/Widget.MaterialComponents.Button"
-        android:text="Conheça mais planos"
+        android:text="@string/text_btn_conheca_mais_planos"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
         android:textAllCaps="false"
@@ -76,7 +84,7 @@
         android:layout_marginVertical="12dp"
         android:paddingHorizontal="24dp"
         style="@style/Widget.MaterialComponents.Button"
-        android:text="Seja assinante"
+        android:text="@string/text_btn_seja_assinante"
         android:backgroundTint="@color/vermelho"
         android:textColor="@color/white"
         android:textAllCaps="false"
@@ -96,7 +104,7 @@
         android:layout_marginVertical="12dp"
         android:textColor="@color/white"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:text="Assinante"
+        android:text="@string/text_btn_assinante"
         android:textAllCaps="true"
         android:layout_gravity="center"/>
 
