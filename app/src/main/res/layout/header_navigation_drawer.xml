@@ -6,24 +6,26 @@
     android:background="@color/vermelho">
 
     <TextView
+        android:id="@+id/tv_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:textColor="@color/white"
+        android:gravity="center"
         android:textAppearance="?attr/textAppearanceHeadline6"
-        android:text="Dênis Lima"
         android:layout_gravity="center"/>
 
     <TextView
+        android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:textColor="@color/white"
         android:textAppearance="?attr/textAppearanceBody2"
-        android:text="deins@gmail.com"
         android:layout_gravity="center"/>
 
 

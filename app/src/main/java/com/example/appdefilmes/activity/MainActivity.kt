@@ -3,6 +3,7 @@ package com.example.appdefilmes.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -38,6 +39,17 @@ class MainActivity : AppCompatActivity() {
         inicializarFragments(savedInstanceState)
         ouvinteItemSelecionadoDrawerNavigation()
         ouvinteMenuAppBar()
+
+
+    }
+
+    private fun configurarHeaderDrawer() {
+        val header = binding.navigationView.getHeaderView(0)
+        val nome: TextView = header.findViewById(R.id.tv_nome)
+        val email: TextView = header.findViewById(R.id.tv_email)
+
+        nome.setText(UsuarioDAO().usuarioNome)
+        email.setText(UsuarioDAO().usuarioEmail)
     }
 
     private fun inicializarFragments(savedInstanceState: Bundle?) {
@@ -58,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
 
             abrirToast()
+            configurarHeaderDrawer()
             initializarGoogle()
         }
     }
