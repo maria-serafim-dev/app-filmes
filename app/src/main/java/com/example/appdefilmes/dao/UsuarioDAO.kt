@@ -1,5 +1,7 @@
 package com.example.appdefilmes.dao
 
+import android.net.Uri
+import com.example.appdefilmes.model.token
 import com.google.firebase.auth.FirebaseAuth
 
 class UsuarioDAO {
@@ -21,6 +23,10 @@ class UsuarioDAO {
     val usuarioEmail: String
         get() = _usuarioEmail
 
+    private lateinit var _usuarioFoto : Uri
+    val usuarioFoto: Uri
+        get() = _usuarioFoto
+
     private fun verificarLogin(){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         if(auth.currentUser != null) {
@@ -28,6 +34,13 @@ class UsuarioDAO {
             _usuarioId = auth.uid!!
             _usuarioNome = auth.currentUser?.displayName!!
             _usuarioEmail = auth.currentUser?.email!!
+            val provedor = auth.currentUser?.providerData?.get(1)?.providerId
+            if (provedor != null && provedor.equals("facebook.com")) {
+                _usuarioFoto = Uri.parse("${auth.currentUser?.photoUrl}?access_token=${token}")
+            }else{
+                _usuarioFoto = auth.currentUser?.photoUrl!!
+            }
+
         }
     }
 

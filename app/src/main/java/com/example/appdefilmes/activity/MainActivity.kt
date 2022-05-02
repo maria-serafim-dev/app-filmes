@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.divider.MaterialDivider
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -78,9 +80,12 @@ class MainActivity : AppCompatActivity() {
         val header = binding.navigationView.getHeaderView(0)
         val nome: TextView = header.findViewById(R.id.tv_nome)
         val email: TextView = header.findViewById(R.id.tv_email)
+        val imagem: ImageView = header.findViewById(R.id.imagem_perfil)
 
         nome.text = UsuarioDAO().usuarioNome
         email.text = UsuarioDAO().usuarioEmail
+
+        Picasso.get().load(UsuarioDAO().usuarioFoto).into(imagem)
     }
 
     private fun configurarHeaderDrawerSemLogin() {
