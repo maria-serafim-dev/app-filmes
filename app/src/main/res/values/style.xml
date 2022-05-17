@@ -44,4 +44,26 @@
     <style name="ShapeAppearance.App.Login" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerSize">20dp</item>
     </style>
+
+    <style name="TextAppearance.App.Titulo.Globo" parent= "TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:text">@string/text_conta_globo</item>
+        <item name="android:layout_marginTop">50dp</item>
+    </style>
+
+    <style name="TextAppearance.App.Subtitulo.Globo" parent= "TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/cinza_letras</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:paddingEnd">50dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
 </resources>

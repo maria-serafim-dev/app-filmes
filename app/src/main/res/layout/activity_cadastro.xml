@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.CadastroActivity">
@@ -12,32 +13,22 @@
 
         <TextView
             android:id="@+id/tv_titulo_conta_globo"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.App.Titulo.Globo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:text="@string/text_conta_globo"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tv_subtitulo_conta_globo"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.App.Subtitulo.Globo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:paddingHorizontal="50dp"
             android:text="@string/text_subtitulo_crear_conta"
-            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_titulo_conta_globo" />
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tf_nome"
@@ -57,7 +48,6 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tf_email"
@@ -180,12 +170,11 @@
 
         <Button
             android:id="@+id/btn_cadastrar"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/Widget.App.Button.Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/black"
             android:text="@string/text_btn_cadastrar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tf_estado" />
