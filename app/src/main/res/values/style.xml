@@ -11,7 +11,7 @@
     </style>
 
     <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
-        <item name="cornerSize">0dp</item>
+        <item name="cornerSize">2dp</item>
     </style>
 
     <style name="Widget.App.Button.Text" parent="Widget.Material3.Button.TextButton">
@@ -20,5 +20,28 @@
         <item name="android:padding">14dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+
+    <style name="Widget.App.Button.Black" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.SmallComponent</item>
+    </style>
+
+    <style name="Widget.App.Button.Facebook" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/cinza_escuro</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">start|center</item>
+        <item name="iconTint">@null</item>
+        <item name="iconSize">24dp</item>
+        <item name="android:elevation">5dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.Login</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Login" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">20dp</item>
     </style>
 </resources>

@@ -3,6 +3,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
@@ -13,7 +14,7 @@
 
         <TextView
             android:id="@+id/tv_titulo_conta_globo"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.Material3.HeadlineSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -27,14 +28,13 @@
 
         <TextView
             android:id="@+id/tv_subtitulo_conta_globo"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:paddingHorizontal="50dp"
             android:text="@string/text_subtitulo_conta_globo"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_titulo_conta_globo" />
 
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/tv_esqueceu_email"
-            style="@style/TextAppearance.MaterialComponents.Body1"
+            style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -81,12 +81,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_senha"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_esqueceu_senha"
-            style="@style/TextAppearance.MaterialComponents.Body1"
+            style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -97,39 +97,36 @@
 
         <TextView
             android:id="@+id/tv_verificacao"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/text_verificao_de_seguanca"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_esqueceu_senha" />
 
 
         <Button
             android:id="@+id/btn_entrar"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/Widget.App.Button.Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/black"
             android:text="@string/text_btn_entrar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_verificacao" />
 
         <TextView
             android:id="@+id/tv_nao_possui_conta"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/text_nao_possui_conta"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_entrar" />
 
@@ -146,7 +143,7 @@
 
         <TextView
             android:id="@+id/tv_texto_divider"
-            style="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/TextAppearance.Material3.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
@@ -169,43 +166,34 @@
 
         <Button
             android:id="@+id/btn_facebook"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
+            style="@style/Widget.App.Button.Facebook"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:backgroundTint="@color/white"
-            android:elevation="2dp"
-            android:text="@string/text_btn_facebook"
-            app:iconTint="@null"
-            app:iconSize="24dp"
-            android:gravity="start|center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:paddingHorizontal="30dp"
-            android:textAllCaps="false"
-            android:textColor="@color/cinza_escuro"
+            android:text="@string/text_btn_facebook"
             app:icon="@drawable/ic_facebook"
             app:layout_constraintEnd_toStartOf="@id/btn_google"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_texto_divider" />
 
         <Button
             android:id="@+id/btn_google"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
+            style="@style/Widget.App.Button.Facebook"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:backgroundTint="@color/white"
-            android:elevation="2dp"
-            android:text="@string/text_btn_google"
-            app:iconTint="@null"
-            app:iconSize="20dp"
-            android:gravity="start|center"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:paddingHorizontal="40dp"
-            android:textAllCaps="false"
-            android:textColor="@color/cinza_escuro"
+            android:text="@string/text_btn_google"
             app:icon="@drawable/ic_google"
+            app:iconSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_facebook"
             app:layout_constraintTop_toBottomOf="@id/tv_texto_divider" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
