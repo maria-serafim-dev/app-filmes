@@ -20,9 +20,8 @@
             android:layout_height="?attr/actionBarSize"
             app:title="@string/text_menu_sobre"
             app:navigationIcon="@drawable/ic_back"
-            android:backgroundTint="@color/black"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            />
+            android:background="@color/black"
+            app:titleTextColor="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,7 +41,7 @@
         android:textColor="@color/white"
         android:text="@string/text_versao"
         android:gravity="center"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.Material3.BodyLarge"/>
 
     <Button
         android:id="@+id/btn_enviar_comentario"
@@ -53,7 +52,7 @@
         android:text="@string/text_btn_enviar_comentario"
         android:textColor="@color/cinza_escuro"
         android:textAllCaps="false"
-        style="@style/Widget.MaterialComponents.Button"
+        style="@style/Widget.Material3.Button"
         android:layout_gravity="center"/>
 
     <TextView
@@ -63,10 +62,10 @@
         android:text="@string/text_copyright_2020"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        style="@style/TextAppearance.MaterialComponents.Body1"/>
+        style="@style/TextAppearance.Material3.BodyLarge"/>
 
     <TextView
-        style="@style/TextAppearance.MaterialComponents.Body1"
+        style="@style/TextAppearance.Material3.BodyLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
