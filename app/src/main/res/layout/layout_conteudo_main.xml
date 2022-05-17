@@ -7,7 +7,6 @@
     android:fillViewport="false"
     tools:context=".activity.MainActivity">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -20,11 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:logo="@drawable/globoplay_logo_app_bar"
-            android:backgroundTint="@color/black"
+            android:background="@color/black"
             app:menu="@menu/app_bar"
-            android:src="@drawable/ic_back"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            />
+            android:src="@drawable/ic_back"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView

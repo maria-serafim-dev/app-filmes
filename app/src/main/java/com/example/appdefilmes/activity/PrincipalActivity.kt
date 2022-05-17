@@ -45,7 +45,6 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
-        auth.signOut()
         if(auth.currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
