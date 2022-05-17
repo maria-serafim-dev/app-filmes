@@ -66,4 +66,8 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
+    <style name="ShapeAppearance.App.Imagem" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
 </resources>

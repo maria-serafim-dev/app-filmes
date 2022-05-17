@@ -55,7 +55,7 @@ class InicioFragment : Fragment() {
 
     private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
 
-        val adapter = FilmeAdapter(view.context, filmes)
+        val adapter = FilmeAdapter(view.context, filmes, 1)
         when(id){
             R.id.rv_sucesso -> binding.rvSucesso.adapter = adapter
             R.id.rv_novidades -> binding.rvNovidades.adapter = adapter
