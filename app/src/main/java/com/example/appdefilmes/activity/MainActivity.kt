@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         val header = binding.navigationView.getHeaderView(0)
         val nome: TextView = header.findViewById(R.id.tv_nome)
         val email: TextView = header.findViewById(R.id.tv_email)
-        val imagem: ImageView = header.findViewById(R.id.imagem_perfil)
+        val imagem: ImageView = header.findViewById(R.id.img_perfil)
 
         nome.text = UsuarioDAO().usuarioNome
         email.text = UsuarioDAO().usuarioEmail
