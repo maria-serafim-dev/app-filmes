@@ -1,6 +1,7 @@
 package com.example.appdefilmes.activity
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -85,7 +86,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
                         R.drawable.ic_adicionado,
                         R.string.text_btn_minha_lista_adicionado
                     )
-                    abrirSnackBar("inserido").show()
+                    abrirSnackBar(it.title!!, "adicionado à").show()
                 }
             } else {
                 abrirDialog()
@@ -104,8 +105,8 @@ class InformacoesFilmeActivity : AppCompatActivity() {
         }
     }
 
-    private fun abrirSnackBar(mensagem: String) =
-        Snackbar.make(binding.btnMinhaLista, getString(R.string.text_snack_bar, mensagem), Snackbar.LENGTH_LONG)
+    private fun abrirSnackBar(nomeFilme: String, mensagem: String) =
+        Snackbar.make(binding.btnMinhaLista, getString(R.string.text_snack_bar, nomeFilme, mensagem), Snackbar.LENGTH_LONG)
 
     private fun abrirDialog() {
         MaterialAlertDialogBuilder(this)
@@ -117,7 +118,7 @@ class InformacoesFilmeActivity : AppCompatActivity() {
             .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
                 dao.removerFavorito(umFilme?.id.toString())
                 modificarLayoutBotao(R.drawable.ic_star, R.string.text_btn_minha_lista)
-                abrirSnackBar("removido").show()
+                umFilme?.title?.let { abrirSnackBar(it,"removido da").show() }
             }.show()
     }
 

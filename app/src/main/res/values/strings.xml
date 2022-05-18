@@ -70,7 +70,7 @@
 
     <string name="text_subtitulo_crear_conta">Crie a sua conta única para todos os produtos Globo</string>
 
-    <string name="text_snack_bar">Filme %s com sucesso</string>
+    <string name="text_snack_bar"><b>%s</b> \n<small>Item %s lista</small></string>
 
     <string name="facebook_app_id">1234</string>
     <string name="fb_login_protocol_scheme">fb1234</string>

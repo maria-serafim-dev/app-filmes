@@ -16,4 +16,5 @@
     <color name="cinza_fundo">#1F1F1F</color>
     <color name="cinza_letras">#888888</color>
     <color name="cinza_icone_app_bar">#A5A5A5</color>
+    <color name="background_snackbar">#D4000000</color>
 </resources>

@@ -96,8 +96,8 @@
     </style>
 
     <style name="ThemeOverlay.App.Snackbar" parent="">
-        <item name="backgroundTint">@color/white</item>
-        <item name="colorSurface">@color/black</item>
+        <item name="backgroundTint">@color/background_snackbar</item>
+        <item name="colorSurface">@color/white</item>
 
     </style>
 
