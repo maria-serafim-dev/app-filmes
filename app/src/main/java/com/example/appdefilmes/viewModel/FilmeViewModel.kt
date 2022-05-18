@@ -3,17 +3,19 @@ package com.example.appdefilmes.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.model.Filme
+import com.example.appdefilmes.retrofit.FilmeApi
 import com.example.appdefilmes.retrofit.FilmeResponse
+import kotlinx.coroutines.launch
 
 class FilmeViewModel : ViewModel() {
 
     private val _filmesFavoritos = MutableLiveData<List<Filme>>()
     val filmesFavoritos: LiveData<List<Filme>>
         get() = _filmesFavoritos
-
 
     private val _filmesNovidades = MutableLiveData<List<Filme>>()
     val filmesNovidades: LiveData<List<Filme>>
@@ -28,6 +30,10 @@ class FilmeViewModel : ViewModel() {
     val filmesAtuaisNosCinemais: LiveData<List<Filme>>
         get() = _filmesAtuaisNosCinemais
 
+    private val _filmesSimilares = MutableLiveData<List<Filme>>()
+    val filmesSimilares: LiveData<List<Filme>>
+        get() = _filmesSimilares
+
 
     private fun filmesPopulares(){
         FilmeDAO().getListaFavoritos(object: FilmeResponse {
@@ -37,36 +43,27 @@ class FilmeViewModel : ViewModel() {
         })
     }
 
+    private fun getFilme(){
+        viewModelScope.launch {
+            try {
+            _filmesPopulares.value = FilmeApi.retrofitService.getFilmes("popular").results
+            _filmesNovidades.value = FilmeApi.retrofitService.getFilmes("top_rated").results
+            _filmesAtuaisNosCinemais.value = FilmeApi.retrofitService.getFilmes("now_playing").results
+            }catch (e: Exception) {
 
-    private fun buscarFilmesPopulares() {
-        FilmeDAO().getFilmesPopulares(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                _filmesPopulares.value = filmes
             }
-        })
+        }
     }
 
-    private fun buscarFilmesNovidades() {
-        FilmeDAO().getFilmesBemAvaliados(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                _filmesNovidades.value = filmes
-            }
-        })
-    }
-
-    private fun buscarFilmesAtuaisNosCinemais(){
-        FilmeDAO().getFilmeAtuaisNosCinemais(object: FilmeResponse {
-            override fun sucesso(filmes: List<Filme>) {
-                _filmesAtuaisNosCinemais.value = filmes
-            }
-        })
+    fun getFilmesSimilares(id: Int){
+        viewModelScope.launch {
+            _filmesSimilares.value = FilmeApi.retrofitService.getFilmeSimilaresId(id).results
+        }
     }
 
     init {
         if(UsuarioDAO().usuarioLogado)filmesPopulares()
-        buscarFilmesPopulares()
-        buscarFilmesNovidades()
-        buscarFilmesAtuaisNosCinemais()
+        getFilme()
     }
 
 }

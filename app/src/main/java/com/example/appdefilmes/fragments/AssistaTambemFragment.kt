@@ -2,23 +2,25 @@ package com.example.appdefilmes.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.appdefilmes.activity.InformacoesFilmeActivity
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
-import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.databinding.FragmentAssistaTambemBinding
 import com.example.appdefilmes.model.Filme
-import com.example.appdefilmes.retrofit.FilmeResponse
+import com.example.appdefilmes.viewModel.FilmeViewModel
 
 
 class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
     private var _binding: FragmentAssistaTambemBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: FilmeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +37,10 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
     private fun buscarFilmesPopulares(view: View){
         filme?.id?.let {
-            FilmeDAO().getFilmesSimilares(object: FilmeResponse {
-                override fun sucesso(filmes: List<Filme>) {
-                    adaptarRecycleView(view, filmes)
-                }
-
-            }, it)
+            viewModel.getFilmesSimilares(it)
+            viewModel.filmesSimilares.observe(viewLifecycleOwner) { listaFilme ->
+                adaptarRecycleView(view, listaFilme)
+            }
         }
     }
 
