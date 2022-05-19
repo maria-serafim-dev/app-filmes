@@ -2,12 +2,12 @@
     <item
         android:id="@+id/inicioFragment2"
         android:enabled="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_home_selector"
         android:title="@string/text_home"/>
     <item
         android:id="@+id/minhaListaFragment2"
         android:enabled="true"
-        android:icon="@drawable/ic_star"
+        android:icon="@drawable/ic_star_selector"
         android:title="@string/text_star"
         />
 </menu>
