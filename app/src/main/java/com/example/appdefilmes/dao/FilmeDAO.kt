@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeResponse
 import com.google.firebase.database.*
+import kotlinx.coroutines.tasks.await
 
 
 class FilmeDAO {
@@ -38,15 +39,11 @@ class FilmeDAO {
 
     }
 
-    fun verificaFilmeFavorito(idFilme: String, callback: (Boolean) -> Unit){
-        referencia.child("filmeFavoritos").child(usuarioId).child(idFilme).get().addOnSuccessListener {
-            if (it.value != null) callback(true)
-            else callback(false)
-
-        }.addOnFailureListener {
-            Log.e("DAO:FilmeFavorito", "Erro ao obter dados", it)
-        }
+    suspend fun verificaFilmeFavorito(idFilme: String): Boolean{
+        val await = referencia.child("filmeFavoritos").child(usuarioId).child(idFilme).get().await()
+        return await.value != null
     }
+
 
     fun removerFavorito(id: String){
         referencia.child("filmeFavoritos").child(usuarioId).child(id).removeValue()

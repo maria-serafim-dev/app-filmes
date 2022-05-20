@@ -3,6 +3,7 @@ package com.example.appdefilmes.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
@@ -13,6 +14,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
 
 
 class InformacoesFilmeActivity : AppCompatActivity() {
@@ -93,8 +95,9 @@ class InformacoesFilmeActivity : AppCompatActivity() {
     }
 
     private fun configurarTextoBotaoMinhaLista() {
-        dao.verificaFilmeFavorito(umFilme?.id.toString()) {
-            if (it) {
+        lifecycleScope.launch {
+            val filmeAdicionado: Boolean = dao.verificaFilmeFavorito(umFilme?.id.toString())
+            if (filmeAdicionado) {
                 modificarLayoutBotao(
                     R.drawable.ic_adicionado,
                     R.string.text_btn_minha_lista_adicionado
