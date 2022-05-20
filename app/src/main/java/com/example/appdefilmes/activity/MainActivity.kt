@@ -4,10 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -46,10 +43,7 @@ class MainActivity : AppCompatActivity() {
         ouvinteItemSelecionadoDrawerNavigation()
         ouvinteMenuAppBar()
 
-
     }
-
-
 
     private fun inicializarFragments(savedInstanceState: Bundle?) {
 
@@ -81,11 +75,32 @@ class MainActivity : AppCompatActivity() {
         val nome: TextView = header.findViewById(R.id.tv_nome)
         val email: TextView = header.findViewById(R.id.tv_email)
         val imagem: ImageView = header.findViewById(R.id.img_perfil)
+        val imagemArrow: ImageView = header.findViewById(R.id.img_arrow)
+        val layoutButtonAssinante: LinearLayout = header.findViewById(R.id.layout_button_assinante)
+        val layoutButtonsAssinante: LinearLayout = header.findViewById(R.id.layout_buttons_assinante)
 
         nome.text = UsuarioDAO().usuarioNome
         email.text = UsuarioDAO().usuarioEmail
 
         Picasso.get().load(UsuarioDAO().usuarioFoto).into(imagem)
+
+        layoutButtonAssinante.setOnClickListener {
+            when(layoutButtonsAssinante.visibility){
+                View.VISIBLE -> {
+                    layoutButtonsAssinante.visibility = View.GONE
+                    imagemArrow.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_arrow_down))
+                }
+                View.GONE -> {
+                    layoutButtonsAssinante.visibility = View.VISIBLE
+                    imagemArrow.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_arrow_up))
+                }
+                View.INVISIBLE -> {
+                    layoutButtonsAssinante.visibility = View.VISIBLE
+                    imagemArrow.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_arrow_up))
+                }
+            }
+
+        }
     }
 
     private fun configurarHeaderDrawerSemLogin() {

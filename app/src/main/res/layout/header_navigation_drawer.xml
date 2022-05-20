@@ -102,6 +102,13 @@
         app:dividerColor="@color/white"
         />
 
+    <LinearLayout
+        android:id="@+id/layout_button_assinante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
     <Button
         android:id="@+id/tv_assinante"
         android:layout_width="wrap_content"
@@ -109,7 +116,39 @@
         android:textColor="@color/white"
         style="@style/Widget.Material3.Button.TextButton"
         android:text="@string/text_btn_assinante"
+        android:padding="2dp"
         android:textAllCaps="true"
-        android:drawableEnd="@drawable/ic_arrow_down"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/img_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_down"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_buttons_assinante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/chip_globoplay"
+            style="@style/Widget.App.Button.Card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:text="@string/text_chip_globoplay" />
+
+        <Button
+            android:id="@+id/chip_telecine"
+            style="@style/Widget.App.Button.Card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_chip_telecine" />
+    </LinearLayout>
 </LinearLayout>
