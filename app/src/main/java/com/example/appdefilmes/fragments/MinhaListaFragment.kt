@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
@@ -48,7 +47,7 @@ class MinhaListaFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
-                val action = MinhaListaFragmentDirections.actionMinhaListaFragment2ToInformacoesFilmeActivity(filme = filme)
+                val action = MinhaListaFragmentDirections.actionMinhaListaFragment2ToInformacoesFilmeFragment(filme = filme)
                 findNavController().navigate(action)
             }
         })

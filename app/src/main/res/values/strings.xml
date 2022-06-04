@@ -111,6 +111,8 @@
 
     <string name="text_entrar">Entrar</string>
     <string name="text_entrar_no_modo_infantil">Entrar no modo infantil</string>
+    <string name="text_chip_globoplay">Globoplay</string>
+    <string name="text_chip_telecine">Telecine</string>
 
 
 </resources>

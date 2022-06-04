@@ -13,8 +13,8 @@
             android:id="@+id/action_inicioFragment2_to_minhaListaFragment2"
             app:destination="@id/minhaListaFragment2" />
         <action
-            android:id="@+id/action_inicioFragment2_to_informacoesFilmeActivity"
-            app:destination="@id/informacoesFilmeActivity" />
+            android:id="@+id/action_inicioFragment2_to_informacoesFilmeFragment"
+            app:destination="@id/informacoesFilmeFragment" />
     </fragment>
     <fragment
         android:id="@+id/minhaListaFragment2"
@@ -24,16 +24,23 @@
         <action
             android:id="@+id/action_minhaListaFragment2_to_inicioFragment2"
             app:destination="@id/inicioFragment2" />
-        <action
-            android:id="@+id/action_minhaListaFragment2_to_informacoesFilmeActivity"
-            app:destination="@id/informacoesFilmeActivity" />
+          <action
+            android:id="@+id/action_minhaListaFragment2_to_informacoesFilmeFragment"
+            app:destination="@id/informacoesFilmeFragment" />
     </fragment>
-    <activity
-        android:id="@+id/informacoesFilmeActivity"
-        android:name="com.example.appdefilmes.activity.InformacoesFilmeActivity"
-        android:label="InformacoesFilmeActivity" >
+
+    <dialog
+        android:id="@+id/informacoesFilmeFragment"
+        android:name="com.example.appdefilmes.fragments.InformacoesFilmeFragment"
+        android:label="InformacoesFilmeFragment"
+        tools:layout="@layout/fragment_informacoes_filme">
         <argument
             android:name="filme"
             app:argType="com.example.appdefilmes.model.Filme" />
-    </activity>
+        <action
+            android:id="@+id/action_informacoesFilmeFragment_self2"
+            app:destination="@id/informacoesFilmeFragment"
+            app:popUpTo="@id/informacoesFilmeFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
 </navigation>

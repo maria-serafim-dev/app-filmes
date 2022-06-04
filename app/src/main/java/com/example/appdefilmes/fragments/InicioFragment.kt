@@ -64,7 +64,7 @@ class InicioFragment : Fragment() {
 
         adapter.setOnClick(object: InterfaceOnClick{
             override fun onItemClick(filme: Filme) {
-                val action = InicioFragmentDirections.actionInicioFragment2ToInformacoesFilmeActivity(filme = filme)
+                val action = InicioFragmentDirections.actionInicioFragment2ToInformacoesFilmeFragment(filme = filme)
                 findNavController().navigate(action)
             }
         })
