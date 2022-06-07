@@ -43,7 +43,8 @@ class MinhaListaFragment : Fragment() {
 
     private fun adaptarRecycleView(view: View, filmes: List<Filme>) {
         val recyclerView: RecyclerView = binding.rvMinhaLista
-        val adapter = FilmeAdapter(view.context, filmes, 2)
+        val adapter = FilmeAdapter(view.context, 2)
+        adapter.submitList(filmes)
         recyclerView.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {
             override fun onItemClick(filme: Filme) {

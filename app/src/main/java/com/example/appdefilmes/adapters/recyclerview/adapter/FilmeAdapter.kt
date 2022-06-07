@@ -8,14 +8,16 @@ import android.view.ViewGroup.LayoutParams
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.R
 import com.example.appdefilmes.model.Filme
 import com.squareup.picasso.Picasso
 
 
-class FilmeAdapter(var context: Context, var filmes: List<Filme>?, var layout: Int) :
-    RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder>() {
+class FilmeAdapter(var context: Context, var layout: Int) :
+    ListAdapter<Filme, FilmeAdapter.FilmeViewHolder>(FilmeCallback()) {
 
     private val urlDaImagem = "https://image.tmdb.org/t/p/w500"
     private var onClick: InterfaceOnClick? = null
@@ -31,7 +33,7 @@ class FilmeAdapter(var context: Context, var filmes: List<Filme>?, var layout: I
     }
 
     override fun onBindViewHolder(holder: FilmeViewHolder, position: Int) {
-        val filme: Filme? = this.filmes?.get(position)
+        val filme: Filme? = getItem(position)
 
         if (filme != null) {
             Picasso.get().load(urlDaImagem + filme.poster_path).into(holder.imagem)
@@ -53,10 +55,6 @@ class FilmeAdapter(var context: Context, var filmes: List<Filme>?, var layout: I
         }
     }
 
-    override fun getItemCount(): Int {
-        return this.filmes?.size ?: 0
-    }
-
     class FilmeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val imagem: ImageView = view.findViewById(R.id.img_capa_filme)
@@ -64,4 +62,14 @@ class FilmeAdapter(var context: Context, var filmes: List<Filme>?, var layout: I
 
     }
 
+    class FilmeCallback : DiffUtil.ItemCallback<Filme>(){
+        override fun areItemsTheSame(oldItem: Filme, newItem: Filme): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Filme, newItem: Filme): Boolean {
+            return oldItem.poster_path == newItem.poster_path
+        }
+
+    }
 }

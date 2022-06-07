@@ -20,7 +20,6 @@ class FilmeViewModel : ViewModel() {
     val filmesNovidades: LiveData<List<Filme>>
         get() = _filmesNovidades
 
-
     private val _filmesPopulares = MutableLiveData<List<Filme>>()
     val filmesPopulares: LiveData<List<Filme>>
         get() = _filmesPopulares
@@ -56,6 +55,18 @@ class FilmeViewModel : ViewModel() {
         viewModelScope.launch {
             _filmesSimilares.value = FilmeApi.retrofitService.getFilmeSimilaresId(id).results
         }
+    }
+
+    fun adicionarFilmeFavorito(filme: Filme) {
+        FilmeDAO().inserirMinhaLista(filme)
+        _filmesFavoritos.value?.add(filme)
+        _filmesFavoritos.postValue(_filmesFavoritos.value)
+    }
+
+    fun removerFilmeFavorito(filme: Filme) {
+        FilmeDAO().removerFavorito(filme.id.toString())
+        _filmesFavoritos.value?.remove(filme)
+        _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
     init {

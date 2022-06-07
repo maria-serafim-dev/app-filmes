@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.appdefilmes.R
@@ -13,6 +14,7 @@ import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.databinding.FragmentInformacoesFilmeBinding
 import com.example.appdefilmes.model.Filme
+import com.example.appdefilmes.viewModel.FilmeViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -32,6 +34,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     private var urlDaImagem = "https://image.tmdb.org/t/p/w500"
     private val dao = FilmeDAO()
     private val args: InformacoesFilmeFragmentArgs by navArgs()
+    private val viewModels : FilmeViewModel by activityViewModels()
     private lateinit var filme : Filme
 
     override fun onCreateView(
@@ -118,7 +121,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
                 .setNegativeButton(resources.getString(R.string.negativo_dialog)) { _, _ ->
                 }
                 .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
-                    dao.removerFavorito(filme.id.toString())
+                    viewModels.removerFilmeFavorito(filme)
                     modificarLayoutBotao(R.drawable.ic_star, R.string.text_btn_minha_lista)
                     filme.title?.let { abrirSnackBar(it,"removido da").show() }
                 }.show()
@@ -141,7 +144,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
             val textMinhaLista = getString(R.string.text_btn_minha_lista)
             if (binding.btnMinhaLista.text.equals(textMinhaLista)) {
                 filme.let {
-                    dao.inserirMinhaLista(it)
+                    viewModels.adicionarFilmeFavorito(filme)
                     modificarLayoutBotao(
                         R.drawable.ic_adicionado,
                         R.string.text_btn_minha_lista_adicionado
