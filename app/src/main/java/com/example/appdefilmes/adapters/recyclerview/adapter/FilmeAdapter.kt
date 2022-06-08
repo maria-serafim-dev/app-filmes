@@ -37,7 +37,7 @@ class FilmeAdapter(var context: Context, private var layout: Int) :
         holder.onBind(filme, layout)
     }
 
-    inner class FilmeViewHolder(binding: ItemImagemFilmeBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FilmeViewHolder(private val binding: ItemImagemFilmeBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(filme: Filme?, layout: Int) {
             if (filme != null) {
