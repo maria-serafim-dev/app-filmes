@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
+import com.example.appdefilmes.data.layoutMinhaLista
 import com.example.appdefilmes.databinding.FragmentMinhaListaBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.viewModel.FilmeViewModel
@@ -43,7 +44,7 @@ class MinhaListaFragment : Fragment() {
 
     private fun adaptarRecycleView(view: View, filmes: List<Filme>) {
         val recyclerView: RecyclerView = binding.rvMinhaLista
-        val adapter = FilmeAdapter(view.context, 2)
+        val adapter = FilmeAdapter(view.context, layoutMinhaLista)
         adapter.submitList(filmes)
         recyclerView.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {

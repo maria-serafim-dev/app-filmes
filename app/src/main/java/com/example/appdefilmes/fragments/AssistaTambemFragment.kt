@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
+import com.example.appdefilmes.data.layoutAssistaTambem
 import com.example.appdefilmes.databinding.FragmentAssistaTambemBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.viewModel.FilmeViewModel
@@ -43,7 +44,7 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
     }
 
     private fun adaptarRecycleView(view: View, filmes: List<Filme>){
-        val adapter = FilmeAdapter(view.context,3)
+        val adapter = FilmeAdapter(view.context, layoutAssistaTambem)
         adapter.submitList(filmes)
         binding.rvAssitaTambem.adapter = adapter
         adapter.setOnClick(object: InterfaceOnClick {

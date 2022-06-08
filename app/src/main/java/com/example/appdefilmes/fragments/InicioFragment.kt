@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
+import com.example.appdefilmes.data.layoutInicio
 import com.example.appdefilmes.databinding.FragmentInicioBinding
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.viewModel.FilmeViewModel
@@ -55,7 +56,7 @@ class InicioFragment : Fragment() {
 
     private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
 
-        val adapter = FilmeAdapter(view.context,1)
+        val adapter = FilmeAdapter(view.context, layoutInicio)
         adapter.submitList(filmes)
         when(id){
             R.id.rv_sucesso -> binding.rvSucesso.adapter = adapter

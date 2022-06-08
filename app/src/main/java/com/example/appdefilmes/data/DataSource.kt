@@ -16,6 +16,11 @@ const val idioma: String = "pt-BR"
 const val regiao: String = "BR"
 const val qtdePagina: Int = 1
 
+const val urlDaImagem = "https://image.tmdb.org/t/p/w500"
+const val layoutInicio: Int = 1
+const val layoutMinhaLista: Int = 2
+const val layoutAssistaTambem: Int = 3
+
 val enderecoEmail: Array<String> = arrayOf("suporte@globoplay.com")
 const val assuntoEmail = "Comentário sobre o Globoplay"
 const val corpoEmail = "Escreva aqui seu comentário, dúvida ou sugestão"
