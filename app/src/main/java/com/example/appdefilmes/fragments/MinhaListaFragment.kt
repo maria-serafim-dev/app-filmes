@@ -18,8 +18,7 @@ import com.example.appdefilmes.viewModel.FilmeViewModel
 
 class MinhaListaFragment : Fragment() {
 
-    private var _binding: FragmentMinhaListaBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentMinhaListaBinding
     private val viewModel: FilmeViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class MinhaListaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMinhaListaBinding.inflate(inflater, container, false)
+        binding = FragmentMinhaListaBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -55,9 +54,5 @@ class MinhaListaFragment : Fragment() {
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
 }

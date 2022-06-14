@@ -10,14 +10,13 @@ import com.example.appdefilmes.model.Filme
 
 class FichaTecnicaFragment(var filme: Filme?) : Fragment() {
 
-    private var _binding: FragmentFichaTecnicaBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFichaTecnicaBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFichaTecnicaBinding.inflate(inflater, container, false)
+        binding = FragmentFichaTecnicaBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -29,8 +29,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
 
     private lateinit var dialog : BottomSheetDialog
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-    private var _binding : FragmentInformacoesFilmeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentInformacoesFilmeBinding
     private var urlDaImagem = "https://image.tmdb.org/t/p/w500"
     private val dao = FilmeDAO()
     private val args: InformacoesFilmeFragmentArgs by navArgs()
@@ -41,7 +40,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInformacoesFilmeBinding.inflate(inflater, container, false)
+        binding = FragmentInformacoesFilmeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

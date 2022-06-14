@@ -17,15 +17,14 @@ import com.example.appdefilmes.viewModel.FilmeViewModel
 
 class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
-    private var _binding: FragmentAssistaTambemBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentAssistaTambemBinding
     private val viewModel: FilmeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAssistaTambemBinding.inflate(inflater, container, false)
+        binding = FragmentAssistaTambemBinding.inflate(inflater, container, false)
         return binding.root
     }
 
