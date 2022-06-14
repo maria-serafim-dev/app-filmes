@@ -5,7 +5,7 @@ import android.os.Parcelable
 import java.sql.Date
 import java.text.DateFormat
 
-class Filme(
+data class Filme(
     val id: Int? = 0,
     val original_language: String? = "",
     val original_title: String? = "",

@@ -70,7 +70,7 @@ class FilmeCallback : DiffUtil.ItemCallback<Filme>(){
     }
 
     override fun areContentsTheSame(oldItem: Filme, newItem: Filme): Boolean {
-        return oldItem.poster_path == newItem.poster_path
+        return oldItem == newItem
     }
 
 }

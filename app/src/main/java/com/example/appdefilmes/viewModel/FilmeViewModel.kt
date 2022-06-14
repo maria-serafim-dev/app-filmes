@@ -33,6 +33,11 @@ class FilmeViewModel : ViewModel() {
         get() = _filmesSimilares
 
 
+    init {
+        if (UsuarioDAO().usuarioLogado) filmesFavoritos()
+        getFilme()
+    }
+
     private fun filmesFavoritos() {
         viewModelScope.launch {
             _filmesFavoritos.value = FilmeDAO().getListaFavoritos()
@@ -69,9 +74,6 @@ class FilmeViewModel : ViewModel() {
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
-    init {
-        if (UsuarioDAO().usuarioLogado) filmesFavoritos()
-        getFilme()
-    }
+
 
 }
