@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appdefilmes.R
 import com.example.appdefilmes.data.layoutInicio
 import com.example.appdefilmes.data.layoutMinhaLista
 import com.example.appdefilmes.data.urlDaImagem
@@ -42,7 +43,7 @@ class FilmeAdapter(var context: Context, private var layout: Int) :
         fun onBind(filme: Filme?, layout: Int) {
             if (filme != null) {
                 with(binding) {
-                    Picasso.get().load(urlDaImagem + filme.poster_path).into(imgCapaFilme)
+                    Picasso.get().load(urlDaImagem + filme.poster_path).placeholder(R.drawable.animacao_carregando).error(R.drawable.ic_imagem_quebrada).into(imgCapaFilme)
 
                     if (layout != layoutInicio) {
                         val layoutImg = imgCapaFilme.layoutParams as LinearLayout.LayoutParams
