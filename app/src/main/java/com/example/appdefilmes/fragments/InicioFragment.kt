@@ -52,7 +52,9 @@ class InicioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         iniciarObservable()
         setAdapter()
-        setOnClickFilme()
+        setOnClickFilme(adapterSucesso)
+        setOnClickFilme(adapterNovidade)
+        setOnClickFilme(adapterExcluivos)
     }
 
     private fun iniciarObservable() {
@@ -75,8 +77,8 @@ class InicioFragment : Fragment() {
         binding.rvExclusivos.adapter = adapterExcluivos
     }
 
-    private fun setOnClickFilme() {
-        adapterSucesso.setOnClick(object : InterfaceOnClick {
+    private fun setOnClickFilme(adapter: FilmeAdapter) {
+        adapter.setOnClick(object : InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
                 abrirTelaInformacaoFilme(filme)
             }
