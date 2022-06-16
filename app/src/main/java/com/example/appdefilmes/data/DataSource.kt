@@ -16,7 +16,7 @@ const val idioma: String = "pt-BR"
 const val regiao: String = "BR"
 const val qtdePagina: Int = 1
 
-const val urlDaImagem = "https://image.tmdb.org/t/p/w500"
+const val baseUrlImagem = "https://image.tmdb.org/t/p/w500"
 const val layoutInicio: Int = 1
 const val layoutMinhaLista: Int = 2
 const val layoutAssistaTambem: Int = 3

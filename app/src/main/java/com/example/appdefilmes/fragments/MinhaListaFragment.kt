@@ -47,8 +47,8 @@ class MinhaListaFragment : Fragment() {
 
     private fun iniciarObservable() {
         viewModel.filmesFavoritos.observe(viewLifecycleOwner) { listaFilme ->
-            val listaNova : List<Filme> = listaFilme
-            adapter.submitList(listaNova.toList())
+            val listaFilmesImutavel : List<Filme> = listaFilme
+            adapter.submitList(listaFilmesImutavel.toList())
         }
     }
 

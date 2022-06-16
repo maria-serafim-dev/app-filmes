@@ -12,7 +12,9 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
 import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.dao.UsuarioDAO
+import com.example.appdefilmes.data.baseUrlImagem
 import com.example.appdefilmes.databinding.FragmentInformacoesFilmeBinding
+import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.viewModel.FilmeViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -21,7 +23,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
 class InformacoesFilmeFragment : BottomSheetDialogFragment() {
@@ -30,7 +31,6 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     private lateinit var dialog : BottomSheetDialog
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     private lateinit var binding : FragmentInformacoesFilmeBinding
-    private var urlDaImagem = "https://image.tmdb.org/t/p/w500"
     private val dao = FilmeDAO()
     private val args: InformacoesFilmeFragmentArgs by navArgs()
     private val viewModels : FilmeViewModel by activityViewModels()
@@ -80,9 +80,10 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     }
 
     private fun inicializarImagens() {
-        urlDaImagem += filme.poster_path
-        Picasso.get().load(urlDaImagem).into(binding.imgCartaz)
-        Picasso.get().load(urlDaImagem).into(binding.imgCartazFundo)
+        with(binding) {
+            imgCartaz.loadImage(baseUrlImagem + filme.poster_path)
+            imgCartazFundo.loadImage(baseUrlImagem + filme.poster_path)
+        }
     }
 
     private fun inicializarBotaoMinhaLista() {
