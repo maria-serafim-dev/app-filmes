@@ -19,6 +19,11 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
     private lateinit var binding: FragmentAssistaTambemBinding
     private val viewModel: FilmeViewModel by viewModels()
+    private val adapter: FilmeAdapter by lazy {
+        FilmeAdapter(
+            layoutAssistaTambem
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,28 +35,32 @@ class AssistaTambemFragment(var filme: Filme?) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        buscarFilmesPopulares(view)
+        iniciarObservable()
+        setOnClickFilme()
+        setAdapter()
     }
 
-    private fun buscarFilmesPopulares(view: View){
+    private fun iniciarObservable(){
         filme?.id?.let {
             viewModel.getFilmesSimilares(it)
             viewModel.filmesSimilares.observe(viewLifecycleOwner) { listaFilme ->
-                adaptarRecycleView(view, listaFilme)
+                adapter.submitList(listaFilme)
             }
         }
     }
 
-    private fun adaptarRecycleView(view: View, filmes: List<Filme>){
-        val adapter = FilmeAdapter(view.context, layoutAssistaTambem)
-        adapter.submitList(filmes)
+    private fun setAdapter() {
         binding.rvAssitaTambem.adapter = adapter
-        adapter.setOnClick(object: InterfaceOnClick {
+    }
+
+    private fun setOnClickFilme() {
+        adapter.setOnClick(object : InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
                 abrirTelaInformacaoFilme(filme)
             }
         })
     }
+
 
     private fun abrirTelaInformacaoFilme(filme: Filme) {
         val action = InformacoesFilmeFragmentDirections.actionInformacoesFilmeFragmentSelf2(filme)

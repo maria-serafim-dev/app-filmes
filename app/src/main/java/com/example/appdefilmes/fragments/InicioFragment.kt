@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.recyclerview.adapter.FilmeAdapter
 import com.example.appdefilmes.adapters.recyclerview.adapter.InterfaceOnClick
 import com.example.appdefilmes.data.layoutInicio
@@ -20,6 +19,21 @@ class InicioFragment : Fragment() {
 
     private lateinit var binding: FragmentInicioBinding
     private val viewModel: FilmeViewModel by activityViewModels()
+    private val adapterSucesso: FilmeAdapter by lazy {
+        FilmeAdapter(
+            layoutInicio
+        )
+    }
+    private val adapterNovidade: FilmeAdapter by lazy {
+        FilmeAdapter(
+            layoutInicio
+        )
+    }
+    private val adapterExcluivos: FilmeAdapter by lazy {
+        FilmeAdapter(
+            layoutInicio
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,39 +50,41 @@ class InicioFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        inicializarRecyclerView(view)
+        iniciarObservable()
+        setAdapter()
+        setOnClickFilme()
     }
 
-    private fun inicializarRecyclerView(view: View) {
+    private fun iniciarObservable() {
         viewModel.filmesPopulares.observe(viewLifecycleOwner) { listaFilme ->
-            adaptarRecycleView(view, R.id.rv_sucesso, listaFilme)
+            adapterSucesso.submitList(listaFilme)
         }
 
         viewModel.filmesAtuaisNosCinemais.observe(viewLifecycleOwner) { listaFilme ->
-            adaptarRecycleView(view, R.id.rv_exclusivos, listaFilme)
+            adapterNovidade.submitList(listaFilme)
         }
 
         viewModel.filmesNovidades.observe(viewLifecycleOwner) { listaFilme ->
-            adaptarRecycleView(view, R.id.rv_novidades, listaFilme)
+            adapterExcluivos.submitList(listaFilme)
         }
     }
 
-    private fun adaptarRecycleView(view: View, id: Int, filmes: List<Filme>){
+    private fun setAdapter() {
+        binding.rvSucesso.adapter = adapterSucesso
+        binding.rvNovidades.adapter = adapterNovidade
+        binding.rvExclusivos.adapter = adapterExcluivos
+    }
 
-        val adapter = FilmeAdapter(view.context, layoutInicio)
-        adapter.submitList(filmes)
-        when(id){
-            R.id.rv_sucesso -> binding.rvSucesso.adapter = adapter
-            R.id.rv_novidades -> binding.rvNovidades.adapter = adapter
-            R.id.rv_exclusivos -> binding.rvExclusivos.adapter = adapter
-        }
-
-        adapter.setOnClick(object: InterfaceOnClick{
+    private fun setOnClickFilme() {
+        adapterSucesso.setOnClick(object : InterfaceOnClick {
             override fun onItemClick(filme: Filme) {
-                val action = InicioFragmentDirections.actionInicioFragment2ToInformacoesFilmeFragment(filme = filme)
-                findNavController().navigate(action)
+                abrirTelaInformacaoFilme(filme)
             }
         })
+    }
 
+    private fun abrirTelaInformacaoFilme(filme: Filme) {
+        val action = InicioFragmentDirections.actionInicioFragment2ToInformacoesFilmeFragment(filme = filme)
+        findNavController().navigate(action)
     }
 }

@@ -1,6 +1,5 @@
 package com.example.appdefilmes.adapters.recyclerview.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.example.appdefilmes.model.Filme
 import com.squareup.picasso.Picasso
 
 
-class FilmeAdapter(var context: Context, private var layout: Int) :
+class FilmeAdapter(private var layout: Int) :
     ListAdapter<Filme, FilmeAdapter.FilmeViewHolder>(FilmeCallback()) {
 
     private var onClick: InterfaceOnClick? = null
