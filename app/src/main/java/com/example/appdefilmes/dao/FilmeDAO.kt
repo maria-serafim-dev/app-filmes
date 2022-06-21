@@ -23,13 +23,7 @@ class FilmeDAO {
             val filme: Filme? = it.getValue(Filme::class.java)
             filme?.let { it1 -> listaFilmes.add(it1) }
         }
-
         return listaFilmes
-    }
-
-    suspend fun verificaFilmeFavorito(idFilme: String): Boolean {
-        val await = referencia.child("filmeFavoritos").child(usuarioId).child(idFilme).get().await()
-        return await.value != null
     }
 
     fun removerFavorito(id: String) {

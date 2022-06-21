@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
-import com.example.appdefilmes.dao.FilmeDAO
 import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.data.baseUrlImagem
 import com.example.appdefilmes.databinding.FragmentInformacoesFilmeBinding
@@ -23,7 +21,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.launch
 
 class InformacoesFilmeFragment : BottomSheetDialogFragment() {
 
@@ -31,7 +28,6 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     private lateinit var dialog : BottomSheetDialog
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
     private lateinit var binding : FragmentInformacoesFilmeBinding
-    private val dao = FilmeDAO()
     private val args: InformacoesFilmeFragmentArgs by navArgs()
     private val viewModels : FilmeViewModel by activityViewModels()
     private lateinit var filme : Filme
@@ -91,21 +87,15 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
         if (UsuarioDAO().usuarioLogado) {
             configurarTextoBotaoMinhaLista()
             ouvinteBotaoMinhaLista()
-
         } else {
             binding.btnMinhaLista.visibility = View.GONE
         }
     }
 
     private fun configurarTextoBotaoMinhaLista() {
-        lifecycleScope.launch {
-            val filmeAdicionado: Boolean = dao.verificaFilmeFavorito(filme.id.toString())
-            if (filmeAdicionado) {
-                modificarLayoutBotao(
-                    R.drawable.ic_adicionado,
-                    R.string.text_btn_minha_lista_adicionado
-                )
-            }
+        viewModels.filmesFavoritos.observe(viewLifecycleOwner){
+            if(filme in it) modificarLayoutBotao(R.drawable.ic_adicionado, R.string.text_btn_minha_lista_adicionado)
+
         }
     }
 
