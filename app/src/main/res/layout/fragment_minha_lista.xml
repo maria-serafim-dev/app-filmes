@@ -37,5 +37,20 @@
         app:spanCount="3"
         tools:listitem="@layout/item_imagem_filme"/>
 
+    <TextView
+        android:id="@+id/tv_crie_sua_lista"
+        style="@style/TextAppearance.Material3.HeadlineMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_crie_sua_lista_de_favoritos"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_minha_lista"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_minha_lista"
+        android:visibility="gone"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

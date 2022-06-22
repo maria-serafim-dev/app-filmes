@@ -47,8 +47,9 @@ class MinhaListaFragment : Fragment() {
 
     private fun iniciarObservable() {
         viewModel.filmesFavoritos.observe(viewLifecycleOwner) { listaFilme ->
-            val listaFilmesImutavel : List<Filme> = listaFilme
+            val listaFilmesImutavel: List<Filme> = listaFilme
             adapter.submitList(listaFilmesImutavel.toList())
+            if (listaFilme.isEmpty()) binding.tvCrieSuaLista.visibility = View.VISIBLE
         }
     }
 
