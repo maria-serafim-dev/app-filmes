@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.dao.UsuarioDAO
 import com.example.appdefilmes.databinding.ActivityMainBinding
+import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.fragments.InicioFragment
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,7 +23,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.divider.MaterialDivider
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         nome.text = UsuarioDAO().usuarioNome
         email.text = UsuarioDAO().usuarioEmail
 
-        Picasso.get().load(UsuarioDAO().usuarioFoto).into(imagem)
+        imagem.loadImage(UsuarioDAO().usuarioFoto.toString())
 
         layoutButtonAssinante.setOnClickListener {
             when(layoutButtonsAssinante.visibility){
