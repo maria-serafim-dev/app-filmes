@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appdefilmes.dao.FilmeDAO
-import com.example.appdefilmes.dao.UsuarioDAO
+import com.example.appdefilmes.repository.FilmeRepository
+import com.example.appdefilmes.repository.UsuarioDAO
 import com.example.appdefilmes.model.Filme
-import com.example.appdefilmes.retrofit.FilmeApi
 import kotlinx.coroutines.launch
 
 class FilmeViewModel : ViewModel() {
 
     private val _filmesFavoritos = MutableLiveData<MutableList<Filme>>()
+    private val repository : FilmeRepository by lazy{
+        FilmeRepository()
+    }
+
     val filmesFavoritos: LiveData<MutableList<Filme>>
         get() = _filmesFavoritos
 
@@ -40,16 +43,16 @@ class FilmeViewModel : ViewModel() {
 
     private fun filmesFavoritos() {
         viewModelScope.launch {
-            _filmesFavoritos.value = FilmeDAO().getListaFavoritos()
+            _filmesFavoritos.value = repository.getListaFavoritos()
         }
     }
 
     private fun getFilme() {
         viewModelScope.launch {
             try {
-                _filmesPopulares.value = FilmeApi.retrofitService.getFilmes("popular").results
-                _filmesNovidades.value = FilmeApi.retrofitService.getFilmes("top_rated").results
-                _filmesAtuaisNosCinemais.value = FilmeApi.retrofitService.getFilmes("now_playing").results
+                _filmesNovidades.value = repository.getFilmesPorCategoria("top_rated")
+                _filmesAtuaisNosCinemais.value = repository.getFilmesPorCategoria("now_playing")
+                _filmesPopulares.value = repository.getFilmesPorCategoria("popular")
             } catch (e: Exception) {
 
             }
@@ -58,18 +61,18 @@ class FilmeViewModel : ViewModel() {
 
     fun getFilmesSimilares(id: Int) {
         viewModelScope.launch {
-            _filmesSimilares.value = FilmeApi.retrofitService.getFilmeSimilaresId(id).results
+            _filmesSimilares.value = repository.getFilmesSimilares(id)
         }
     }
 
     fun adicionarFilmeFavorito(filme: Filme) {
-        FilmeDAO().inserirMinhaLista(filme)
+        repository.inserirMinhaLista(filme)
         _filmesFavoritos.value?.add(filme)
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
     fun removerFilmeFavorito(filme: Filme) {
-        FilmeDAO().removerFavorito(filme.id.toString())
+        repository.removerFavorito(filme.id.toString())
         _filmesFavoritos.value?.remove(filme)
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
