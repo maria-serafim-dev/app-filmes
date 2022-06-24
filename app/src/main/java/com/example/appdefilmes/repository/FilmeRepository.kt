@@ -1,5 +1,7 @@
 package com.example.appdefilmes.repository
 
+import com.example.appdefilmes.extensions.reduzirParaTamanhoDez
+import com.example.appdefilmes.extensions.reduzirParaTamanhoNove
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.retrofit.FilmeApi
 import com.google.firebase.database.DatabaseReference
@@ -28,12 +30,12 @@ class FilmeRepository {
     }
 
     suspend fun getFilmesPorCategoria(categoria: String): List<Filme>{
-        return FilmeApi.retrofitService.getFilmes(categoria).results
+        return FilmeApi.retrofitService.getFilmes(categoria).results.reduzirParaTamanhoDez()
     }
 
 
     suspend fun getFilmesSimilares(id: Int): List<Filme>{
-        return FilmeApi.retrofitService.getFilmeSimilaresId(id).results
+        return FilmeApi.retrofitService.getFilmeSimilaresId(id).results.reduzirParaTamanhoNove()
     }
 
 
