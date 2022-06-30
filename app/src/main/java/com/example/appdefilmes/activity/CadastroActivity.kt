@@ -116,6 +116,10 @@ class CadastroActivity : AppCompatActivity() {
             binding.tfSenha.error = getString(R.string.erro_input_senha)
             binding.editSenha.requestFocus()
             retorno = false
+        }else if(binding.editSenha.text.toString().length < 6){
+            binding.tfSenha.error = getString(R.string.erro_input_senha_tamanho)
+            binding.editSenha.requestFocus()
+            retorno = false
         }
 
         if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {

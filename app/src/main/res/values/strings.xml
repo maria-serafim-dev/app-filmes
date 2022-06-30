@@ -89,6 +89,7 @@
     <string name="text_btn_assinante">Assinante</string>
 
     <string name="erro_input_senha">Digite uma senha</string>
+    <string name="erro_input_senha_tamanho">Digite uma senha com mínimo 6 dígitos</string>
     <string name="erro_input_email">Digite um email</string>
     <string name="erro_input_email_invalido">E-mail inválido</string>
     <string name="erro_input_data">Selecione uma data</string>
