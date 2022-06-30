@@ -12,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 class FilmeRepository {
 
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
-    private val usuarioId = UsuarioDAO().usuarioId
+    private val usuarioId = UsuarioRepository().usuarioId
 
 
     fun inserirMinhaLista(filme: Filme) {

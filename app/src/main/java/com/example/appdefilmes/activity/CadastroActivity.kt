@@ -3,28 +3,27 @@ package com.example.appdefilmes.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appdefilmes.R
-import com.example.appdefilmes.data.itensEstadosBrasileiros
-import com.example.appdefilmes.data.itensGenero
+import com.example.appdefilmes.data.*
 import com.example.appdefilmes.databinding.ActivityCadastroBinding
 import com.example.appdefilmes.model.Usuario
-import com.google.android.gms.tasks.Task
+import com.example.appdefilmes.repository.UsuarioRepository
+import com.example.appdefilmes.retrofit.UsuarioResponse
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.auth.*
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class CadastroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCadastroBinding
-    private val auth = FirebaseAuth.getInstance()
-    private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
+    private val repository : UsuarioRepository by lazy {
+        UsuarioRepository()
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,57 +50,28 @@ class CadastroActivity : AppCompatActivity() {
         val email = binding.editEmail.text.toString()
         val senha: String = binding.editSenha.text.toString()
         val nome = binding.editNome.text.toString()
-
-        auth.createUserWithEmailAndPassword(email, senha)
-            .addOnCompleteListener { task: Task<AuthResult?> ->
-                if (task.isSuccessful) {
-                    Log.i("createUser", "Sucesso ao logar usuário")
-                    val idUsuario = auth.currentUser?.uid
-                    if (idUsuario != null) {
-                        armazenarTodosDadosUsuario(idUsuario, email, senha, nome)
-                        atualizarNomeUsuario(auth.currentUser!!, nome)
-                    }
-                } else {
-                    Log.i("createUser", "Erro ao logar usuário")
-                    Log.i("createUser", "Resultado", task.exception)
-                    if (task.exception is FirebaseAuthUserCollisionException) {
-                        binding.tfEmail.error = "Já existe um usuário com esse e-mail"
-                        binding.editEmail.requestFocus()
-                    }
-                }
-            }
-
-    }
-
-    private fun atualizarNomeUsuario(idUsuario: FirebaseUser, nome: String) {
-        val profileUpdates = UserProfileChangeRequest.Builder()
-            .setDisplayName(nome)
-            .build()
-
-        idUsuario.updateProfile(profileUpdates)
-            .addOnCompleteListener { task: Task<Void?> ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show()
-                    proximaActivity()
-                }
-            }
-    }
-
-    private fun armazenarTodosDadosUsuario(
-        idUsuario: String,
-        email: String,
-        senha: String,
-        nome: String
-    ) {
-
         val dataNascimento = binding.editDataNascimento.text.toString()
         val cidade = binding.editCidade.text.toString()
         val genero = binding.tfGenero.editText?.text.toString()
         val estado = binding.tfEstado.editText?.text.toString()
 
         val usuario = Usuario(nome, email, senha, dataNascimento, genero, cidade, estado)
-        referencia.child("dadosUsuario").child(idUsuario).setValue(usuario)
 
+        repository.cadastrarUsuario(usuario,  object : UsuarioResponse {
+            override fun resposta(resposta: Int) {
+                when(resposta){
+                    sucessoCadastro -> {
+                        Toast.makeText(applicationContext, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+                        proximaActivity()
+                    }
+                    erroEmail -> {
+                        binding.tfEmail.error = "Já existe um usuário com esse e-mail"
+                        binding.editEmail.requestFocus()
+                    }
+                    erroCadastro -> Toast.makeText(applicationContext, "Erro ao cadastrar usuário", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun inicializarMaterialDatePicker(): MaterialDatePicker<Long> {

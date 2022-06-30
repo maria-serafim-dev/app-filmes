@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
-import com.example.appdefilmes.repository.UsuarioDAO
+import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.data.baseUrlImagem
 import com.example.appdefilmes.databinding.FragmentInformacoesFilmeBinding
 import com.example.appdefilmes.extensions.loadImage
@@ -84,7 +84,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
 
     private fun inicializarBotaoMinhaLista() {
 
-        if (UsuarioDAO().usuarioLogado) {
+        if (UsuarioRepository().usuarioLogado) {
             configurarTextoBotaoMinhaLista()
             ouvinteBotaoMinhaLista()
         } else {

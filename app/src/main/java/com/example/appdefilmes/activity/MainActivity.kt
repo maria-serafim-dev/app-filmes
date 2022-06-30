@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.appdefilmes.R
-import com.example.appdefilmes.repository.UsuarioDAO
+import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.fragments.InicioFragment
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun inicializarFragments(savedInstanceState: Bundle?) {
 
-        if (!UsuarioDAO().usuarioLogado) {
+        if (!UsuarioRepository().usuarioLogado) {
             val fragment = InicioFragment()
             if (savedInstanceState == null)
                 supportFragmentManager.beginTransaction()
@@ -79,10 +79,10 @@ class MainActivity : AppCompatActivity() {
         val layoutButtonAssinante: LinearLayout = header.findViewById(R.id.layout_button_assinante)
         val layoutButtonsAssinante: LinearLayout = header.findViewById(R.id.layout_buttons_assinante)
 
-        nome.text = UsuarioDAO().usuarioNome
-        email.text = UsuarioDAO().usuarioEmail
+        nome.text = UsuarioRepository().usuarioNome
+        email.text = UsuarioRepository().usuarioEmail
 
-        imagem.loadImage(UsuarioDAO().usuarioFoto.toString())
+        imagem.loadImage(UsuarioRepository().usuarioFoto.toString())
 
         layoutButtonAssinante.setOnClickListener {
             when(layoutButtonsAssinante.visibility){

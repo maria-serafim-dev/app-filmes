@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appdefilmes.repository.FilmeRepository
-import com.example.appdefilmes.repository.UsuarioDAO
+import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.model.Filme
 import kotlinx.coroutines.launch
 
@@ -37,7 +37,7 @@ class FilmeViewModel : ViewModel() {
 
 
     init {
-        if (UsuarioDAO().usuarioLogado) filmesFavoritos()
+        if (UsuarioRepository().usuarioLogado) filmesFavoritos()
         getFilme()
     }
 

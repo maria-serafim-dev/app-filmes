@@ -21,6 +21,10 @@ const val layoutInicio: Int = 1
 const val layoutMinhaLista: Int = 2
 const val layoutAssistaTambem: Int = 3
 
+const val erroEmail: Int = 1
+const val erroCadastro: Int = 2
+const val sucessoCadastro: Int = 3
+
 val enderecoEmail: Array<String> = arrayOf("suporte@globoplay.com")
 const val assuntoEmail = "Comentário sobre o Globoplay"
 const val corpoEmail = "Escreva aqui seu comentário, dúvida ou sugestão"
