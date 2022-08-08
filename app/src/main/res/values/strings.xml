@@ -67,6 +67,7 @@
     <string name="hint_estado">Estado</string>
     <string name="hint_email">E-mail</string>
     <string name="hint_senha">Senha</string>
+    <string name="hint_cpf">Cpf</string>
 
     <string name="text_subtitulo_crear_conta">Crie a sua conta única para todos os produtos Globo</string>
 
@@ -92,6 +93,8 @@
     <string name="erro_input_senha_tamanho">Digite uma senha com mínimo 6 dígitos</string>
     <string name="erro_input_email">Digite um email</string>
     <string name="erro_input_email_invalido">E-mail inválido</string>
+    <string name="erro_input_cpf">Digite um cpf</string>
+    <string name="erro_input_cpf_invalido">CPF inválido</string>
     <string name="erro_input_data">Selecione uma data</string>
     <string name="erro_input_cidade">Digite uma cidade</string>
     <string name="erro_input_genero">Selecione um gênero</string>

@@ -7,7 +7,11 @@ import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import br.com.concrete.canarinho.validator.Validador
+import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher
+import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
 import com.example.appdefilmes.R
 import com.example.appdefilmes.data.*
 import com.example.appdefilmes.databinding.ActivityCadastroBinding
@@ -15,6 +19,8 @@ import com.example.appdefilmes.model.Usuario
 import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.retrofit.UsuarioResponse
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.textfield.TextInputLayout
+
 
 class CadastroActivity : AppCompatActivity() {
 
@@ -22,8 +28,6 @@ class CadastroActivity : AppCompatActivity() {
     private val repository : UsuarioRepository by lazy {
         UsuarioRepository()
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,13 @@ class CadastroActivity : AppCompatActivity() {
 
         ouvinteDataPicker(datePicker)
         ouvinteBotaoCadastrar()
+        binding.editCpf.addTextChangedListener(
+            MascaraNumericaTextWatcher.Builder()
+                .paraMascara("###.###.###-##")
+                .comCallbackDeValidacao(EventoDeValidacaoCpf(binding.tfCpf))
+                .comValidador(Validador.CPF)
+                .build()
+        )
     }
 
     private fun ouvinteBotaoCadastrar() {
@@ -51,11 +62,12 @@ class CadastroActivity : AppCompatActivity() {
         val senha: String = binding.editSenha.text.toString()
         val nome = binding.editNome.text.toString()
         val dataNascimento = binding.editDataNascimento.text.toString()
+        val cpf = binding.editCpf.text.toString()
         val cidade = binding.editCidade.text.toString()
         val genero = binding.tfGenero.editText?.text.toString()
         val estado = binding.tfEstado.editText?.text.toString()
 
-        val usuario = Usuario(nome, email, senha, dataNascimento, genero, cidade, estado)
+        val usuario = Usuario(nome, email, senha, cpf, dataNascimento, genero, cidade, estado)
 
         repository.cadastrarUsuario(usuario,  object : UsuarioResponse {
             override fun resposta(resposta: Int) {
@@ -122,6 +134,16 @@ class CadastroActivity : AppCompatActivity() {
             retorno = false
         }
 
+        if (TextUtils.isEmpty(binding.editCpf.text) || binding.editCpf.text == null) {
+            binding.tfCpf.error = getString(R.string.erro_input_cpf)
+            binding.editCpf.requestFocus()
+            retorno = false
+        }else if(!Validador.CPF.ehValido(binding.editCpf.text.toString())){
+            binding.tfCpf.error = getString(R.string.erro_input_cpf_invalido)
+            binding.editCpf.requestFocus()
+            retorno = false
+        }
+
         if (TextUtils.isEmpty(binding.editEmail.text) || binding.editEmail.text == null) {
             binding.tfEmail.error = getString(R.string.erro_input_email)
             binding.editEmail.requestFocus()
@@ -174,5 +196,24 @@ class CadastroActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
+    }
+}
+
+class EventoDeValidacaoCpf(private val textInputLayout: TextInputLayout) :
+    EventoDeValidacao {
+    override fun invalido(valorAtual: String, mensagem: String) {
+        textInputLayout.error = mensagem
+    }
+
+    override fun parcialmenteValido(valorAtual: String) {
+        textInputLayout.isErrorEnabled = false
+        textInputLayout.error = null
+    }
+
+    override fun totalmenteValido(valorAtual: String) {
+        AlertDialog.Builder(textInputLayout.context)
+            .setTitle("Campo válido!")
+            .setMessage(valorAtual)
+            .show()
     }
 }

@@ -87,6 +87,24 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tf_cpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/hint_cpf"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tf_senha">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_cpf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tf_data_nascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +114,7 @@
             app:endIconMode="custom"
             app:endIconDrawable="@drawable/ic_calendario"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tf_senha">
+            app:layout_constraintTop_toBottomOf="@id/tf_cpf">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_data_nascimento"
@@ -115,13 +133,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/hint_genero"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tf_data_nascimento">
 
             <AutoCompleteTextView
                 android:padding="16dp"
                 android:textSize="16sp"
+                android:hint="@string/hint_genero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none" />
@@ -154,7 +172,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/hint_estado"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tf_cidade">
 
@@ -162,6 +179,7 @@
                 android:id="@+id/ac_estado"
                 android:padding="16dp"
                 android:textSize="16sp"
+                android:hint="@string/hint_estado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none" />
