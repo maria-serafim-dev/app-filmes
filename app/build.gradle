@@ -67,7 +67,7 @@ dependencies {
     implementation Retrofit.gson
     implementation OkHttp.loggingInterceptor
 
-    implementation Picasso.core
+    implementation Glide.core
 
     implementation platform(Firebase.bom)
     implementation Firebase.database

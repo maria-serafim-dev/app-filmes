@@ -87,6 +87,14 @@ object Picasso {
     const val core = "com.squareup.picasso:picasso:${Versions.picasso}"
 }
 
+object Glide {
+    object Versions {
+        const val glide = "4.12.0"
+    }
+
+    const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
+}
+
 object Facebook {
     object Versions {
         const val facebook = "8.2.0"
