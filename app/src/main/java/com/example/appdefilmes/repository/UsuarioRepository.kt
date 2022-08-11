@@ -2,7 +2,7 @@ package com.example.appdefilmes.repository
 
 import android.net.Uri
 import com.example.appdefilmes.data.erroCadastro
-import com.example.appdefilmes.data.erroEmail
+import com.example.appdefilmes.data.erroEmailExistente
 import com.example.appdefilmes.data.sucessoCadastro
 import com.example.appdefilmes.model.Usuario
 import com.example.appdefilmes.model.token
@@ -74,7 +74,7 @@ class UsuarioRepository {
                     }
                 } else {
                     if (task.exception is FirebaseAuthUserCollisionException) {
-                        response.resposta(erroEmail)
+                        response.resposta(erroEmailExistente)
                     }
                 }
             }

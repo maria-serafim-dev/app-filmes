@@ -7,6 +7,7 @@ import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.concrete.canarinho.validator.Validador
@@ -16,8 +17,8 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.data.*
 import com.example.appdefilmes.databinding.ActivityCadastroBinding
 import com.example.appdefilmes.model.Usuario
-import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.retrofit.UsuarioResponse
+import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 
@@ -25,9 +26,7 @@ import com.google.android.material.textfield.TextInputLayout
 class CadastroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCadastroBinding
-    private val repository : UsuarioRepository by lazy {
-        UsuarioRepository()
-    }
+    private val viewModel : UsuarioViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,14 +68,14 @@ class CadastroActivity : AppCompatActivity() {
 
         val usuario = Usuario(nome, email, senha, cpf, dataNascimento, genero, cidade, estado)
 
-        repository.cadastrarUsuario(usuario,  object : UsuarioResponse {
+        viewModel.cadastrarUsuario(usuario,  object : UsuarioResponse {
             override fun resposta(resposta: Int) {
                 when(resposta){
                     sucessoCadastro -> {
                         Toast.makeText(applicationContext, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show()
                         proximaActivity()
                     }
-                    erroEmail -> {
+                    erroEmailExistente -> {
                         binding.tfEmail.error = "Já existe um usuário com esse e-mail"
                         binding.editEmail.requestFocus()
                     }

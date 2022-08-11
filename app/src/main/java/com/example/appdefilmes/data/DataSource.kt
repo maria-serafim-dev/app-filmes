@@ -21,7 +21,7 @@ const val layoutInicio: Int = 1
 const val layoutMinhaLista: Int = 2
 const val layoutAssistaTambem: Int = 3
 
-const val erroEmail: Int = 1
+const val erroEmailExistente: Int = 1
 const val erroCadastro: Int = 2
 const val sucessoCadastro: Int = 3
 
