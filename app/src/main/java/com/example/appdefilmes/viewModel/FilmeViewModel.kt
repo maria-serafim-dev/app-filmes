@@ -5,13 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appdefilmes.model.Filme
+import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.repository.FilmeRepository
+import com.example.appdefilmes.useCase.DadosUsuarioLogadoUseCase
 import com.example.appdefilmes.useCase.VerificarLoginUseCase
 import kotlinx.coroutines.launch
 
 class FilmeViewModel : ViewModel() {
 
-    private val _filmesFavoritos = MutableLiveData<MutableList<Filme>>()
+
     private val repository : FilmeRepository by lazy{
         FilmeRepository()
     }
@@ -20,6 +22,13 @@ class FilmeViewModel : ViewModel() {
         VerificarLoginUseCase()
     }
 
+    private val usuarioLogadoUseCase: DadosUsuarioLogadoUseCase by lazy {
+        DadosUsuarioLogadoUseCase()
+    }
+
+    private var _usuarioLogado = MutableLiveData<UsuarioLogin>()
+
+    private val _filmesFavoritos = MutableLiveData<MutableList<Filme>>()
     val filmesFavoritos: LiveData<MutableList<Filme>>
         get() = _filmesFavoritos
 
@@ -41,13 +50,16 @@ class FilmeViewModel : ViewModel() {
 
 
     init {
-        if (verificarLoginUseCase.verificarLogin()) filmesFavoritos()
+        if (verificarLoginUseCase.verificarLogin()) {
+            recuperarDadosUsuario()
+            filmesFavoritos()
+        }
         getFilme()
     }
 
     private fun filmesFavoritos() {
         viewModelScope.launch {
-            _filmesFavoritos.value = repository.getListaFavoritos()
+            _filmesFavoritos.value = _usuarioLogado.value?.let { repository.getListaFavoritos(it.id) }
         }
     }
 
@@ -70,17 +82,23 @@ class FilmeViewModel : ViewModel() {
     }
 
     fun adicionarFilmeFavorito(filme: Filme) {
-        repository.inserirMinhaLista(filme)
+        _usuarioLogado.value?.let {repository.inserirMinhaLista(filme, it.id)}
         _filmesFavoritos.value?.add(filme)
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
     fun removerFilmeFavorito(filme: Filme) {
-        repository.removerFavorito(filme.id.toString())
+        _usuarioLogado.value?.let {repository.removerFavorito(filme.id.toString(), it.id)}
         _filmesFavoritos.value?.remove(filme)
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
-
+    private fun recuperarDadosUsuario(){
+        viewModelScope.launch{
+            usuarioLogadoUseCase.recuperarDadosUsuario().collect{ usuario ->
+                _usuarioLogado.value = usuario
+            }
+        }
+    }
 
 }

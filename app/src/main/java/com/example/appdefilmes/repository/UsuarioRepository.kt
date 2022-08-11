@@ -5,54 +5,42 @@ import com.example.appdefilmes.data.erroCadastro
 import com.example.appdefilmes.data.erroEmailExistente
 import com.example.appdefilmes.data.sucessoCadastro
 import com.example.appdefilmes.model.Usuario
+import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.model.token
 import com.example.appdefilmes.retrofit.UsuarioResponse
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class UsuarioRepository {
 
     private val auth = FirebaseAuth.getInstance()
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
 
-    private lateinit var _usuarioId : String
-    val usuarioId: String
-        get() = _usuarioId
+    suspend fun recuperarDadosUsuarioLogado() : Flow<UsuarioLogin> = flow {
 
-    private lateinit var _usuarioNome : String
-    val usuarioNome: String
-        get() = _usuarioNome
-
-    private lateinit var _usuarioEmail : String
-    val usuarioEmail: String
-        get() = _usuarioEmail
-
-    private lateinit var _usuarioFoto : Uri
-    val usuarioFoto: Uri
-        get() = _usuarioFoto
-
-    private fun verificarLoginDadosDoUsuario(){
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
         if(auth.currentUser != null) {
-            _usuarioId = auth.uid!!
-            _usuarioNome = auth.currentUser?.displayName!!
-            _usuarioEmail = auth.currentUser?.email!!
+            val usuarioId = auth.uid!!
+            val usuarioNome = auth.currentUser?.displayName!!
+            val usuarioEmail = auth.currentUser?.email!!
+
             val provedor = auth.currentUser?.providerData?.get(1)?.providerId
-            _usuarioFoto = if (provedor != null && provedor == "facebook.com") {
+            val usuarioFoto = if (provedor != null && provedor == "facebook.com") {
                 Uri.parse("${auth.currentUser?.photoUrl}?access_token=${token}")
             }else{
                 auth.currentUser?.photoUrl!!
             }
+
+            val usuarioLogin = UsuarioLogin(usuarioId, usuarioNome, usuarioEmail, usuarioFoto)
+
+            emit(usuarioLogin)
+        }else{
+            throw Exception("Não foi possível fazer a busca no momento")
         }
     }
-
-    init {
-        verificarLoginDadosDoUsuario()
-    }
-
-
 
     fun cadastrarUsuario(usuario: Usuario, response: UsuarioResponse) {
         auth.createUserWithEmailAndPassword(usuario.email, usuario.senha)
@@ -90,7 +78,6 @@ class UsuarioRepository {
                     resposta.resposta(erroCadastro)
                 }
             }
-
 
     }
 

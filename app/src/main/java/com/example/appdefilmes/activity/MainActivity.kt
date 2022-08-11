@@ -17,7 +17,7 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.fragments.InicioFragment
-import com.example.appdefilmes.repository.UsuarioRepository
+import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -68,15 +68,15 @@ class MainActivity : AppCompatActivity() {
                 binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
 
                 abrirToast()
-                configurarHeaderDrawer()
+                viewModel.usuarioLogado.observe(this){ usuario ->
+                    configurarHeaderDrawer(usuario)
+                }
                 initializarGoogle()
             }
         }
-
     }
 
-
-    private fun configurarHeaderDrawer() {
+    private fun configurarHeaderDrawer(usuario: UsuarioLogin) {
         val header = binding.navigationView.getHeaderView(0)
         val nome: TextView = header.findViewById(R.id.tv_nome)
         val email: TextView = header.findViewById(R.id.tv_email)
@@ -85,10 +85,10 @@ class MainActivity : AppCompatActivity() {
         val layoutButtonAssinante: LinearLayout = header.findViewById(R.id.layout_button_assinante)
         val layoutButtonsAssinante: LinearLayout = header.findViewById(R.id.layout_buttons_assinante)
 
-        nome.text = UsuarioRepository().usuarioNome
-        email.text = UsuarioRepository().usuarioEmail
+        nome.text = usuario.nome
+        email.text = usuario.email
 
-        imagem.loadImage(UsuarioRepository().usuarioFoto.toString())
+        imagem.loadImage(usuario.foto.toString())
 
         layoutButtonAssinante.setOnClickListener {
             when(layoutButtonsAssinante.visibility){
@@ -105,7 +105,6 @@ class MainActivity : AppCompatActivity() {
                     imagemArrow.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_arrow_up))
                 }
             }
-
         }
     }
 
@@ -132,8 +131,8 @@ class MainActivity : AppCompatActivity() {
 
         entrar.visibility = View.VISIBLE
         sejaAssinante.visibility = View.VISIBLE
-
     }
+
     private fun ouvinteMenuAppBar() {
         binding.conteudoMain.topAppBar.setOnMenuItemClickListener {
             inicializarDrawerNavigation()
@@ -212,13 +211,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun inicializarDrawerNavigation() {
         binding.drawerLayout.openDrawer(GravityCompat.START)
-
     }
 
     private fun abrirToast() {
         val nome = auth.currentUser?.displayName
         Toast.makeText(this, "Bem vinda $nome", Toast.LENGTH_LONG).show()
     }
-
-
 }

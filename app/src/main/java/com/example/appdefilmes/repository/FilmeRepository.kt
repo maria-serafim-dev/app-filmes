@@ -12,14 +12,13 @@ import kotlinx.coroutines.tasks.await
 class FilmeRepository {
 
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
-    private val usuarioId = UsuarioRepository().usuarioId
 
 
-    fun inserirMinhaLista(filme: Filme) {
+    fun inserirMinhaLista(filme: Filme, usuarioId: String) {
         referencia.child("filmeFavoritos").child(usuarioId).child(filme.id.toString()).setValue(filme)
     }
 
-    suspend fun getListaFavoritos(): MutableList<Filme> {
+    suspend fun getListaFavoritos(usuarioId: String): MutableList<Filme> {
         val listaFilmes: MutableList<Filme> = mutableListOf()
         val await = referencia.child("filmeFavoritos").child(usuarioId).get().await()
         await.children.forEach { dataSnapshot ->
@@ -39,7 +38,7 @@ class FilmeRepository {
     }
 
 
-    fun removerFavorito(id: String) {
+    fun removerFavorito(id: String, usuarioId: String) {
         referencia.child("filmeFavoritos").child(usuarioId).child(id).removeValue()
     }
 
