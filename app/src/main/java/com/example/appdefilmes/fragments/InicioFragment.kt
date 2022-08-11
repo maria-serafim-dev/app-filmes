@@ -19,17 +19,20 @@ class InicioFragment : Fragment() {
 
     private lateinit var binding: FragmentInicioBinding
     private val viewModel: FilmeViewModel by activityViewModels()
-    private val adapterSucesso: FilmeAdapter by lazy {
+
+    private val adapterComMelhoresAvaliacoes: FilmeAdapter by lazy {
         FilmeAdapter(
             layoutInicio
         )
     }
-    private val adapterNovidade: FilmeAdapter by lazy {
+
+    private val adapterPopulares: FilmeAdapter by lazy {
         FilmeAdapter(
             layoutInicio
         )
     }
-    private val adapterExcluivos: FilmeAdapter by lazy {
+
+    private val adapterAtuaisNosCinemas: FilmeAdapter by lazy {
         FilmeAdapter(
             layoutInicio
         )
@@ -47,29 +50,29 @@ class InicioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         iniciarObservable()
         setAdapter()
-        setOnClickFilme(adapterSucesso)
-        setOnClickFilme(adapterNovidade)
-        setOnClickFilme(adapterExcluivos)
+        setOnClickFilme(adapterPopulares)
+        setOnClickFilme(adapterComMelhoresAvaliacoes)
+        setOnClickFilme(adapterAtuaisNosCinemas)
     }
 
     private fun iniciarObservable() {
         viewModel.filmesPopulares.observe(viewLifecycleOwner) { listaFilme ->
-            adapterSucesso.submitList(listaFilme)
+            adapterPopulares.submitList(listaFilme)
         }
 
         viewModel.filmesAtuaisNosCinemais.observe(viewLifecycleOwner) { listaFilme ->
-            adapterNovidade.submitList(listaFilme)
+            adapterAtuaisNosCinemas.submitList(listaFilme)
         }
 
-        viewModel.filmesNovidades.observe(viewLifecycleOwner) { listaFilme ->
-            adapterExcluivos.submitList(listaFilme)
+        viewModel.filmesComMelhoresAvaliacoes.observe(viewLifecycleOwner) { listaFilme ->
+            adapterComMelhoresAvaliacoes.submitList(listaFilme)
         }
     }
 
     private fun setAdapter() {
-        binding.rvSucesso.adapter = adapterSucesso
-        binding.rvNovidades.adapter = adapterNovidade
-        binding.rvExclusivos.adapter = adapterExcluivos
+        binding.rvPopulares.adapter = adapterPopulares
+        binding.rvComMelhoresAvaliacoes.adapter = adapterComMelhoresAvaliacoes
+        binding.rvAtuaisNosCinemas.adapter = adapterAtuaisNosCinemas
     }
 
     private fun setOnClickFilme(adapter: FilmeAdapter) {

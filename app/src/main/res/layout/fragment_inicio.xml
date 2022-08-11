@@ -27,52 +27,51 @@
             app:layout_constraintTop_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/tv_novidade"
+                android:id="@+id/tv_populares"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="@string/text_ultimos_adicionados"
+                android:text="@string/text_populares"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 style="@style/TextAppearance.Material3.HeadlineSmall"
-                app:layout_constraintBottom_toTopOf="@id/rv_novidades"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/rv_populares"
+                app:layout_constraintEnd_toEndOf="@id/view"
+                app:layout_constraintStart_toStartOf="@id/view"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
+                app:layout_constraintVertical_bias="0.0"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_novidades"
+                android:id="@+id/rv_populares"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@id/tv_sucesso"
+                app:layout_constraintBottom_toTopOf="@id/tv_populares"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/tv_novidade"
+                app:layout_constraintTop_toBottomOf="@id/tv_populares"
                 tools:listitem="@layout/item_imagem_filme" />
 
             <TextView
-                android:id="@+id/tv_sucesso"
+                android:id="@+id/tv_melhores_avaliacoes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="@string/text_sucesso"
+                android:text="@string/text_com_melhores_avaliacoes"
                 android:textColor="@color/white"
-                style="@style/TextAppearance.Material3.HeadlineSmall"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/rv_sucesso"
-                app:layout_constraintEnd_toEndOf="@id/view"
-                app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/rv_novidades" />
+                style="@style/TextAppearance.Material3.HeadlineSmall"
+                app:layout_constraintBottom_toTopOf="@id/rv_com_melhores_avaliacoes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_populares"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_sucesso"
+                android:id="@+id/rv_com_melhores_avaliacoes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
@@ -83,9 +82,8 @@
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/tv_sucesso"
+                app:layout_constraintTop_toBottomOf="@id/tv_melhores_avaliacoes"
                 tools:listitem="@layout/item_imagem_filme" />
-
 
             <TextView
                 android:id="@+id/tv_atuais_no_cinema"
@@ -96,15 +94,15 @@
                 android:textColor="@color/white"
                 style="@style/TextAppearance.Material3.HeadlineSmall"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/rv_exclusivos"
+                app:layout_constraintBottom_toTopOf="@id/rv_atuais_nos_cinemas"
                 app:layout_constraintEnd_toEndOf="@id/view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/view"
-                app:layout_constraintTop_toBottomOf="@id/rv_sucesso"
+                app:layout_constraintTop_toBottomOf="@id/rv_com_melhores_avaliacoes"
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_exclusivos"
+                android:id="@+id/rv_atuais_nos_cinemas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"

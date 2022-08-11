@@ -19,9 +19,9 @@ class FilmeViewModel : ViewModel() {
     val filmesFavoritos: LiveData<MutableList<Filme>>
         get() = _filmesFavoritos
 
-    private val _filmesNovidades = MutableLiveData<List<Filme>>()
-    val filmesNovidades: LiveData<List<Filme>>
-        get() = _filmesNovidades
+    private val _filmesComMelhoresAvaliacoes = MutableLiveData<List<Filme>>()
+    val filmesComMelhoresAvaliacoes: LiveData<List<Filme>>
+        get() = _filmesComMelhoresAvaliacoes
 
     private val _filmesPopulares = MutableLiveData<List<Filme>>()
     val filmesPopulares: LiveData<List<Filme>>
@@ -50,7 +50,7 @@ class FilmeViewModel : ViewModel() {
     private fun getFilme() {
         viewModelScope.launch {
             try {
-                _filmesNovidades.value = repository.getFilmesPorCategoria("top_rated")
+                _filmesComMelhoresAvaliacoes.value = repository.getFilmesPorCategoria("top_rated")
                 _filmesAtuaisNosCinemais.value = repository.getFilmesPorCategoria("now_playing")
                 _filmesPopulares.value = repository.getFilmesPorCategoria("popular")
             } catch (e: Exception) {

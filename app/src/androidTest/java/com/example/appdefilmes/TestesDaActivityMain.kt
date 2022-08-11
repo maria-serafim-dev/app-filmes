@@ -23,20 +23,20 @@ class TestesDaActivityMain {
 
     @Test
     fun recyclerViewSucessoCarregada() {
-        onView(withId(R.id.rv_sucesso))
+        onView(withId(R.id.rv_populares))
             .check(matches(isDisplayed()))
     }
 
     @Test
     fun recyclerViewNovidadesCarregada() {
-        onView(withId(R.id.rv_novidades))
+        onView(withId(R.id.rv_com_melhores_avaliacoes))
             .check(matches(isDisplayed()))
     }
 
     @Test
     fun recyclerViewExclusivosCarregada() {
         onView(withId(R.id.fragment_inicio)).perform(swipeUp())
-        onView(withId(R.id.rv_exclusivos)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_atuais_nos_cinemas)).check(matches(isDisplayed()))
     }
 
     @Test
