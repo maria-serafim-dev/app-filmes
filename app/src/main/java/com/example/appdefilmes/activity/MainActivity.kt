@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -13,10 +14,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.appdefilmes.R
-import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.fragments.InicioFragment
+import com.example.appdefilmes.repository.UsuarioRepository
+import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private val auth = FirebaseAuth.getInstance()
     private var mGoogleSignInClient: GoogleSignInClient? = null
+    private val viewModel : UsuarioViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -47,26 +50,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun inicializarFragments(savedInstanceState: Bundle?) {
 
-        if (!UsuarioRepository().usuarioLogado) {
-            val fragment = InicioFragment()
-            if (savedInstanceState == null)
-                supportFragmentManager.beginTransaction()
-                    .add(binding.conteudoMain.fragmentInicio.id, fragment)
-                    .commit()
-            binding.conteudoMain.bottomNavegacaoInicio.menu.removeItem(R.id.minhaListaFragment2)
+        viewModel.logado.observe(this){ usuarioLogado ->
+            if (!usuarioLogado) {
+                val fragment = InicioFragment()
+                if (savedInstanceState == null)
+                    supportFragmentManager.beginTransaction()
+                        .add(binding.conteudoMain.fragmentInicio.id, fragment)
+                        .commit()
+                binding.conteudoMain.bottomNavegacaoInicio.menu.removeItem(R.id.minhaListaFragment2)
 
-            configurarHeaderDrawerSemLogin()
+                configurarHeaderDrawerSemLogin()
 
-        } else {
-            val navHostFragment = supportFragmentManager
-                .findFragmentById(R.id.fragment_inicio) as NavHostFragment
-            navController = navHostFragment.navController
-            binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
+            } else {
+                val navHostFragment = supportFragmentManager
+                    .findFragmentById(R.id.fragment_inicio) as NavHostFragment
+                navController = navHostFragment.navController
+                binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
 
-            abrirToast()
-            configurarHeaderDrawer()
-            initializarGoogle()
+                abrirToast()
+                configurarHeaderDrawer()
+                initializarGoogle()
+            }
         }
+
     }
 
 

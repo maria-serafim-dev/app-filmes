@@ -17,10 +17,6 @@ class UsuarioRepository {
     private val auth = FirebaseAuth.getInstance()
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
 
-    private var _usuarioLogado : Boolean = false
-    val usuarioLogado: Boolean
-        get() = _usuarioLogado
-
     private lateinit var _usuarioId : String
     val usuarioId: String
         get() = _usuarioId
@@ -37,15 +33,14 @@ class UsuarioRepository {
     val usuarioFoto: Uri
         get() = _usuarioFoto
 
-    private fun verificarLogin(){
+    private fun verificarLoginDadosDoUsuario(){
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         if(auth.currentUser != null) {
-            _usuarioLogado = true
             _usuarioId = auth.uid!!
             _usuarioNome = auth.currentUser?.displayName!!
             _usuarioEmail = auth.currentUser?.email!!
             val provedor = auth.currentUser?.providerData?.get(1)?.providerId
-            _usuarioFoto = if (provedor != null && provedor.equals("facebook.com")) {
+            _usuarioFoto = if (provedor != null && provedor == "facebook.com") {
                 Uri.parse("${auth.currentUser?.photoUrl}?access_token=${token}")
             }else{
                 auth.currentUser?.photoUrl!!
@@ -54,7 +49,7 @@ class UsuarioRepository {
     }
 
     init {
-        verificarLogin()
+        verificarLoginDadosDoUsuario()
     }
 
 
@@ -103,6 +98,5 @@ class UsuarioRepository {
         referencia.child("dadosUsuario").child(idUsuario).setValue(usuario)
     }
 
-
-
+    fun verificarLogin() = auth.currentUser != null
 }

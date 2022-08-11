@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
-import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.data.baseUrlImagem
 import com.example.appdefilmes.databinding.FragmentInformacoesFilmeBinding
 import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.viewModel.FilmeViewModel
+import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -30,7 +31,8 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     private lateinit var binding : FragmentInformacoesFilmeBinding
     private val args: InformacoesFilmeFragmentArgs by navArgs()
     private val viewModels : FilmeViewModel by activityViewModels()
-    private lateinit var filme : Filme
+    private lateinit var filme: Filme
+    private val viewModel: UsuarioViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,11 +86,13 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
 
     private fun inicializarBotaoMinhaLista() {
 
-        if (UsuarioRepository().usuarioLogado) {
-            configurarTextoBotaoMinhaLista()
-            ouvinteBotaoMinhaLista()
-        } else {
-            binding.btnMinhaLista.visibility = View.GONE
+        viewModel.logado.observe(viewLifecycleOwner) { usuarioLogado ->
+            if (usuarioLogado) {
+                configurarTextoBotaoMinhaLista()
+                ouvinteBotaoMinhaLista()
+            } else {
+                binding.btnMinhaLista.visibility = View.GONE
+            }
         }
     }
 

@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appdefilmes.repository.FilmeRepository
-import com.example.appdefilmes.repository.UsuarioRepository
 import com.example.appdefilmes.model.Filme
+import com.example.appdefilmes.repository.FilmeRepository
+import com.example.appdefilmes.useCase.VerificarLoginUseCase
 import kotlinx.coroutines.launch
 
 class FilmeViewModel : ViewModel() {
@@ -14,6 +14,10 @@ class FilmeViewModel : ViewModel() {
     private val _filmesFavoritos = MutableLiveData<MutableList<Filme>>()
     private val repository : FilmeRepository by lazy{
         FilmeRepository()
+    }
+
+    private val verificarLoginUseCase: VerificarLoginUseCase by lazy {
+        VerificarLoginUseCase()
     }
 
     val filmesFavoritos: LiveData<MutableList<Filme>>
@@ -37,7 +41,7 @@ class FilmeViewModel : ViewModel() {
 
 
     init {
-        if (UsuarioRepository().usuarioLogado) filmesFavoritos()
+        if (verificarLoginUseCase.verificarLogin()) filmesFavoritos()
         getFilme()
     }
 
