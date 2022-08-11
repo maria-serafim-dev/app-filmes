@@ -8,7 +8,7 @@ class VerificarLoginUseCase {
         UsuarioRepository()
     }
 
-    fun verificarLogin() : Boolean {
+    operator fun invoke() : Boolean {
         return repository.verificarLogin()
     }
 }

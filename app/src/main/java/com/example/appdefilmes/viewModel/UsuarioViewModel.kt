@@ -33,17 +33,17 @@ class UsuarioViewModel : ViewModel() {
     val logado: LiveData<Boolean> = _logado
 
     fun cadastrarUsuario(usuario: Usuario, response: UsuarioResponse) {
-        cadastroUseCase.cadastrarUsuario(usuario, response)
+        cadastroUseCase(usuario, response)
     }
 
     private fun verificarLogin() {
-        _logado.value = verificarLoginUseCase.verificarLogin()
+        _logado.value = verificarLoginUseCase()
         if(_logado.value == true) recuperarDadosUsuario()
     }
 
     private fun recuperarDadosUsuario(){
         viewModelScope.launch{
-            usuarioLogadoUseCase.recuperarDadosUsuario().collect{ usuario ->
+            usuarioLogadoUseCase().collect{ usuario ->
                 _usuarioLogado.value = usuario
             }
         }

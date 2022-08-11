@@ -10,7 +10,7 @@ class CadastroUsuarioUseCase {
         UsuarioRepository()
     }
 
-    fun cadastrarUsuario(usuario: Usuario, response: UsuarioResponse){
+    operator fun invoke(usuario: Usuario, response: UsuarioResponse){
         repository.cadastrarUsuario(usuario, response)
     }
 

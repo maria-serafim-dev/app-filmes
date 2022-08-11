@@ -50,7 +50,7 @@ class FilmeViewModel : ViewModel() {
 
 
     init {
-        if (verificarLoginUseCase.verificarLogin()) {
+        if (verificarLoginUseCase()) {
             recuperarDadosUsuario()
             filmesFavoritos()
         }
@@ -95,7 +95,7 @@ class FilmeViewModel : ViewModel() {
 
     private fun recuperarDadosUsuario(){
         viewModelScope.launch{
-            usuarioLogadoUseCase.recuperarDadosUsuario().collect{ usuario ->
+            usuarioLogadoUseCase().collect{ usuario ->
                 _usuarioLogado.value = usuario
             }
         }

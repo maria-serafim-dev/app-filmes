@@ -10,7 +10,7 @@ class DadosUsuarioLogadoUseCase {
         UsuarioRepository()
     }
 
-    suspend fun recuperarDadosUsuario(): Flow<UsuarioLogin> {
+    suspend operator fun invoke(): Flow<UsuarioLogin> {
        return repository.recuperarDadosUsuarioLogado()
     }
 }
