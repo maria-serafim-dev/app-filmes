@@ -1,11 +1,13 @@
 package com.example.appdefilmes.activity
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -13,6 +15,9 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
@@ -25,6 +30,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.divider.MaterialDivider
 import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,10 +76,24 @@ class MainActivity : AppCompatActivity() {
                 abrirToast()
                 viewModel.usuarioLogado.observe(this){ usuario ->
                     configurarHeaderDrawer(usuario)
+                    inicializarFotoTopBar(usuario)
                 }
-                initializarGoogle()
+
+                inicializarGoogle()
             }
         }
+    }
+
+    private fun inicializarFotoTopBar(usuario: UsuarioLogin) {
+        Glide.with(this).asDrawable().load(usuario.foto.toString()).circleCrop().into(object : CustomTarget<Drawable?>() {
+            override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+            override fun onResourceReady(
+                resource: Drawable,
+                transition: Transition<in Drawable?>?
+            ) {
+                binding.conteudoMain.topAppBar.menu.findItem(R.id.item_app_bar).icon = resource
+            }
+        })
     }
 
     private fun configurarHeaderDrawer(usuario: UsuarioLogin) {
@@ -140,7 +160,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initializarGoogle() {
+    private fun inicializarGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
