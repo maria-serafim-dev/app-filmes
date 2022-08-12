@@ -9,7 +9,9 @@ import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.retrofit.UsuarioResponse
 import com.example.appdefilmes.useCase.CadastroUsuarioUseCase
 import com.example.appdefilmes.useCase.DadosUsuarioLogadoUseCase
+import com.example.appdefilmes.useCase.SignOutUseCase
 import com.example.appdefilmes.useCase.VerificarLoginUseCase
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import kotlinx.coroutines.launch
 
 class UsuarioViewModel : ViewModel() {
@@ -24,6 +26,10 @@ class UsuarioViewModel : ViewModel() {
 
     private val usuarioLogadoUseCase: DadosUsuarioLogadoUseCase by lazy {
         DadosUsuarioLogadoUseCase()
+    }
+
+    private val signOut: SignOutUseCase by lazy {
+        SignOutUseCase()
     }
 
     private var _usuarioLogado = MutableLiveData<UsuarioLogin>()
@@ -47,6 +53,10 @@ class UsuarioViewModel : ViewModel() {
                 _usuarioLogado.value = usuario
             }
         }
+    }
+
+    fun signOutTodosProvedores(mGoogleSignInClient: GoogleSignInClient) {
+        signOut(mGoogleSignInClient)
     }
 
     init {

@@ -24,7 +24,6 @@ import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.fragments.InicioFragment
 import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.viewModel.UsuarioViewModel
-import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -175,7 +174,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.item_perguntas -> abrirPerguntasFrequentes()
                 R.id.item_termos_politicas -> abrirTermosPoliticas()
                 R.id.item_sobre -> abrirSobre()
-                R.id.item_sair -> loginTodasContas()
+                R.id.item_sair -> signOutTodosProvedores()
             }
 
             binding.drawerLayout.close()
@@ -183,23 +182,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginTodasContas() {
-        logOutEmailSenha()
-        logOutFacebook()
-        logOutGoogle()
+    private fun signOutTodosProvedores() {
+        viewModel.signOutTodosProvedores(mGoogleSignInClient!!)
         voltarActivityPrincipal()
-    }
-
-    private fun logOutEmailSenha() {
-        FirebaseAuth.getInstance().signOut()
-    }
-
-    private fun logOutFacebook() {
-        LoginManager.getInstance().logOut()
-    }
-
-    private fun logOutGoogle() {
-        mGoogleSignInClient!!.signOut()
     }
 
     private fun voltarActivityPrincipal() {
