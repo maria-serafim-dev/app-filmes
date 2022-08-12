@@ -6,8 +6,8 @@ import com.example.appdefilmes.data.erroEmailExistente
 import com.example.appdefilmes.data.sucessoCadastro
 import com.example.appdefilmes.model.Usuario
 import com.example.appdefilmes.model.UsuarioLogin
-import com.example.appdefilmes.model.token
 import com.example.appdefilmes.retrofit.UsuarioResponse
+import com.facebook.AccessToken
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import com.google.firebase.database.DatabaseReference
@@ -21,7 +21,7 @@ class UsuarioRepository {
     private var referencia: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     suspend fun recuperarDadosUsuarioLogado() : Flow<UsuarioLogin> = flow {
-
+        val accessToken = AccessToken.getCurrentAccessToken()
         if(auth.currentUser != null) {
             val usuarioId = auth.uid!!
             val usuarioNome = auth.currentUser?.displayName!!
@@ -29,7 +29,7 @@ class UsuarioRepository {
 
             val provedor = auth.currentUser?.providerData?.get(1)?.providerId
             val usuarioFoto = if (provedor != null && provedor == "facebook.com") {
-                Uri.parse("${auth.currentUser?.photoUrl}?access_token=${token}")
+                Uri.parse("${auth.currentUser?.photoUrl}?access_token=${accessToken?.token}")
             }else{
                 auth.currentUser?.photoUrl!!
             }

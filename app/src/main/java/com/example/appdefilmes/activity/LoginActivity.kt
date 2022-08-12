@@ -32,7 +32,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
 
-    private var callbackManager: CallbackManager? = null
+    private lateinit var callbackManager: CallbackManager
     private lateinit var binding: ActivityLoginBinding
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private var mGoogleSignInClient: GoogleSignInClient? = null
@@ -56,16 +56,16 @@ class LoginActivity : AppCompatActivity() {
         callbackManager = CallbackManager.Factory.create()
 
         LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult?> {
-                override fun onSuccess(loginResult: LoginResult?) {
-                    loginResult?.let { it1 -> sucessoFacebook(it1.accessToken) }
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    sucessoFacebook(result.accessToken)
                 }
 
                 override fun onCancel() {
                     mensagemCancelar("Facebook")
                 }
 
-                override fun onError(exception: FacebookException) {
+                override fun onError(error: FacebookException) {
                     mensagemErro("Facebook")
                 }
             })
@@ -75,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnFacebook.setOnClickListener {
             LoginManager.getInstance().logInWithReadPermissions(
                 this,
+                callbackManager,
                 listOf("email", "public_profile", "user_friends")
             )
         }
@@ -101,8 +102,6 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
-        } else {
-            callbackManager!!.onActivityResult(requestCode, resultCode, data)
         }
     }
 

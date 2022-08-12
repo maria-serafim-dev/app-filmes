@@ -97,7 +97,7 @@ object Glide {
 
 object Facebook {
     object Versions {
-        const val facebook = "8.2.0"
+        const val facebook = "14.1.0"
     }
 
     const val sdk = "com.facebook.android:facebook-android-sdk:${Versions.facebook}"
