@@ -59,6 +59,14 @@ class LoginFragment : Fragment() {
         clickListenerInputs()
         inicializarLoginGoogle()
         clickListenerBotaoGoogle()
+        ouvinteBotaoCadastrar()
+    }
+
+    private fun ouvinteBotaoCadastrar() {
+        binding.tvNaoPossuiConta.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToCadastroFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun registrarCallBackFacebook() {
