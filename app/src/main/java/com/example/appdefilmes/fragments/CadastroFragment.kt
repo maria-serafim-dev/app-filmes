@@ -1,21 +1,24 @@
-package com.example.appdefilmes.activity
+package com.example.appdefilmes.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import br.com.concrete.canarinho.validator.Validador
 import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher
 import br.com.concrete.canarinho.watcher.evento.EventoDeValidacao
 import com.example.appdefilmes.R
 import com.example.appdefilmes.data.*
-import com.example.appdefilmes.databinding.ActivityCadastroBinding
+import com.example.appdefilmes.databinding.FragmentCadastroBinding
 import com.example.appdefilmes.model.Usuario
 import com.example.appdefilmes.retrofit.UsuarioResponse
 import com.example.appdefilmes.viewModel.UsuarioViewModel
@@ -23,15 +26,23 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 
 
-class CadastroActivity : AppCompatActivity() {
+class CadastroFragment : Fragment() {
 
-    private lateinit var binding: ActivityCadastroBinding
+    private lateinit var binding: FragmentCadastroBinding
     private val viewModel : UsuarioViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCadastroBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentCadastroBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         iniciarInputsDropdown()
 
         val datePicker = inicializarMaterialDatePicker()
@@ -72,14 +83,14 @@ class CadastroActivity : AppCompatActivity() {
             override fun resposta(resposta: Int) {
                 when(resposta){
                     sucessoCadastro -> {
-                        Toast.makeText(applicationContext, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show()
                         proximaActivity()
                     }
                     erroEmailExistente -> {
                         binding.tfEmail.error = "Já existe um usuário com esse e-mail"
                         binding.editEmail.requestFocus()
                     }
-                    erroCadastro -> Toast.makeText(applicationContext, "Erro ao cadastrar usuário", Toast.LENGTH_SHORT).show()
+                    erroCadastro -> Toast.makeText(context, "Erro ao cadastrar usuário", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -94,7 +105,7 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun ouvinteDataPicker(datePicker: MaterialDatePicker<Long>) {
         binding.editDataNascimento.setOnClickListener {
-            datePicker.show(supportFragmentManager, datePicker.tag)
+            datePicker.show(parentFragmentManager, datePicker.tag)
 
             datePicker.addOnPositiveButtonClickListener {
                 binding.editDataNascimento.setText(datePicker.headerText.toString())
@@ -103,11 +114,10 @@ class CadastroActivity : AppCompatActivity() {
     }
 
     private fun iniciarInputsDropdown() {
-        val adapterGenero = ArrayAdapter(applicationContext, R.layout.lista_item_input, itensGenero)
+        val adapterGenero = activity?.let { ArrayAdapter(it.applicationContext, R.layout.lista_item_input, itensGenero) }
         (binding.tfGenero.editText as? AutoCompleteTextView)?.setAdapter(adapterGenero)
 
-        val adapterEstados =
-            ArrayAdapter(applicationContext, R.layout.lista_item_input, itensEstadosBrasileiros)
+        val adapterEstados = activity?.let { ArrayAdapter(it.applicationContext, R.layout.lista_item_input, itensEstadosBrasileiros)}
         (binding.tfEstado.editText as? AutoCompleteTextView)?.setAdapter(adapterEstados)
     }
 
@@ -192,9 +202,8 @@ class CadastroActivity : AppCompatActivity() {
 
 
     private fun proximaActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+       val action = CadastroFragmentDirections.actionCadastroFragmentToMainActivity()
+        findNavController().navigate(action)
     }
 }
 

@@ -20,16 +20,10 @@
             android:exported="false"
             android:parentActivityName="com.example.appdefilmes.activity.MainActivity"/>
         <activity
-            android:name=".activity.CadastroActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PrincipalActivity"
+            android:name=".activity.IntroducaoActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>

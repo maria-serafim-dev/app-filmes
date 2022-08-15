@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/cinza_fundo"
-    tools:context=".activity.PrincipalActivity">
+    tools:context=".fragments.PrincipalFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

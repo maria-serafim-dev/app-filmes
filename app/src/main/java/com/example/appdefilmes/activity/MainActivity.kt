@@ -22,6 +22,7 @@ import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.fragments.InicioFragment
+import com.example.appdefilmes.fragments.PrincipalFragment
 import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -188,7 +189,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun voltarActivityPrincipal() {
-        val intent = Intent(this, PrincipalActivity::class.java)
+        val intent = Intent(this, PrincipalFragment::class.java)
         startActivity(intent)
         finish()
     }

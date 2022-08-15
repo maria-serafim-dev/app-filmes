@@ -1,17 +1,21 @@
-package com.example.appdefilmes.activity
+package com.example.appdefilmes.fragments
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
-import com.example.appdefilmes.databinding.ActivityLoginBinding
+import com.example.appdefilmes.databinding.FragmentLoginBinding
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -30,26 +34,31 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : Fragment() {
 
     private lateinit var callbackManager: CallbackManager
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: FragmentLoginBinding
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private val RC_SIGN_IN = 9001
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         ouvinteBotaoLogin()
         ouvinteBotaoFacebook()
         registrarCallBackFacebook()
         clickListenerInputs()
         inicializarLoginGoogle()
         clickListenerBotaoGoogle()
-
     }
 
     private fun registrarCallBackFacebook() {
@@ -85,9 +94,7 @@ class LoginActivity : AppCompatActivity() {
         val credential = FacebookAuthProvider.getCredential(token.token)
 
         auth.signInWithCredential(credential)
-            .addOnCompleteListener(
-                this
-            ) { task: Task<AuthResult?> ->
+            .addOnCompleteListener { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
                     proximaActivity()
                 } else {
@@ -97,9 +104,9 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
+   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+       super.onActivityResult(requestCode, resultCode, data)
+       if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
@@ -125,16 +132,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun proximaActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+       val action = LoginFragmentDirections.actionLoginFragmentToMainActivity()
+        findNavController().navigate(action)
     }
 
     private fun mensagemErro(provedor: String) {
-        Toast.makeText(this, "Falha na autenticação com $provedor", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Falha na autenticação com $provedor", Toast.LENGTH_LONG).show()
     }
     private fun mensagemCancelar(provedor: String) {
-        Toast.makeText(this, "Login com $provedor cancelado" , Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Login com $provedor cancelado" , Toast.LENGTH_LONG).show()
     }
 
 
@@ -166,7 +172,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
             return true
         }
@@ -178,7 +184,7 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(requireContext() , gso)
     }
 
     private fun clickListenerBotaoGoogle() {
@@ -187,7 +193,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun signIn() {
         val signInIntent = mGoogleSignInClient!!.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        super.startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
@@ -202,9 +208,7 @@ class LoginActivity : AppCompatActivity() {
     private fun firebaseAuthComGoogle(idToken: String?) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
-            .addOnCompleteListener(
-                this
-            ) { task: Task<AuthResult?> ->
+            .addOnCompleteListener { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
                     proximaActivity()
                 } else {
