@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.FragmentLoginBinding
@@ -48,6 +49,7 @@ class LoginFragment : Fragment() {
     }
 
     private lateinit var savedStateHandle: SavedStateHandle
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,8 +70,18 @@ class LoginFragment : Fragment() {
         clickListenerBotaoGoogle()
         ouvinteBotaoCadastrar()
 
+        navController = findNavController()
         savedStateHandle = findNavController().previousBackStackEntry!!.savedStateHandle
         savedStateHandle[LOGIN_SUCCESSFUL] = false
+
+        val currentBackStackEntry = navController.currentBackStackEntry!!
+        val savedStateHandle = currentBackStackEntry.savedStateHandle
+        savedStateHandle.getLiveData<Boolean>(LOGIN_SUCCESSFUL)
+            .observe(currentBackStackEntry) { success ->
+                if (success) {
+                    retornarUsuarioLogado()
+                }
+            }
     }
 
     private fun ouvinteBotaoCadastrar() {

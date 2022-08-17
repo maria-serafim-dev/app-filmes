@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.fragment.findNavController
 import br.com.concrete.canarinho.validator.Validador
 import br.com.concrete.canarinho.watcher.MascaraNumericaTextWatcher
@@ -30,6 +31,7 @@ class CadastroFragment : Fragment() {
 
     private lateinit var binding: FragmentCadastroBinding
     private val viewModel : UsuarioViewModel by viewModels()
+    private lateinit var savedStateHandle: SavedStateHandle
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +44,9 @@ class CadastroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        savedStateHandle = findNavController().previousBackStackEntry!!.savedStateHandle
+        savedStateHandle.set(LoginFragment.LOGIN_SUCCESSFUL, false)
 
         iniciarInputsDropdown()
 
@@ -202,8 +207,10 @@ class CadastroFragment : Fragment() {
 
 
     private fun proximaActivity() {
-       val action = CadastroFragmentDirections.actionCadastroFragmentToMainActivity()
-        findNavController().navigate(action)
+       /*val action = CadastroFragmentDirections.actionCadastroFragmentToMainActivity()
+        findNavController().navigate(action)*/
+        savedStateHandle.set(LoginFragment.LOGIN_SUCCESSFUL, true)
+        findNavController().popBackStack()
     }
 }
 
