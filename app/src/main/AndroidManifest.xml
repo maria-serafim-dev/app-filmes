@@ -21,9 +21,6 @@
             android:parentActivityName="com.example.appdefilmes.activity.MainActivity"/>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.IntroducaoActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>

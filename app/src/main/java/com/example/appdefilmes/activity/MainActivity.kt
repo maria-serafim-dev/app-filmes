@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
@@ -21,7 +23,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
-import com.example.appdefilmes.fragments.InicioFragment
+import com.example.appdefilmes.fragments.LoginFragment
 import com.example.appdefilmes.fragments.PrincipalFragment
 import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.viewModel.UsuarioViewModel
@@ -48,40 +50,66 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        inicializarFragments(savedInstanceState)
+        inicializarFragments()
         ouvinteItemSelecionadoDrawerNavigation()
         ouvinteMenuAppBar()
 
+        val currentBackStackEntry = navController.currentBackStackEntry!!
+        val savedStateHandle = currentBackStackEntry.savedStateHandle
+        savedStateHandle.getLiveData<Boolean>(LoginFragment.LOGIN_SUCCESSFUL)
+            .observe(currentBackStackEntry) { success ->
+                if (success) {
+                    viewModel.recuperarDadosUsuario()
+                    configuracoesUsuarioLogado()
+                    binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
+                    binding.conteudoMain.topAppBar.visibility = View.VISIBLE
+                    binding.conteudoMain.bottomNavegacaoInicio.visibility = View.VISIBLE
+                }
+            }
+
     }
 
-    private fun inicializarFragments(savedInstanceState: Bundle?) {
+    private fun inicializarFragments() {
 
-        viewModel.logado.observe(this){ usuarioLogado ->
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragment_inicio) as NavHostFragment
+        navController = navHostFragment.navController
+
+        viewModel.logado.observe(this) { usuarioLogado ->
             if (!usuarioLogado) {
-                val fragment = InicioFragment()
-                if (savedInstanceState == null)
-                    supportFragmentManager.beginTransaction()
-                        .add(binding.conteudoMain.fragmentInicio.id, fragment)
-                        .commit()
-                binding.conteudoMain.bottomNavegacaoInicio.menu.removeItem(R.id.minhaListaFragment2)
 
-                configurarHeaderDrawerSemLogin()
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                binding.conteudoMain.topAppBar.visibility = View.GONE
+                binding.conteudoMain.bottomNavegacaoInicio.visibility = View.GONE
+
+                navController.navigate(R.id.loginFragment)
 
             } else {
-                val navHostFragment = supportFragmentManager
-                    .findFragmentById(R.id.fragment_inicio) as NavHostFragment
-                navController = navHostFragment.navController
-                binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
-
-                abrirToast()
-                viewModel.usuarioLogado.observe(this){ usuario ->
-                    configurarHeaderDrawer(usuario)
-                    inicializarFotoTopBar(usuario)
-                }
-
-                inicializarGoogle()
+                configuracoesUsuarioLogado()
             }
         }
+    }
+
+    private fun configuracoesUsuarioSemLogin() {
+        binding.conteudoMain.bottomNavegacaoInicio.menu.removeItem(R.id.minhaListaFragment2)
+        configurarHeaderDrawerSemLogin()
+    }
+
+    private fun configuracoesUsuarioLogado() {
+        navController.popBackStack()
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.inicioFragment2, true)
+            .build()
+        navController.navigate(R.id.inicioFragment2, null, navOptions)
+        binding.conteudoMain.bottomNavegacaoInicio.setupWithNavController(navController)
+
+        abrirToast()
+
+        viewModel.usuarioLogado.observe(this) { usuario ->
+            configurarHeaderDrawer(usuario)
+            inicializarFotoTopBar(usuario)
+        }
+        inicializarGoogle()
     }
 
     private fun inicializarFotoTopBar(usuario: UsuarioLogin) {

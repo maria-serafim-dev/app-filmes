@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.databinding.FragmentPrincipalBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class PrincipalFragment : Fragment() {
 
@@ -29,9 +28,10 @@ class PrincipalFragment : Fragment() {
         ouvinteBotaoLogin()
         ouvinteBotaoCadastrar()
     }
-    private fun ouvinteBotaoCadastrarMaisTarde() {
+
+   private fun ouvinteBotaoCadastrarMaisTarde() {
         binding.btnCriarMaisTarde.setOnClickListener {
-            val action = PrincipalFragmentDirections.actionPrincipalFragmentToMainActivity()
+            val action = PrincipalFragmentDirections.actionPrincipalFragmentToInicioFragment2()
             proximaActivity(action)
         }
     }
@@ -40,7 +40,6 @@ class PrincipalFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             val action = PrincipalFragmentDirections.actionPrincipalFragmentToLoginFragment()
             proximaActivity(action)
-
         }
     }
 
@@ -55,15 +54,6 @@ class PrincipalFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
-        if(auth.currentUser != null){
-            val action = PrincipalFragmentDirections.actionPrincipalFragmentToMainActivity()
-            proximaActivity(action)
-        }
-
-    }
 
 
 }

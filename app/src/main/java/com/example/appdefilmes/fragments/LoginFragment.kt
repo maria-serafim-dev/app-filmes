@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.FragmentLoginBinding
@@ -42,6 +43,12 @@ class LoginFragment : Fragment() {
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private val RC_SIGN_IN = 9001
 
+    companion object {
+        const val LOGIN_SUCCESSFUL: String = "LOGIN_SUCCESSFUL"
+    }
+
+    private lateinit var savedStateHandle: SavedStateHandle
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,6 +67,9 @@ class LoginFragment : Fragment() {
         inicializarLoginGoogle()
         clickListenerBotaoGoogle()
         ouvinteBotaoCadastrar()
+
+        savedStateHandle = findNavController().previousBackStackEntry!!.savedStateHandle
+        savedStateHandle[LOGIN_SUCCESSFUL] = false
     }
 
     private fun ouvinteBotaoCadastrar() {
@@ -104,7 +114,7 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
-                    proximaActivity()
+                    retornarUsuarioLogado()
                 } else {
                     Log.w("FaceBookLogin", "signInWithCredential:failure", task.exception)
                     mensagemErro("Facebook")
@@ -129,7 +139,7 @@ class LoginFragment : Fragment() {
 
                 auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        proximaActivity()
+                        retornarUsuarioLogado()
                     } else {
                         mensagemErro("e-mail e senha")
                         Log.i("signIn", "Erro ao logar usuário", task.exception)
@@ -139,9 +149,9 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun proximaActivity() {
-       val action = LoginFragmentDirections.actionLoginFragmentToMainActivity()
-        findNavController().navigate(action)
+    private fun retornarUsuarioLogado() {
+        savedStateHandle[LOGIN_SUCCESSFUL] = true
+        findNavController().popBackStack()
     }
 
     private fun mensagemErro(provedor: String) {
@@ -218,7 +228,7 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task: Task<AuthResult?> ->
                 if (task.isSuccessful) {
-                    proximaActivity()
+                    retornarUsuarioLogado()
                 } else {
                     mensagemErro("Google")
                     Log.w(

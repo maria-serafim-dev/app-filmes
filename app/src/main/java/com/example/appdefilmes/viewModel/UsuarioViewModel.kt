@@ -47,9 +47,9 @@ class UsuarioViewModel : ViewModel() {
         if(_logado.value == true) recuperarDadosUsuario()
     }
 
-    private fun recuperarDadosUsuario(){
-        viewModelScope.launch{
-            usuarioLogadoUseCase().collect{ usuario ->
+    fun recuperarDadosUsuario() {
+        viewModelScope.launch {
+            usuarioLogadoUseCase().collect { usuario ->
                 _usuarioLogado.value = usuario
             }
         }

@@ -3,7 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/inicioFragment2">
+    app:startDestination="@id/principalFragment">
+    <fragment
+        android:id="@+id/principalFragment"
+        android:name="com.example.appdefilmes.fragments.PrincipalFragment"
+        android:label="fragment_principal"
+        tools:layout="@layout/fragment_principal">
+        <action
+            android:id="@+id/action_principalFragment_to_cadastroFragment"
+            app:destination="@id/cadastroFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_inicioFragment2"
+            app:destination="@id/inicioFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appdefilmes.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_cadastroFragment"
+            app:destination="@id/cadastroFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_principalFragment"
+            app:destination="@id/principalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cadastroFragment"
+        android:name="com.example.appdefilmes.fragments.CadastroFragment"
+        android:label="fragment_cadastro"
+        tools:layout="@layout/fragment_cadastro">
+        <action
+            android:id="@+id/action_cadastroFragment_to_principalFragment"
+            app:destination="@id/principalFragment" />
+    </fragment>
     <fragment
         android:id="@+id/inicioFragment2"
         android:name="com.example.appdefilmes.fragments.InicioFragment"
@@ -15,6 +51,9 @@
         <action
             android:id="@+id/action_inicioFragment2_to_informacoesFilmeFragment"
             app:destination="@id/informacoesFilmeFragment" />
+        <action
+            android:id="@+id/action_inicioFragment2_to_principalFragment"
+            app:destination="@id/principalFragment" />
     </fragment>
     <fragment
         android:id="@+id/minhaListaFragment2"
