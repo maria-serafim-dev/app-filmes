@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/principalFragment">
+    app:startDestination="@id/inicioFragment2">
     <fragment
         android:id="@+id/principalFragment"
         android:name="com.example.appdefilmes.fragments.PrincipalFragment"
@@ -66,6 +66,9 @@
           <action
             android:id="@+id/action_minhaListaFragment2_to_informacoesFilmeFragment"
             app:destination="@id/informacoesFilmeFragment" />
+        <action
+            android:id="@+id/action_minhaListaFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <dialog

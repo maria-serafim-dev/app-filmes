@@ -35,16 +35,15 @@ class UsuarioViewModel : ViewModel() {
     private var _usuarioLogado = MutableLiveData<UsuarioLogin>()
     val usuarioLogado: LiveData<UsuarioLogin> = _usuarioLogado
 
-    private var _logado = MutableLiveData(false)
-    val logado: LiveData<Boolean> = _logado
+    var logado = MutableLiveData(false)
 
     fun cadastrarUsuario(usuario: Usuario, response: UsuarioResponse) {
         cadastroUseCase(usuario, response)
     }
 
     private fun verificarLogin() {
-        _logado.value = verificarLoginUseCase()
-        if(_logado.value == true) recuperarDadosUsuario()
+        logado.value = verificarLoginUseCase()
+        if(logado.value == true) recuperarDadosUsuario()
     }
 
     fun recuperarDadosUsuario() {

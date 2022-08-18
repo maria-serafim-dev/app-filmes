@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.appdefilmes.model.Filme
 import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.repository.FilmeRepository
-import com.example.appdefilmes.useCase.DadosUsuarioLogadoUseCase
-import com.example.appdefilmes.useCase.VerificarLoginUseCase
 import kotlinx.coroutines.launch
 
 class FilmeViewModel : ViewModel() {
@@ -16,14 +14,6 @@ class FilmeViewModel : ViewModel() {
 
     private val repository : FilmeRepository by lazy{
         FilmeRepository()
-    }
-
-    private val verificarLoginUseCase: VerificarLoginUseCase by lazy {
-        VerificarLoginUseCase()
-    }
-
-    private val usuarioLogadoUseCase: DadosUsuarioLogadoUseCase by lazy {
-        DadosUsuarioLogadoUseCase()
     }
 
     private var _usuarioLogado = MutableLiveData<UsuarioLogin>()
@@ -50,16 +40,12 @@ class FilmeViewModel : ViewModel() {
 
 
     init {
-        if (verificarLoginUseCase()) {
-            recuperarDadosUsuario()
-            filmesFavoritos()
-        }
         getFilme()
     }
 
-    private fun filmesFavoritos() {
+    fun getFilmesFavoritos(usuarioLogin: UsuarioLogin) {
         viewModelScope.launch {
-            _filmesFavoritos.value = _usuarioLogado.value?.let { repository.getListaFavoritos(it.id) }
+            _filmesFavoritos.value = repository.getListaFavoritos(usuarioLogin.id)
         }
     }
 
@@ -93,12 +79,5 @@ class FilmeViewModel : ViewModel() {
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
-    private fun recuperarDadosUsuario(){
-        viewModelScope.launch{
-            usuarioLogadoUseCase().collect{ usuario ->
-                _usuarioLogado.value = usuario
-            }
-        }
-    }
 
 }
