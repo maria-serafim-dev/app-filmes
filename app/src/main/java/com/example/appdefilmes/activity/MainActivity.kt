@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
@@ -21,7 +22,6 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
-import com.example.appdefilmes.fragments.PrincipalFragment
 import com.example.appdefilmes.model.UsuarioLogin
 import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.logado.observe(this) { usuarioLogado ->
             if (!usuarioLogado) {
                 configurarHeaderDrawerSemLogin()
+                inicializarFotoTopBarSemLogin()
             } else {
                 viewModel.recuperarDadosUsuario()
                 configuracoesUsuarioLogado()
@@ -70,7 +71,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun inicializarFotoTopBarSemLogin() {
+        binding.conteudoMain.topAppBar.menu.findItem(R.id.item_app_bar).icon = ContextCompat.getDrawable(this, R.drawable.ic_usuario)
+    }
 
     private fun configuracoesUsuarioLogado() {
         abrirToast()
@@ -168,6 +171,8 @@ class MainActivity : AppCompatActivity() {
 
         entrar.visibility = View.VISIBLE
         sejaAssinante.visibility = View.VISIBLE
+        val imagem: ImageView = header.findViewById(R.id.img_perfil)
+        imagem.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_usuario))
     }
 
     private fun ouvinteMenuAppBar() {
@@ -202,13 +207,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun signOutTodosProvedores() {
         viewModel.signOutTodosProvedores(mGoogleSignInClient!!)
-        voltarActivityPrincipal()
+        viewModel.logado.value = false
+        voltarParaHome()
     }
-
-    private fun voltarActivityPrincipal() {
-        val intent = Intent(this, PrincipalFragment::class.java)
-        startActivity(intent)
-        finish()
+    private fun voltarParaHome() {
+        val startDestination = navController.graph.startDestinationId
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(startDestination, true)
+            .build()
+        navController.navigate(startDestination, null, navOptions)
     }
 
     private fun abrirSobre() {
