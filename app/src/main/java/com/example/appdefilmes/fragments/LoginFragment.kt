@@ -13,11 +13,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.appdefilmes.R
 import com.example.appdefilmes.databinding.FragmentLoginBinding
+import com.example.appdefilmes.viewModel.UsuarioViewModel
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -48,12 +50,12 @@ class LoginFragment : BottomSheetDialogFragment() {
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private val RC_SIGN_IN = 9001
+    private val viewModelUsuario: UsuarioViewModel by activityViewModels()
 
     companion object {
         const val LOGIN_SUCCESSFUL: String = "LOGIN_SUCCESSFUL"
     }
 
-    private lateinit var savedStateHandle: SavedStateHandle
     private lateinit var navController: NavController
 
     override fun onCreateView(
@@ -69,7 +71,7 @@ class LoginFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-
+        navController = findNavController()
         ouvinteBotaoLogin()
         ouvinteBotaoFacebook()
         registrarCallBackFacebook()
@@ -78,18 +80,7 @@ class LoginFragment : BottomSheetDialogFragment() {
         clickListenerBotaoGoogle()
         ouvinteBotaoCadastrar()
 
-        navController = findNavController()
-        savedStateHandle = findNavController().previousBackStackEntry!!.savedStateHandle
-        savedStateHandle[LOGIN_SUCCESSFUL] = false
 
-        val currentBackStackEntry = navController.currentBackStackEntry!!
-        val savedStateHandle = currentBackStackEntry.savedStateHandle
-        savedStateHandle.getLiveData<Boolean>(LOGIN_SUCCESSFUL)
-            .observe(currentBackStackEntry) { success ->
-                if (success) {
-                    retornarUsuarioLogado()
-                }
-            }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -100,7 +91,7 @@ class LoginFragment : BottomSheetDialogFragment() {
     private fun ouvinteBotaoCadastrar() {
         binding.tvNaoPossuiConta.setOnClickListener {
             val action = LoginFragmentDirections.actionLoginFragmentToCadastroFragment()
-            findNavController().navigate(action)
+            navController.navigate(action)
         }
     }
 
@@ -175,8 +166,8 @@ class LoginFragment : BottomSheetDialogFragment() {
     }
 
     private fun retornarUsuarioLogado() {
-        savedStateHandle[LOGIN_SUCCESSFUL] = true
-        findNavController().popBackStack()
+        viewModelUsuario.logado.value = true
+        navController.popBackStack()
     }
 
     private fun mensagemErro(provedor: String) {

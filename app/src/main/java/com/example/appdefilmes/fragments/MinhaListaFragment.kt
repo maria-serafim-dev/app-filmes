@@ -44,27 +44,12 @@ class MinhaListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = findNavController()
         iniciarObservable()
         setAdapter()
         setOnClickFilme()
         verificarUsuarioLogado()
-        observarEstadoLogin()
     }
-
-    private fun observarEstadoLogin() {
-        navController = findNavController()
-        val currentBackStackEntry = navController.currentBackStackEntry!!
-        val savedStateHandle = currentBackStackEntry.savedStateHandle
-        savedStateHandle.getLiveData<Boolean>(LoginFragment.LOGIN_SUCCESSFUL)
-            .observe(currentBackStackEntry) { success ->
-                if (success) {
-                    viewModelUsuario.logado.value = true
-                } else {
-                    abrirDialog()
-                }
-            }
-    }
-
 
     private fun abrirDialog() {
         val materialAlertDialogBuilder = context?.let { MaterialAlertDialogBuilder(it) }
@@ -91,6 +76,7 @@ class MinhaListaFragment : Fragment() {
     private fun verificarUsuarioLogado() {
         viewModelUsuario.logado.observe(viewLifecycleOwner) { usuarioLogado ->
             if (!usuarioLogado) {
+                abrirDialog()
                 navController.navigate(R.id.loginFragment)
             }
         }
