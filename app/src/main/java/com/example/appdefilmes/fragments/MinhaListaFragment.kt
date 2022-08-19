@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -27,6 +28,7 @@ class MinhaListaFragment : Fragment() {
     private val viewModelFilmes: FilmeViewModel by activityViewModels()
     private val viewModelUsuario: UsuarioViewModel by activityViewModels()
     private lateinit var navController: NavController
+    private var dialog : AlertDialog? = null
 
     private val adapter: FilmeAdapter by lazy {
         FilmeAdapter(
@@ -56,13 +58,18 @@ class MinhaListaFragment : Fragment() {
         materialAlertDialogBuilder?.
         setTitle("Usuário não Logado")?.
         setMessage("Para acessar essa sessão você precisa estar logado . Deseja logar ou criar uma conta?")?.
-        setPositiveButton("Sim") { dialog: DialogInterface, _: Int ->
-                dialog.dismiss()
-        }?.
+        setCancelable(false)?.
+        setPositiveButton("Sim") { _: DialogInterface, _: Int -> }?.
         setNegativeButton("Continuar sem logar") { dialog: DialogInterface, _: Int ->
-                dialog.dismiss()
-                voltarParaHome()
-        }?.show()
+            dialog.dismiss()
+            voltarParaHome()
+        }
+
+        dialog = materialAlertDialogBuilder?.show()!!
+
+        dialog?.getButton(DialogInterface.BUTTON_POSITIVE)?.setOnClickListener {
+            navController.navigate(R.id.loginFragment)
+        }
     }
 
     private fun voltarParaHome() {
@@ -77,8 +84,8 @@ class MinhaListaFragment : Fragment() {
         viewModelUsuario.logado.observe(viewLifecycleOwner) { usuarioLogado ->
             if (!usuarioLogado) {
                 abrirDialog()
-                navController.navigate(R.id.loginFragment)
             }else{
+                dialog?.dismiss()
                 iniciarObservable()
             }
         }
