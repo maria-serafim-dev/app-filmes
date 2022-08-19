@@ -1,5 +1,6 @@
 package com.example.appdefilmes.fragments
 
+import android.app.Dialog
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -30,13 +30,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class LoginFragment : Fragment() {
+class LoginFragment : BottomSheetDialogFragment() {
+    private lateinit var dialog : BottomSheetDialog
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     private lateinit var callbackManager: CallbackManager
     private lateinit var binding: FragmentLoginBinding
@@ -62,6 +67,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+
         ouvinteBotaoLogin()
         ouvinteBotaoFacebook()
         registrarCallBackFacebook()
@@ -82,6 +90,11 @@ class LoginFragment : Fragment() {
                     retornarUsuarioLogado()
                 }
             }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        return dialog
     }
 
     private fun ouvinteBotaoCadastrar() {
