@@ -45,7 +45,7 @@ class MinhaListaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
-        iniciarObservable()
+
         setAdapter()
         setOnClickFilme()
         verificarUsuarioLogado()
@@ -78,6 +78,8 @@ class MinhaListaFragment : Fragment() {
             if (!usuarioLogado) {
                 abrirDialog()
                 navController.navigate(R.id.loginFragment)
+            }else{
+                iniciarObservable()
             }
         }
     }
