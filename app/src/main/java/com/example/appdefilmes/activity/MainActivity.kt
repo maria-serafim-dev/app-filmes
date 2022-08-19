@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         abrirToast()
 
         viewModel.usuarioLogado.observe(this) { usuario ->
-            configurarHeaderDrawer(usuario)
+            configurarHeaderDrawerComLogin(usuario)
             inicializarFotoTopBar(usuario)
         }
         inicializarGoogle()
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun configurarHeaderDrawer(usuario: UsuarioLogin) {
+    private fun configurarHeaderDrawerComLogin(usuario: UsuarioLogin) {
 
         binding.navigationView.menu.findItem(R.id.item_sair).isVisible = true
 
@@ -108,28 +108,13 @@ class MainActivity : AppCompatActivity() {
         val imagemArrow: ImageView = header.findViewById(R.id.img_arrow)
         val layoutButtonAssinante: LinearLayout = header.findViewById(R.id.layout_button_assinante)
         val layoutButtonsAssinante: LinearLayout = header.findViewById(R.id.layout_buttons_assinante)
-        val assinante: TextView = header.findViewById(R.id.tv_assinante)
-        val modoInfantil: Button = header.findViewById(R.id.btn_modo_infantil)
-        val maisPlanos: Button = header.findViewById(R.id.btn_mais_planos)
-        val sejaAssinante: Button = header.findViewById(R.id.btn_seja_assinante)
-        val divider: MaterialDivider = header.findViewById(R.id.divider_assinante)
-        val entrar: TextView = header.findViewById(R.id.tv_entrar)
 
+        configurarHeaderDrawerPadrao(header, true, nome, email)
         nome.text = usuario.nome
         email.text = usuario.email
 
-        nome.visibility = View.VISIBLE
-        email.visibility = View.VISIBLE
-        modoInfantil.visibility = View.VISIBLE
-        assinante.visibility = View.VISIBLE
-        divider.visibility = View.VISIBLE
-        maisPlanos.visibility = View.VISIBLE
-
-        entrar.visibility = View.GONE
-        sejaAssinante.visibility = View.GONE
-
         imagem.loadImage(usuario.foto.toString())
-        header.setBackgroundColor(ContextCompat.getColor(this, R.color.vermelho_escuro))
+
         layoutButtonAssinante.setOnClickListener {
             when(layoutButtonsAssinante.visibility){
                 View.VISIBLE -> {
@@ -148,29 +133,52 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun configurarHeaderDrawerPadrao(
+        header: View,
+        b: Boolean,
+        nome: TextView,
+        email: TextView
+    ) {
+
+        val assinante: TextView = header.findViewById(R.id.tv_assinante)
+        val modoInfantil: Button = header.findViewById(R.id.btn_modo_infantil)
+        val maisPlanos: Button = header.findViewById(R.id.btn_mais_planos)
+        val sejaAssinante: Button = header.findViewById(R.id.btn_seja_assinante)
+        val divider: MaterialDivider = header.findViewById(R.id.divider_assinante)
+        val entrar: TextView = header.findViewById(R.id.tv_entrar)
+        val imagemArrow: ImageView = header.findViewById(R.id.img_arrow)
+
+        var visibilidade : Int = View.GONE
+        var visibilidadeBotoes : Int = View.VISIBLE
+        if(b) {
+            visibilidade = View.VISIBLE
+            visibilidadeBotoes = View.GONE
+            header.setBackgroundColor(ContextCompat.getColor(this, R.color.vermelho_escuro))
+        }else{
+            header.setBackgroundColor(ContextCompat.getColor(this, R.color.cinza_fundo))
+        }
+
+        nome.visibility = visibilidade
+        email.visibility = visibilidade
+        modoInfantil.visibility = visibilidade
+        assinante.visibility = visibilidade
+        divider.visibility = visibilidade
+        maisPlanos.visibility = visibilidade
+        imagemArrow.visibility = visibilidade
+
+        entrar.visibility = visibilidadeBotoes
+        sejaAssinante.visibility = visibilidadeBotoes
+
+    }
     private fun configurarHeaderDrawerSemLogin() {
         binding.navigationView.menu.findItem(R.id.item_sair).isVisible = false
 
         val header = binding.navigationView.getHeaderView(0)
         val nome: TextView = header.findViewById(R.id.tv_nome)
         val email: TextView = header.findViewById(R.id.tv_email)
-        val entrar: TextView = header.findViewById(R.id.tv_entrar)
-        val divider: MaterialDivider = header.findViewById(R.id.divider_assinante)
-        val assinante: TextView = header.findViewById(R.id.tv_assinante)
-        val modoInfantil: Button = header.findViewById(R.id.btn_modo_infantil)
-        val maisPlanos: Button = header.findViewById(R.id.btn_mais_planos)
-        val sejaAssinante: Button = header.findViewById(R.id.btn_seja_assinante)
-        header.setBackgroundColor(ContextCompat.getColor(this, R.color.cinza_fundo))
 
-        nome.visibility = View.GONE
-        email.visibility = View.GONE
-        modoInfantil.visibility = View.GONE
-        assinante.visibility = View.GONE
-        divider.visibility = View.GONE
-        maisPlanos.visibility = View.GONE
+        configurarHeaderDrawerPadrao(header, false, nome, email)
 
-        entrar.visibility = View.VISIBLE
-        sejaAssinante.visibility = View.VISIBLE
         val imagem: ImageView = header.findViewById(R.id.img_perfil)
         imagem.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_usuario))
     }
