@@ -1,5 +1,6 @@
 package com.example.appdefilmes.fragments
 
+import android.app.Dialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -10,7 +11,6 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.fragment.findNavController
@@ -23,15 +23,20 @@ import com.example.appdefilmes.databinding.FragmentCadastroBinding
 import com.example.appdefilmes.model.Usuario
 import com.example.appdefilmes.retrofit.UsuarioResponse
 import com.example.appdefilmes.viewModel.UsuarioViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 
 
-class CadastroFragment : Fragment() {
+class CadastroFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentCadastroBinding
     private val viewModel : UsuarioViewModel by viewModels()
     private lateinit var savedStateHandle: SavedStateHandle
+    private lateinit var dialog : BottomSheetDialog
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,11 +47,19 @@ class CadastroFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        return dialog
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
 
         savedStateHandle = findNavController().previousBackStackEntry!!.savedStateHandle
-        savedStateHandle.set(LoginFragment.LOGIN_SUCCESSFUL, false)
+        savedStateHandle[LoginFragment.LOGIN_SUCCESSFUL] = false
 
         iniciarInputsDropdown()
 
@@ -207,9 +220,7 @@ class CadastroFragment : Fragment() {
 
 
     private fun proximaActivity() {
-       /*val action = CadastroFragmentDirections.actionCadastroFragmentToMainActivity()
-        findNavController().navigate(action)*/
-        savedStateHandle.set(LoginFragment.LOGIN_SUCCESSFUL, true)
+        savedStateHandle[LoginFragment.LOGIN_SUCCESSFUL] = true
         findNavController().popBackStack()
     }
 }

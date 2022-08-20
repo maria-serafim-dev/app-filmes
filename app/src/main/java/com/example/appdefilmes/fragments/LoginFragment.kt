@@ -79,6 +79,14 @@ class LoginFragment : BottomSheetDialogFragment() {
         clickListenerBotaoGoogle()
         ouvinteBotaoCadastrar()
 
+        val currentBackStackEntry = navController.currentBackStackEntry !!
+        val savedStateHandle = currentBackStackEntry.savedStateHandle
+        savedStateHandle.getLiveData< Boolean >( LOGIN_SUCCESSFUL )
+            .observe(currentBackStackEntry) { sucesso ->
+                if (sucesso) {
+                    retornarUsuarioLogado()
+                }
+            }
 
     }
 

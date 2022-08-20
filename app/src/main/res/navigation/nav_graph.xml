@@ -31,7 +31,7 @@
             android:id="@+id/action_loginFragment_to_principalFragment"
             app:destination="@id/principalFragment" />
     </dialog>
-    <fragment
+    <dialog
         android:id="@+id/cadastroFragment"
         android:name="com.example.appdefilmes.fragments.CadastroFragment"
         android:label="fragment_cadastro"
@@ -39,7 +39,7 @@
         <action
             android:id="@+id/action_cadastroFragment_to_principalFragment"
             app:destination="@id/principalFragment" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/inicioFragment2"
         android:name="com.example.appdefilmes.fragments.InicioFragment"
