@@ -95,8 +95,7 @@ class MinhaListaFragment : Fragment() {
         viewModelUsuario.usuarioLogado.observe(viewLifecycleOwner) { usuario ->
             viewModelFilmes.getFilmesFavoritos(usuario)
             viewModelFilmes.filmesFavoritos.observe(viewLifecycleOwner) { listaFilme ->
-                val listaFilmesImutavel: List<Filme> = listaFilme
-                adapter.submitList(listaFilmesImutavel.toList())
+                adapter.submitList(listaFilme.toList())
                 if (listaFilme.isEmpty()) binding.tvCrieSuaLista.visibility = View.VISIBLE
             }
         }
