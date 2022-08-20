@@ -16,8 +16,6 @@ class FilmeViewModel : ViewModel() {
         FilmeRepository()
     }
 
-    private var _usuarioLogado = MutableLiveData<UsuarioLogin>()
-
     private val _filmesFavoritos = MutableLiveData<MutableList<Filme>>()
     val filmesFavoritos: LiveData<MutableList<Filme>>
         get() = _filmesFavoritos
@@ -67,14 +65,14 @@ class FilmeViewModel : ViewModel() {
         }
     }
 
-    fun adicionarFilmeFavorito(filme: Filme) {
-        _usuarioLogado.value?.let {repository.inserirMinhaLista(filme, it.id)}
+    fun adicionarFilmeFavorito(filme: Filme, id: String) {
+        repository.inserirMinhaLista(filme, id)
         _filmesFavoritos.value?.add(filme)
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }
 
-    fun removerFilmeFavorito(filme: Filme) {
-        _usuarioLogado.value?.let {repository.removerFavorito(filme.id.toString(), it.id)}
+    fun removerFilmeFavorito(filme: Filme, id: String) {
+        repository.removerFavorito(filme.id.toString(), id)
         _filmesFavoritos.value?.remove(filme)
         _filmesFavoritos.postValue(_filmesFavoritos.value)
     }

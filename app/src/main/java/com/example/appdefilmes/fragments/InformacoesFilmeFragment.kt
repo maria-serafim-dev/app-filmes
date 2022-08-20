@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.appdefilmes.R
 import com.example.appdefilmes.adapters.TabViewPagerAdapter
@@ -32,7 +31,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     private val args: InformacoesFilmeFragmentArgs by navArgs()
     private val viewModels : FilmeViewModel by activityViewModels()
     private lateinit var filme: Filme
-    private val viewModel: UsuarioViewModel by viewModels()
+    private val viewModelUsuarios: UsuarioViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,10 +85,13 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
 
     private fun inicializarBotaoMinhaLista() {
 
-        viewModel.logado.observe(viewLifecycleOwner) { usuarioLogado ->
+        viewModelUsuarios.logado.observe(viewLifecycleOwner) { usuarioLogado ->
             if (usuarioLogado) {
                 configurarTextoBotaoMinhaLista()
-                ouvinteBotaoMinhaLista()
+                viewModelUsuarios.usuarioLogado.observe(viewLifecycleOwner){ usuario ->
+                    viewModels.getFilmesFavoritos(usuario)
+                    ouvinteBotaoMinhaLista(usuario.id)
+                }
             } else {
                 binding.btnMinhaLista.visibility = View.GONE
             }
@@ -99,14 +101,13 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
     private fun configurarTextoBotaoMinhaLista() {
         viewModels.filmesFavoritos.observe(viewLifecycleOwner){
             if(filme in it) modificarLayoutBotao(R.drawable.ic_adicionado, R.string.text_btn_minha_lista_adicionado)
-
         }
     }
 
     private fun abrirSnackBar(nomeFilme: String, mensagem: String) =
         Snackbar.make(binding.btnMinhaLista, getString(R.string.text_snack_bar, nomeFilme, mensagem), Snackbar.LENGTH_LONG)
 
-    private fun abrirDialog() {
+    private fun abrirDialog(id: String) {
         activity?.let { it ->
             MaterialAlertDialogBuilder(it)
                 .setTitle(resources.getString(R.string.titulo_dialog))
@@ -115,7 +116,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
                 .setNegativeButton(resources.getString(R.string.negativo_dialog)) { _, _ ->
                 }
                 .setPositiveButton(resources.getString(R.string.positivo_dialog)) { _ , _ ->
-                    viewModels.removerFilmeFavorito(filme)
+                    viewModels.removerFilmeFavorito(filme, id)
                     modificarLayoutBotao(R.drawable.ic_star, R.string.text_btn_minha_lista)
                     filme.title?.let { abrirSnackBar(it,"removido da").show() }
                 }.show()
@@ -133,12 +134,12 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun ouvinteBotaoMinhaLista() {
+    private fun ouvinteBotaoMinhaLista(id: String) {
         binding.btnMinhaLista.setOnClickListener {
             val textMinhaLista = getString(R.string.text_btn_minha_lista)
             if (binding.btnMinhaLista.text.equals(textMinhaLista)) {
                 filme.let {
-                    viewModels.adicionarFilmeFavorito(filme)
+                    viewModels.adicionarFilmeFavorito(filme, id)
                     modificarLayoutBotao(
                         R.drawable.ic_adicionado,
                         R.string.text_btn_minha_lista_adicionado
@@ -146,7 +147,7 @@ class InformacoesFilmeFragment : BottomSheetDialogFragment() {
                     abrirSnackBar(it.title!!, "adicionado à").show()
                 }
             } else {
-                abrirDialog()
+                abrirDialog(id)
             }
         }
     }
