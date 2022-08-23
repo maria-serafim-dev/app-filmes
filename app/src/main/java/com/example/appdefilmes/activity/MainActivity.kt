@@ -20,6 +20,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.appdefilmes.R
+import com.example.appdefilmes.data.urlPerguntasFrequentes
+import com.example.appdefilmes.data.urlSejaAssinante
+import com.example.appdefilmes.data.urlTermosPoliticas
 import com.example.appdefilmes.databinding.ActivityMainBinding
 import com.example.appdefilmes.extensions.loadImage
 import com.example.appdefilmes.model.UsuarioLogin
@@ -196,10 +199,14 @@ class MainActivity : AppCompatActivity() {
     private fun ouvinteBotaoSejaAssinante(header: View) {
         header.findViewById<Button>(R.id.btn_seja_assinante).setOnClickListener {
             binding.drawerLayout.close()
-            val queryUrl: Uri = Uri.parse("https://login.globo.com/cadastro/4654?platform=android-app&url=https%3A%2F%2Fdevices.globoid.globo.com%2Fauth%2F4654%2F7c5c4a0d-61ef-4891-90ae-52f83c466389")
-            val intent = Intent(Intent.ACTION_VIEW, queryUrl)
-            startActivity(intent)
+            abrirUri(urlSejaAssinante)
         }
+    }
+
+    private fun abrirUri(url: String) {
+        val queryUrl: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+        startActivity(intent)
     }
 
     private fun ouvinteMenuAppBar() {
@@ -253,15 +260,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun abrirTermosPoliticas() {
-        val queryUrl: Uri = Uri.parse("https://ajuda.globo/globoplay/termos-e-politicas/")
-        val intent = Intent(Intent.ACTION_VIEW, queryUrl)
-        startActivity(intent)
+        abrirUri(urlTermosPoliticas)
     }
 
     private fun abrirPerguntasFrequentes() {
-        val queryUrl: Uri = Uri.parse("https://ajuda.globo/globoplay/")
-        val intent = Intent(Intent.ACTION_VIEW, queryUrl)
-        startActivity(intent)
+        abrirUri(urlPerguntasFrequentes)
     }
 
     private fun abrirConfiguracoes() {

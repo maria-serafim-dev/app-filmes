@@ -28,3 +28,8 @@ const val sucessoCadastro: Int = 3
 val enderecoEmail: Array<String> = arrayOf("suporte@globoplay.com")
 const val assuntoEmail = "Comentário sobre o Globoplay"
 const val corpoEmail = "Escreva aqui seu comentário, dúvida ou sugestão"
+
+
+const val urlPerguntasFrequentes: String = "https://ajuda.globo/globoplay/"
+const val urlTermosPoliticas: String = "https://ajuda.globo/globoplay/termos-e-politicas/"
+const val urlSejaAssinante: String = "https://login.globo.com/cadastro/4654?platform=android-app&url=https%3A%2F%2Fdevices.globoid.globo.com%2Fauth%2F4654%2F7c5c4a0d-61ef-4891-90ae-52f83c466389"
