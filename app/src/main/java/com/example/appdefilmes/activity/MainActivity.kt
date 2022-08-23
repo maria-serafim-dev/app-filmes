@@ -182,13 +182,23 @@ class MainActivity : AppCompatActivity() {
         val imagem: ImageView = header.findViewById(R.id.img_perfil)
         imagem.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_usuario))
 
-        ouvinteButaoEntrar(header)
+        ouvinteBotaoEntrar(header)
+        ouvinteBotaoSejaAssinante(header)
     }
 
-    private fun ouvinteButaoEntrar(header: View) {
+    private fun ouvinteBotaoEntrar(header: View) {
         header.findViewById<Button>(R.id.tv_entrar).setOnClickListener {
             binding.drawerLayout.close()
             navController.navigate(R.id.loginFragment)
+        }
+    }
+
+    private fun ouvinteBotaoSejaAssinante(header: View) {
+        header.findViewById<Button>(R.id.btn_seja_assinante).setOnClickListener {
+            binding.drawerLayout.close()
+            val queryUrl: Uri = Uri.parse("https://login.globo.com/cadastro/4654?platform=android-app&url=https%3A%2F%2Fdevices.globoid.globo.com%2Fauth%2F4654%2F7c5c4a0d-61ef-4891-90ae-52f83c466389")
+            val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+            startActivity(intent)
         }
     }
 
