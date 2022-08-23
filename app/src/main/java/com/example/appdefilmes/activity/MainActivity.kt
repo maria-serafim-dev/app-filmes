@@ -181,6 +181,15 @@ class MainActivity : AppCompatActivity() {
 
         val imagem: ImageView = header.findViewById(R.id.img_perfil)
         imagem.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_usuario))
+
+        ouvinteButaoEntrar(header)
+    }
+
+    private fun ouvinteButaoEntrar(header: View) {
+        header.findViewById<Button>(R.id.tv_entrar).setOnClickListener {
+            binding.drawerLayout.close()
+            navController.navigate(R.id.loginFragment)
+        }
     }
 
     private fun ouvinteMenuAppBar() {
@@ -211,6 +220,8 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.close()
             true
         }
+
+
     }
 
     private fun signOutTodosProvedores() {

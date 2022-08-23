@@ -29,7 +29,6 @@ class UsuarioRepository {
             val usuarioEmail = auth.currentUser?.email!!
 
             val provedor = auth.currentUser?.providerData?.get(1)?.providerId
-            Log.i("Usuario", provedor.toString())
             val usuarioFoto = if (provedor != null && provedor == "facebook.com") {
                 Uri.parse("${auth.currentUser?.photoUrl}?access_token=${accessToken?.token}")
             }else if (provedor != null && provedor == "google.com"){
