@@ -1,7 +1,6 @@
 package com.example.appdefilmes.repository
 
 import android.net.Uri
-import android.util.Log
 import com.example.appdefilmes.data.erroCadastro
 import com.example.appdefilmes.data.erroEmailExistente
 import com.example.appdefilmes.data.sucessoCadastro
